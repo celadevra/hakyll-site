@@ -1,0 +1,45 @@
+---
+title: 'On magnetometer in iPhones and other gadgets'
+date: 2013-09-26
+categories: geography
+tags: [gis,hardware]
+---
+Recently, [Cult of Mac](http://www.cultofmac.com/247282/iphone-5s-compass-and-level-way-off-base-users-say/) reports that the newest iPhone 5s may point to wrong directions with its compass app. The guess is that the new motion coprocessor, M7, may have some subtle problems, or this may be a software bug of iOS 7. But readers were quick to point out in the comments that their observation may well be just an artifact by putting multiple phones and compasses together, or due to acceptable error (in statistic sense) of the sensor or software.
+
+To better grasp the implication of this piece of news, it is better to understand how compasses in smartphones work. To be more specific, I will be looking into the component called magnetometer.
+
+## What are magnetometers?
+
+<a href="http://www.flickr.com/photos/dunechaser/2678593121/" title="Magneto (V2) by Dunechaser, on Flickr" class="pagination-centered"><img src="http://farm4.staticflickr.com/3226/2678593121_4a6fc02dee_n.jpg" width="320" height="240" alt="Magneto (V2)"></a>
+
+Magnetometers does not tell you the presence of Magneto the extremist mutant leader, but it can help you detect him if he is nearby and using his power. In short, it tells you the strength of a magnetic field, in some cases also the direction of it.
+
+For iPhones, magnetometers were introduced as early as iPhone 3GS. Since then this sensor has always accompanied every iPhone. The iPhone 4 uses AK 8975. For iPhone 5, according to [iFixit](http://www.ifixit.com/Answers/View/118986/What+compass-magnetometer+is+used+for+the+iPhone+5), the magnetometer chip is [AK8963](http://www.akm.com/akm/en/product/datasheet1/?partno=AK8963). All these are supplied by Asahi Kasei.
+
+The chips use [Hall effect](http://en.wikipedia.org/wiki/Hall_effect) to determine the strength and direction of magnetic fields. In such chips, usually 3 sets of devices are used together to measure the effect in 3 directions, so one can get a more accurate reading, and do not have to worry about putting the phone on a level surface. Hall effect can be detected using very tiny parts, and needs relatively strong magnetic fields. These characteristics are desirable for everyday navigation use.
+
+iPhone 3GS uses a different type of magnetometer, the AN-203 manufactured by Honeywell. It is a magnetoresistive permalloy sensor.
+
+## How do they work?
+
+Hall effect sensors are based on a phenamenon most observed in a high school classroom. When a current-carrying semiconductor is kept in a magnetic field, the charge carriers (electrons, holes, etc.) experiences a force perpendicular to both the field and the current. As the charge accumulates, sides of the semiconductor begins to show a difference in voltage, which can be used as a signal of magnetic field presence.
+
+Magnetoresistive permalloy sensors measures a different indicator. The alloy is made into a film, when there is a change in magnetic field strength, the electrical resistance of the film will change. Because of the characteristic called anisotropicity, magnetic fields in different directions can cause different responses. By combining the alloy in 3 directions in a chip, the sensor can tell the strength as well as the direction of the field.
+
+Magnetoresistive sensors are more sensitive, but this also means they are easier to influence and yield wrong readings. This may be the reason Apple turned to Hall effect sensors in later models.
+
+The sensors assume they are detecting the Earth's magnetic field, this gives information on the heading of the phone. In a 3-D space, the sensor provides the "yaw" information, while "pitch" and "roll" are provided by the accelerometer.
+
+## What are their uses?
+
+So, what does my phone's heading tell me? Not much, but if you have used one of the older or cheaper GPS handset, like Garmin eTrex (below), you know how handy the heading information is.
+
+<a href="http://www.flickr.com/photos/fxbodin/3398556108/" title="Garmin eTrex d'occasion à vendre sur eBay by fxbodin.com, on Flickr" class="pagination-centered"><img src="http://farm4.staticflickr.com/3548/3398556108_2d563a714c.jpg" width="500" height="375" alt="Garmin eTrex d'occasion à vendre sur eBay"></a>
+
+This little gadget does *not* have a magnetometer, therefore no compass. During navigation it shows the direction you are going, but that is calculated from your coordination now and that a moment ago, so you have to be moving to know where you are heading. For a geogragher this is not a big deal, but for consumers who even do not know how to read maps?
+
+So when you pull out your iPhone, or any smartphone nowadays, and open a map application, your phone just assumes you are holding it head up and towards where you are looking at, and it can show the map with the direction lined up with the directions in life. SMART.
+
+Also, this makes the turn to turn navigation on phone possible. Without the sensor, your phone will only know you have took a turn quite some time after that, rendering route recalculation very difficult.
+
+Knowing more accurate heading data also brings possibilities such as better augmented reality apps, thus expanding the application of geoinformation on smartphone platforms.
