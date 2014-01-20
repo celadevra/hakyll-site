@@ -1,9 +1,16 @@
 ---
-title: 'On magnetometer in iPhones and other gadgets'
-date: 2013-09-26
-categories: geography
-tags: [gis,hardware]
+title: On magnetometer in iPhones and other gadgets
+created: 2013-09-26
+author: Haoyang Xu
+description:
+status: notes
+belief: highly likely
+tags: gadget, geography, magnet
 ---
+
+<!-- Status choices are: links, notes, draft, in progress, finished -->
+<!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
+
 Recently, [Cult of Mac](http://www.cultofmac.com/247282/iphone-5s-compass-and-level-way-off-base-users-say/) reports that the newest iPhone 5s may point to wrong directions with its compass app. The guess is that the new motion coprocessor, M7, may have some subtle problems, or this may be a software bug of iOS 7. But readers were quick to point out in the comments that their observation may well be just an artifact by putting multiple phones and compasses together, or due to acceptable error (in statistic sense) of the sensor or software.
 
 To better grasp the implication of this piece of news, it is better to understand how compasses in smartphones work. To be more specific, I will be looking into the component called magnetometer.
