@@ -1,9 +1,15 @@
 ---
-title: 'DZSlides：从 Markdown 到 PDF'
-date: 2014-01-07
-categories: code
-tags: [pandoc, ruby, groovy, java, css]
+title: 用 Pandoc 制作 HTML 幻灯片
+created: 2014-01-07
+author: Haoyang Xu
+description:
+status: notes
+belief: likely
+tags: pandoc, slide
 ---
+
+<!-- Status choices are: links, notes, draft, in progress, finished -->
+<!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
 
 ## 为什么使用 HTML 来做演示幻灯片
 
