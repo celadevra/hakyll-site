@@ -15,16 +15,19 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
-    match (fromList ["about.rst", "contact.markdown"]) $ do
-        route   $ setExtension "html"
+    match (fromList ["docs/*.pdf", "docs/*.mobi", "docs/*.epub"]) $ do
+       route    idRoute
+       compile  copyFileCompiler
+
+    match "docs/*" $ do
+        route $ setExtension "html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
     match "*.page" $ do
         route $ setExtension "html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
