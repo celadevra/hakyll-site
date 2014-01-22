@@ -10,7 +10,7 @@ div.header {
     background-color: #efefef;
     height: auto;
     float: left;
-    width: 50%;
+    width: 100%;
     }
 
 div.header div.info {
@@ -34,4 +34,9 @@ div.header div.navigation {
 div.navigation a {
     display: block;
     min-height:20%;
+    }
+
+div#TOC {
+    float:right;
+    width:25%;
     }
