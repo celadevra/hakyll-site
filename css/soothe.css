@@ -1,0 +1,32 @@
+/* custom css for my hakyll site */
+body {
+    color: black;
+    font-size: 16px;
+    margin: 0px auto 0px auto;
+    width: 800px;
+}
+
+div.header {
+    background-color: #cfcfcf;
+    height: auto;
+    float: left;
+    width: 50%;
+    }
+
+div.header div.info {
+    background-color: #efefef;
+    width: 70%;
+    float: right;
+    }
+
+div.header div.navigation {
+    background-color: #efefef;
+    float: left;
+    width: 30%;
+    height: 100%;
+    }
+
+div.navigation a {
+    display: block;
+    min-height:20%;
+    }
