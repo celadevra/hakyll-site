@@ -39,4 +39,23 @@ div.navigation a {
 div#TOC {
     float:right;
     width:25%;
+    border-left: 1px black dotted;
+    border-bottom: 1px black dotted;
+    margin: 0 0 3px 3px;
+    }
+
+a {
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px red dotted;
+    }
+
+a:hover {
+    border-bottom: none;
+    background-color: #ffcccc;
+    }
+
+a:visited {
+    text-decoration: none;
+    border-bottom: 1px red solid;
     }
