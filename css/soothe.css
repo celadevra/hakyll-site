@@ -7,7 +7,7 @@ body {
 }
 
 div.header {
-    background-color: #cfcfcf;
+    background-color: #efefef;
     height: auto;
     float: left;
     width: 50%;
@@ -15,8 +15,12 @@ div.header {
 
 div.header div.info {
     background-color: #efefef;
-    width: 70%;
+    width: 65%;
     float: right;
+    text-align: right;
+    border-right: 1px solid black;
+    margin: 0 1% 0 1%;
+    padding: 0 1% 0 1%;
     }
 
 div.header div.navigation {
@@ -24,6 +28,7 @@ div.header div.navigation {
     float: left;
     width: 30%;
     height: 100%;
+    border-right: 1px solid black;
     }
 
 div.navigation a {
