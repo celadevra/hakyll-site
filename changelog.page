@@ -24,4 +24,4 @@ createdFirst items =
     in liftM (\xs -> reverse . map snd $ sortBy (comparing fst) xs) itemsWithTime
 ```
 
-然后用调用类似 Hakyll 自带的 `recentFirst` 函数的方式调用 `createdFirst` 获得前10项最新的更新。
+然后用类似调用 Hakyll 自带的 `recentFirst` 函数的方式调用 `createdFirst` 获得前10项最新的更新。
