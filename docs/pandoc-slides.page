@@ -76,7 +76,7 @@ PowerPoint 等幻灯片制作工具的优势是可以选用本地各种各样的
 
 其一，使用系统上自带的字体，利用 CSS 本身的 fallback 机制实现在不同平台上相近的显示效果。我在 OS X 平台上制作幻灯片，播放可能是在 Windows 机器上，所以我这样写 CSS：
 
-```
+``` {.css}
 ...
 font-family: 'Baskerville-SemiBold', Arial, 'STKaiti', '楷体', 'SimKai', serif;
 ...
@@ -96,7 +96,7 @@ font-family: 'Baskerville-SemiBold', Arial, 'STKaiti', '楷体', 'SimKai', serif
 
 在我的系统上，执行产生的 FontForge 脚本需要带上环境变量：
 
-```
+``` {.bash}
 FONTFORGE_LANGUAGE=fontforge ./subsetter /Library/Fonts/Kai.ttf fonts/Kai.ttf
 ```
 
@@ -114,7 +114,7 @@ FONTFORGE_LANGUAGE=fontforge ./subsetter /Library/Fonts/Kai.ttf fonts/Kai.ttf
 
 deck2pdf 需要使用 Java 1.7 版本或更高自己编译，调用它生成 PDF 的命令如下：
 
-```
+``` {.bash}
 ~/bin/deck2pdf-0.1-SNAPSHOT/bin/deck2pdf
   --profile=dzslides.groovy
   --width=1024 --height=768
