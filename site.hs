@@ -104,6 +104,7 @@ woptions = defaultHakyllWriterOptions{ writerSectionDivs = True,
                                        writerTemplate = "<div id=\"TOC\">$toc$</div>\n$body$",
                                        writerHtml5 = True,
                                        writerHTMLMathMethod = Text.Pandoc.MathJax "",
+                                       writerHighlight = True,
                                        writerEmailObfuscation = ReferenceObfuscation}
 
 createdFirst :: [Item String] -> Compiler [Item String]
