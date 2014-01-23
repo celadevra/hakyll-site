@@ -35,7 +35,7 @@ Pandoc 默认会处理 Markdown 文件的一个称为 `pandoc_title_block` 的�
 
 Pandoc 的文档说被当成单张幻灯片标题的是紧接着上一级标题，中间没有内容的最高一级标题。换句话说，如果你有这样的文档结构：
 
-~~~~
+~~~~ {.markdown}
 # 节标题
 ## 幻灯片标题
 Blah blah
@@ -48,7 +48,7 @@ Blah blah
 
 内容编写完以后，就可以用 Pandoc 转换到 HTML 形式的幻灯片。Pandoc 支持到五种基于 HTML 的幻灯片模式的转换。因为我想让幻灯片的依赖尽量少，所以选择了[DZSlides]格式。转换成这种格式时，Pandoc 需要带上 `-s` 参数，表示 standalone，这样的文件才会带上 DZSlides 正常工作所必须的 `<style>` 和 `<script>` 代码。假设幻灯片的内容定义在 `main.md` 中，Pandoc 的命令可以这样写：
 
-```
+``` {.bash}
 $ pandoc -s -t dzslides main.md -o main.html
 ```
 
@@ -58,7 +58,7 @@ $ pandoc -s -t dzslides main.md -o main.html
 
 打开这个文件，可以看到开头部分有这样一段代码：
 
-```
+``` {.html}
 $if(css)$
 $for(css)$
   <link rel="stylesheet" href="$css$" $if(html5)$$else$type="text/css" $endif$/>
