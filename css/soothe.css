@@ -9,24 +9,20 @@ div.header {
     background-color: #efefef;
     height: auto;
     float: left;
-    width: 100%;
+    width: 20%;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
     }
 
 div.header div.info {
     background-color: #efefef;
-    width: 65%;
-    float: right;
     text-align: right;
-    border-right: 1px solid black;
-    border-left: 1px solid black;
     margin: 0 1% 0 1%;
     padding: 0 1% 0 1%;
     }
 
 div.header div.navigation {
     background-color: #efefef;
-    float: left;
-    width: 30%;
     height: 100%;
     }
 
@@ -37,9 +33,8 @@ div.navigation a {
 
 div#TOC {
     float:right;
-    width:25%;
+    max-width:25%;
     border-left: 1px black dotted;
-    border-bottom: 1px black dotted;
     margin: 0 0 3px 3px;
     }
 
