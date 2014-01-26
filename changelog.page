@@ -25,3 +25,5 @@ createdFirst items =
 ```
 
 然后用类似调用 Hakyll 自带的 `recentFirst` 函数的方式调用 `createdFirst` 获得前10项最新的更新。
+
+我仿照 gwern.net 的样式写了个很丑但还算能看的 CSS，并利用 Typeplate 和 normalize.css，搭起了网站基本的样子。
