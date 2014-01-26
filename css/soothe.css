@@ -12,18 +12,19 @@ div.header {
     width: 20%;
     border-right: 1px solid black;
     border-left: 1px solid black;
+    margin: 0 5% 0 1%;
     }
 
 div.header div.info {
     background-color: #efefef;
     text-align: right;
-    margin: 0 1% 0 1%;
-    padding: 0 1% 0 1%;
+    padding: 0 3% 0 1%;
     }
 
 div.header div.navigation {
     background-color: #efefef;
     height: 100%;
+    margin-bottom: 10px;
     }
 
 div.navigation a {
@@ -36,6 +37,11 @@ div#TOC {
     max-width:25%;
     border-left: 1px black dotted;
     margin: 0 0 3px 3px;
+    }
+
+div.desc, div.tags, div.created, div.modified, div.status, div.belief {
+    font-size: 90%;
+    font-style: italic;
     }
 
 a {
