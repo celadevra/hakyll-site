@@ -10,17 +10,20 @@ div.header {
     margin: 0 1% 0 3%;
     }
 
-div.info {
-    background-color: #efefef;
-    text-align: right;
-    padding: 0 3% 0 1%;
-    }
-
 div.header div.navigation {
     margin: 0 auto 0 auto; 
     font-family: entyporegular;
     font-size: 100pt;
     margin-bottom: 10px;
+    }
+
+.info span.bullet {
+    font-family: entyporegular;
+    font-size: 25px;
+    }
+
+.info span.item {
+    font-style: italic;
     }
 
 div#TOC {
