@@ -6,9 +6,8 @@ body {
 }
 
 div.header {
-    height: auto;
     width:100%;
-    margin: 0 5% 0 1%;
+    margin: 0 1% 0 3%;
     }
 
 div.info {
@@ -19,7 +18,6 @@ div.info {
 
 div.header div.navigation {
     margin: 0 auto 0 auto; 
-    height: 100%;
     font-family: entyporegular;
     font-size: 100pt;
     margin-bottom: 10px;
@@ -58,8 +56,8 @@ div.navigation a {
     }
 
 div.navigation a:hover {
-    background-color: #999;
-    color: #eee;
+    background-color: #444;
+    color: #e26700;
     }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
