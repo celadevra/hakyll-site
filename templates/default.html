@@ -7,6 +7,7 @@
         <link rel="stylesheet" type="text/css" href="/css/typeplate.css" />
         <link rel="stylesheet" type="text/css" href="/css/soothe.css" />
         <link rel="stylesheet" type="text/css" href="/css/syntax.css" />
+        <link rel="stylesheet" type="text/css" href="/css/entypo.css" />
     </head>
     <body>
         <div class="header">
@@ -14,12 +15,18 @@
                 <a href="/index.html"></a>
             </div>
             <div class="navigation">
-                <a href="/index.html">首页</a>
-                <a href="/about.html">关于网站</a>
-                <a href="/Read-me.html">关于我</a>
-                <a href="/changelog.html">更新记录</a>
-                <a href="/rss.xml">RSS</a>
+              <ul>
+                <li><a href="/index.html">首页</a></li>
+                <li><a href="/about.html">关于网站</a></li>
+                <li><a href="/Read-me.html">关于我</a></li>
+                <li><a href="/changelog.html">更新记录</a></li>
+                <li><a href="/rss.xml">RSS</a></li>
+              </ul>
             </div>
+        </div>
+
+        <div class="content">
+            <h1>$title$</h1>
             <div class="info">
                 $if(description)$
                 <div class="desc">$description$</div>
@@ -40,11 +47,6 @@
                 $belief$
                 </div>
             </div>
-
-        </div>
-
-        <div class="content">
-            <h1>$title$</h1>
 
             $body$
         </div>
