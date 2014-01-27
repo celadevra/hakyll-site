@@ -18,14 +18,11 @@ div.info {
     }
 
 div.header div.navigation {
-    margin: 0 20% 0 20%;
+    margin: 0 auto 0 auto; 
     height: 100%;
     font-family: entyporegular;
+    font-size: 100pt;
     margin-bottom: 10px;
-    }
-
-div.navigation a {
-    min-height:20%;
     }
 
 div#TOC {
@@ -58,8 +55,6 @@ a:visited {
 
 div.navigation a {
     border-bottom: none;
-    padding: 5px 0 5px 20px;
-    font-size: 19pt;
     }
 
 div.navigation a:hover {
