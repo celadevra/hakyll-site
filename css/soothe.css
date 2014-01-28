@@ -64,6 +64,22 @@ div.navigation a:hover {
     color: #e26700;
     }
 
+span.button {
+    position:relative;
+    }
+
+div.tapestry {
+    position:absolute;
+    top: 80px;
+    left: 13px;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-variant: small-caps;
+    color: #e26700;
+    z-index: 1;
+    display:none;
+    }
+
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
     border-bottom: none;
     }
