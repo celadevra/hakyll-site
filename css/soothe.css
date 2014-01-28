@@ -56,10 +56,11 @@ a:visited {
 
 div.navigation a {
     border-bottom: none;
+    color: rgba(0,0,0,.2);
     }
 
 div.navigation a:hover {
-    background-color: #444;
+    Background-color: #fff;
     color: #e26700;
     }
 
