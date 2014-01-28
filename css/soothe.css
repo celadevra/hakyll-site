@@ -46,7 +46,7 @@ a {
 
 a:hover {
     border-bottom: none;
-    background-color: #ecfcec;
+    background-color: #ffcc99;
     }
 
 a:visited {
@@ -91,6 +91,30 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
 
 h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {
     border-bottom: none;
+    }
+
+h1 {
+    font-size: xx-large;
+    }
+
+h2 {
+    font-size: x-large;
+    }
+
+h3 {
+    font-size: large;
+    }
+
+h4 {
+    font-size: medium;
+    }
+
+h5 {
+    font-size: small;
+    }
+
+h6 {
+    font-size: x-small;
     }
 
 #TOC a {
