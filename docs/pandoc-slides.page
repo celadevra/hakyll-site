@@ -5,8 +5,8 @@ author: Haoyang Xu
 description: 简介使用 Pandoc 制作 HTML5 幻灯片和输出 PDF 的方法。
 status: notes
 belief: likely
-tags: pandoc, slide
----
+tags: howto, pandoc, slide
+...
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
@@ -20,6 +20,8 @@ tags: pandoc, slide
 + [Pandoc][Pandoc] 是加入 TeX、代码等内容的最佳工具。
 
 ## 使用 Markdown 编写幻灯片文本
+
+### DZSlides
 
 Markdown 的使用不在此赘述。因为整个幻灯片的生成是用 Pandoc 从 Markdown 生成 HTML，所以需要预先了解一下 Pandoc 的 Markdown 在幻灯片中会怎样被呈现。
 
@@ -44,15 +46,31 @@ Blah blah
 
 那么`## 幻灯片标题`下直到下一个二级标题之间的内容会被放到同一张片子上，而`# 节标题`会被作为这一部分幻灯片的总标题单独放在一张特殊形式的幻灯片上。这应该是最常见的一种设置。当然我们也可以用一级标题作为大节标题，二级标题作为小结标题，这时候三级标题才是单张幻灯片的标题。Pandoc 还提供了 `--slide-level=NUMBER` 这个设置来手动控制幻灯片标题的层级。
 
+### Reveal.js
+
+Reveal.js 的基本单位是 `<section>` 标签，通过给这个标签增加属性可以改变单张幻灯片播放时的行为，例如改变背景颜色等。在 Pandoc 中实现这个功能的方法是利用 Pandoc 的 `header_attributes` 扩展，在各级 Markdown 标题后加上所需的选项。
+
 ## 用 Pandoc 生成幻灯片
 
-内容编写完以后，就可以用 Pandoc 转换到 HTML 形式的幻灯片。Pandoc 支持到五种基于 HTML 的幻灯片模式的转换。因为我想让幻灯片的依赖尽量少，所以选择了[DZSlides]格式。转换成这种格式时，Pandoc 需要带上 `-s` 参数，表示 standalone，这样的文件才会带上 DZSlides 正常工作所必须的 `<style>` 和 `<script>` 代码。假设幻灯片的内容定义在 `main.md` 中，Pandoc 的命令可以这样写：
+内容编写完以后，就可以用 Pandoc 转换到 HTML 形式的幻灯片。Pandoc 支持到五种基于 HTML 的幻灯片模式的转换。
+
+### DZSlides
+
+如果想让幻灯片的依赖尽量少，就选择 [DZSlides] 格式。转换成这种格式时，Pandoc 需要带上 `-s` 参数，表示 standalone，这样的文件才会带上 DZSlides 正常工作所必须的 `<style>` 和 `<script>` 代码。假设幻灯片的内容定义在 `main.md` 中，Pandoc 的命令可以这样写：
 
 ``` {.bash}
 $ pandoc -s -t dzslides main.md -o main.html
 ```
 
+### Reveal.js
+
+[Reveal.js][reveal-js] 是目前比较流行的 HTML 幻灯解决方案，它的特点是设定幻灯片主题和切换方式比较容易，而且支持二维的幻灯片排列。使用 `-s` 参数时，需要从 GitHub 上下载 Reveal.js 的发布 tar 包并解开，将产生的目录重命名为 reveal.js，这样 Pandoc 会自行在里面寻找有关的文件。
+
+Pandoc 对应 Reveal.js 的默认[模板][revealjs-template]里设置了一些初始化 Reveal.js 设置的基本选项。由于 Pandoc 的模板把 Reveal.js 放在页面的最后载入，所以我们无法在源文件中直接改变幻灯片的全局选项，只能通过使用自己的模板来进行初始选项定制，或者通过 Pandoc 的 `-A` 选项加入 Javascript 来进行 Reveal.js 的定制。
+
 ## 用 CSS 控制幻灯片外观
+
+### DZSlides
 
 打开生成的 HTML 文件，我们能看到这是一个最基本的幻灯片，白底黑字，我们可以用光标键控制播放，但是这样的效果简陋了一些，我们需要对幻灯片的外观进行一些定制。默认情况下，Pandoc 使用的是自带的 DZSlides 模板，在[这里][dzslides-template]可以找到。我们需要把它下载下来，作为定制的基础。
 
@@ -69,6 +87,10 @@ $else$
 ```
 
 在用 Pandoc 生成 HTML 时，可以用 `--css=URL` 加入自定的 CSS 文件，这个参数可以多次使用以加入多个 CSS。但这样一来，DZSlides 只依赖单个 HTML 文件的优势就没有了，所以我们还是修改 `<style>...` 这部分的 CSS。我修改的文件在我的 GitHub [代码库][my-dzslides]中。
+
+### Reveal.js
+
+Reveal.js 允许通过 `data-state=` 这个属性给某个元素以特定的 class，然后用户就可以在 HTML 或 CSS 文件中指定这个 class 的样式。但是全局地改变元素的样式似乎没有好的办法。如果用自己定义的 CSS 文件改变全局样式，生成的页面会丢失 Theme 中指定的所有样式，只有在 theme 的 CSS 上直接修改才可以实现想要的效果。
 
 ### 字体设置
 
@@ -142,3 +164,5 @@ deck2pdf 需要使用 Java 1.7 版本或更高自己编译，调用它生成 PDF
 [SlideShare]: http://www.slideshare.net/
 [deck2pdf]: https://github.com/melix/deck2pdf "Convert slide deck to PDF"
 [Groovy]: http://groovy.codehaus.org "A dynamic language on JVM"
+[reveal-js]: https://github.com/hakimel/reveal.js "Reveal.js on GitHub"
+[revealjs-template]: https://github.com/jgm/pandoc-templates/blob/master/default.revealjs "Reveal.js template for Pandoc"
