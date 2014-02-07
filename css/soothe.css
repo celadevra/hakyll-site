@@ -45,8 +45,7 @@ a {
     }
 
 a:hover {
-    border-bottom: none;
-    background-color: #ffcc99;
+    border-bottom: 1px #e26700 dashed;
     }
 
 a:visited {
