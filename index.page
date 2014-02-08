@@ -10,6 +10,13 @@ tags: index
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
+<style type="text/css">
+/* CSS provided by cwillu of #lesswrong. This CSS:
+1. reflows sections to use up all horizontal whitespace so every section fits on 1 screen
+2. hides the Table of Contents (not needed since all sections are visible) */
+div#content section { display: inline-block; vertical-align: top; max-width:700px; }
+div#content div#TOC { display: none; }
+</style>
 
 ## 文化和评论
 
