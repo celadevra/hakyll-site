@@ -15,7 +15,13 @@ tags: index
 1. reflows sections to use up all horizontal whitespace so every section fits on 1 screen
 2. hides the Table of Contents (not needed since all sections are visible) */
 div#content section { display: inline-block; vertical-align: top; max-width:700px; }
-div#content div#TOC { display: none; }
+div#TOC { display: none; }
+/* Hide metadata which is not interesting for index.page */
+div.info { display: none; }
+
+/* Get as many columns on the page as possible;
+this overrides the A/B-tested narrower max-width for content pages */
+body { max-width: 1700px; }
 </style>
 
 ## 文化和评论
