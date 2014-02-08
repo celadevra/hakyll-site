@@ -41,13 +41,13 @@ main = hakyll $ do
     tags <- buildTags "**.page" (fromCapture "tags/*")
 
     match "docs/*" $ do
-        route $ setExtension "html"
+        route $ setExtension ""
         compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
             >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
             >>= relativizeUrls
 
     match "**.page" $ do
-        route $ setExtension "html"
+        route $ setExtension ""
         compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
