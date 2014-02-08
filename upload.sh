@@ -1,3 +1,3 @@
 #!/bin/bash
 ./site build
-aws s3 sync _site/ s3://haoyangwrit.es --acl public-read
+s3cmd sync _site/ s3://haoyangwrit.es --guess-mime-type --mime-type 'text/html' --recursive --delete-removed --acl-public
