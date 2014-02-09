@@ -1,2 +1,5 @@
 _site/*
 _cache/*
+site
+site.hi
+site.o
