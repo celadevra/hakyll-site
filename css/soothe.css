@@ -126,6 +126,10 @@ h6 {
     border-bottom: black 1px dashed;
     }
 
+#TOC ul {
+    list-style-type: decimal;
+    }
+
 figure {
     position: relative;
     max-width: 100%;
