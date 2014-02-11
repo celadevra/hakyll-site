@@ -125,3 +125,27 @@ h6 {
     background-color: #eeeeee;
     border-bottom: black 1px dashed;
     }
+
+figure {
+    position: relative;
+    max-width: 100%;
+    margin: 5px;
+    }
+
+figure img {
+    max-width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+figure figcaption {
+    position: absolute;
+    top: 0;
+    right: 0%;
+    max-width: 18%;
+    max-height: 160%;
+    border-left: 4px solid #cfcfcf;
+    border-top: 4px solid #cfcfcf;
+    padding-left: 10px;
+    font-size: 90%;
+    }
