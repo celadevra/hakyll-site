@@ -15,6 +15,7 @@ div.header div.navigation {
     font-family: entyporegular;
     font-size: 100pt;
     margin-bottom: 10px;
+    line-height: 100px;
     }
 
 .info span.bullet {
@@ -69,7 +70,7 @@ span.button {
 
 div.tapestry {
     position:absolute;
-    top: 80px;
+    top: 30px;
     left: 13px;
     font-family: sans-serif;
     font-size: 20px;
