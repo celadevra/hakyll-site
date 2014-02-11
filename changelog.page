@@ -30,6 +30,12 @@ s3cmd sync _site/ s3://haoyangwrit.es
 
 此外，在 name.com 久觅域名无果后，我在 domain.com 买了 haoyangwrit.es 这个域名，还比较满意。现已用亚马逊官方提供的方法将域名绑定到了存放网站的 bucket。
 
+由于在 domain.com 注册域名比较麻烦（需要回复 ICANN 发出的确认邮件，而我似乎还没有看到这个东西），我还是回到了熟悉的 name.com，并注册了 expoundite.net 这个域名，S3 上的 bucket 也相应地改变了。name.com 改变 NS 记录的速度非常快，几分钟以后，我已经用上了用 Amazon Route 53 管理的新域名。
+
+开始了新文件，关于[北京的城市更新](/docs/urban-renewal)。我对这个题目还没有太多概念，但我相信只要进行足够多的思考和阅读，我是可以写出有用的东西来的。
+
+为了节省 S3 的请求和流量费用，我注册了 [CloudFlare][] 的免费 CDN 服务，而这又要求我继续改变 NS 记录。我已经把 Route 53 上的记录删掉，可以每月节省0.5美元，但因为默认的 TTL 是48小时，此刻我还是在通过原有的 DNS 记录解析域名，也就暂时没有用到 CloudFlare 的功能。
+
 ## 2014年1月
 
 我从 gwern.net 和 Danny Su 的 blog 代码中各抄了一点东西，实现了网站的 RSS 和 tags 页面功能。有一点原创性的工作，就是这个网站虽然采用了和 gwern.net 类似的根据页面更新时间而不是创建时间排列 RSS 项目的功能，但我没有像他那样用 Gitit 里的 module 来实现，而是在 fannesposito.com 的代码基础上重写了 `createdFirst` 这个函数，利用 `System.Directory` module 中的 `getModificationTime` 函数来获取文件的更新时间：
@@ -50,4 +56,5 @@ createdFirst items =
 用符号字体改善了导航栏。字体用的是来自 fontsquirrel.com 的 [Entypo](http://www.fontsquirrel.com/fonts/entypo)，由 Daniel Bruce 设计，按照 Creative Commons BY-SA v3.0 [许可证](http://creativecommons.org/licenses/by-sa/3.0/)发布。
 
 [gwern-s3cmd]: https://groups.google.com/d/topic/hakyll/XewxMLIjRIw "How to link your own posts?"
+[CloudFlare]: http://www.cloudflare.com/ "The web performance and security company"
 [^nfsn]: 甚至包括以价格低廉著称的 nearlyfreespeech.net 和 Hostigation。
