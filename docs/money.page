@@ -11,8 +11,25 @@ tags: money, self
 <!-- Status choices are: links, notes, draft, in progress, finished -->
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
 
+# 存款账户
+
+我的主要收入来源仍然是工资，因此它们总是会以活期存款账户中的一笔钱的形式出现。绝大多数钱在被花出去前的最后一刻，也仍然会呆在这个账户里。
+
+少量的钱会被存到1年期的定期存款账户中。在2011年，较高的CPI值使得定期存款实际上以每年1.8%-2%的速度缩水[^2011-shrink]。在写作本文的2014年，以零存整取方式存1年定期则有望使这部分存款的购买力在年底增长0.5%，但CPI微小的上涨都可以抵消这种微不足道的收益。
+
+那么存定期存款的好处何在？过去的人可能还认为银行存款比其他投资手段风险小，但考虑到银行投资策略的盲目性[^bank-blind]，这点未必是事实。现在存定期的考虑还是资金去向的多样化，以及与其他的投资手段[对冲][zhwiki-irrisk]。还有一个目的，就是购买银行的理财产品。但是其他投资手段的出现，抢购理财产品对精力的牵扯，购买门槛的提高和收益率的下降都使得购买理财产品的吸引力降低。
+
 # Kiva
 
-这并不是一个投资手段，而且很可能有[巨大的问题][kiva-fairytale]
+这并不是一个投资手段，而且很可能有[巨大的问题][kiva-fairytale]。
 
 [kiva-fairytale]: http://www.nextbillion.net/blogpost.aspx?blogid=3726 "The problem of Kiva overlooked by many"
+[zhwiki-irrisk]: http://zh.wikipedia.org/wiki/利率風險 "利率风险 - 维基百科，自由的百科全书"
+
+[^2011-shrink]: 计算根据新华网发布的2011年CPI上涨[数据](http://news.xinhuanet.com/fortune/2012-01/12/c_122576447.htm)以及当年的1年期存款[利率](http://www.southmoney.com/lilv/dingqicunkuanli/201205/304821.html)。计算公式为$\frac{1+\text{存款利率}}{1+\text{CPI涨幅}} \times 100\%$。
+
+[^bank-blind]: 在 Walter 和 Howie 的著作 *Red Capitalism* 中，他们这样写道：
+
+    > Looking forward, the lending binge of 2009 threatens, and will most certainly generate problem loans of sufficient scale to require yet a third recapitalization in the next two to three years.
+
+    现在的情况可能略有好转，但和短期理财产品相比，定期存款仍然可能被投放到没有什么收益的项目中，造成整个银行坏账比重的增加。重视短期利益的理财产品可能反而有较多的前期设计和内部监管。
