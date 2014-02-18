@@ -22,6 +22,7 @@ div.info { display: none; }
 /* Get as many columns on the page as possible;
 this overrides the A/B-tested narrower max-width for content pages */
 body { max-width: 1700px; }
+p + p { text-indent: 0; }
 </style>
 
 ## 文化和评论

@@ -66,12 +66,15 @@ div.navigation a:hover {
 
 span.button {
     position:relative;
+    width: 50px;
+    display: inline-block;
     }
 
-div.tapestry {
+span.tapestry {
     position:absolute;
-    top: 30px;
-    left: 13px;
+    top: 42px;
+    left: 18px;
+    width: 50px;
     font-family: sans-serif;
     font-size: 20px;
     font-variant: small-caps;
