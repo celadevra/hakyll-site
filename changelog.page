@@ -11,6 +11,10 @@ tags: site
 <!-- Status choices are: links, notes, draft, in progress, finished -->
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
 
+## 2014年3月
+
+[内容]添加了关于[理财](/money)的文章。
+
 ## 2014年2月
 
 [部署]考虑了成本、可用性等因素后，我决定将网站的内容存储在 Amazon S3 上。和大多数虚拟主机和网页托管服务相比[^nfsn]，S3 在网站内容总量小于1G，访问量小于2万 PV 和流量不超过10G时的性价比是无人能敌的，而且也不用担心被攻击和系统日常维护的问题。
