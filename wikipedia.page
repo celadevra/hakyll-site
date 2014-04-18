@@ -10,6 +10,10 @@ tags: wikipedia, knowledge
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
+<style type="text/css">
+
+p + p { text-indent: 0; }
+</style>
 
 目前我的主[帐号](https://zh.wikipedia.org/wiki/User:Haoyangxu)已进行了约[70次](https://tools.wmflabs.org/supercount/index.php?user=Haoyangxu&project=zh.wikipedia)编辑。加粗字体为新建页面。
 
