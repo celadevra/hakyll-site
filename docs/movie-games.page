@@ -79,6 +79,18 @@ tags: game
 
 ## 电影化包装
 
+前面的三个方面是关于游戏制作过程中的艺术和科学，游戏的包装则更多地是一个营销问题。2013年，世界范围内的游戏软件销售收入[达到][gartner-games]489.94亿美元，已经可以和世界电影票房总额相提并论，而游戏类型和题材的丰富也与电影不遑多让。在这样庞大的利益驱动下，不少作品采用类似于电影的包装手法也就顺理成章了。
+
+那些竭力在营销手段上把自己包装成商业大片的游戏确实取得了类似电影大制作的收入。但真正值得注意的现象是那些并不在宣传文案中宣称自己“像电影”的游戏也在营销过程中的方方面面向电影靠拢。
+
+最容易注意到的是游戏的预告片在向电影预告片的形式靠拢——从过去的以游戏画面为主，偏重介绍游戏的画面表现、游玩机制，转向以预先渲染的画面或者另行制作的动画为主，偏重介绍人物，引发玩家对游戏内容的兴趣。欧美厂商在这方面做得尤为决绝。
+
+此外，游戏制作人、游戏配音演员和动作捕捉演员通过游戏发行商在媒体上发布的专题短片、访谈等内容获得了更多的曝光和关注，这表明游戏的营销正在转向更加注重个人声誉和明星效应的阶段。发行商可以通过不断公开游戏的制作进程和八卦，在游戏概念形成之初就抓住并保持玩家群体的兴趣，这是电影业已经使用过一段时间的手法，在游戏界则是刚出现不久的现象。
+
+连游戏的长度也在向电影靠拢。过去的单机游戏可能像电视剧，即使是用提高难度这样的手段也要保证玩家可以玩20个小时以上；当下主机上的不少大制作游戏成本固然可以与电影相比，单机部分的长度却也在不断缩短，大概四五个小时就可以通关。如果这么短的时间不足以表现游戏的全部内容呢？制作者宁愿选择将游戏拆分为三部曲，以几个月到两三年的间隔发布。
+
+这可能是游戏成本上升后厂商的自然反应，但这种制作方式也确实使电影化的营销方式成为更自然的选择。当每分钟游戏内容的制作成本翻了几倍之后，包装和推广游戏的方式必然要做出相应的改变。
+
 # 电影化与技术进步
 
 技术进步是否是电影化的必要条件？
@@ -94,6 +106,7 @@ tags: game
 [Pong]: https://en.wikipedia.org/wiki/Pong "Pong - Wikipedia, the free encyclopedia"
 [vg-crash]: https://en.wikipedia.org/wiki/Video_game_crash_of_1977#Video_game_crash_of_1977 "History of video games - Wikipedia, the free encyclopedia"
 [cosmic-guerilla]: /images/movie-games/48143801.jpg "Flyer of Cosmic Guerilla, from the Arcade Flyer Archive"
+[gartner-games]: https://www.gartner.com/newsroom/id/2614915 "Gartner Says Worldwide Video Game Market to Total $93 Billion in 2013"
 
 [^only-a-game]: 对这个问题和相关概念的探讨，见[这篇blog](http://onlyagame.typepad.com/only_a_game/2005/08/story_plot_narr.html)。
 
