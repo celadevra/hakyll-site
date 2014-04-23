@@ -1,5 +1,7 @@
 _site/*
 _cache/*
+_test/*
+_testcache/*
 site
 site.hi
 site.o

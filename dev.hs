@@ -11,8 +11,13 @@ import           Text.Pandoc (HTMLMathMethod(MathJax),
                     ObfuscationMethod(ReferenceObfuscation), WriterOptions(..))
 
 --------------------------------------------------------------------------------
+testConf :: Configuration
+testConf = defaultConfiguration
+  { destinationDirectory = "_test",
+    storeDirectory = "_testcache" }
+
 main :: IO ()
-main = hakyll $ do
+main = hakyllWith testConf $ do
     match "images/*" $ do
         route   idRoute
         compile copyFileCompiler
