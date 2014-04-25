@@ -200,11 +200,11 @@ ELECTRE 即“取自现实的选择与消除”。ELECTRE 方法分别在每一�
     f_{kl} = 0, & \text{if } c_{kl} < \underline{c}
     \end{eqnarray}$$
 
-    不调支配矩阵 $\mathbf{G} 的元素定义为
+    不调支配矩阵 $\mathbf{G}$ 的元素定义为[^disc-domi-matrix]
 
     $$\begin{eqnarray}
-    g_{kl} = 1, & \text{if } d_{kl} \geq \underline{d} \\
-    g_{kl} = 0, & \text{if } d_{kl} < \underline{d}
+    g_{kl} = 1, & \text{if } d_{kl} \leq \underline{d} \\
+    g_{kl} = 0, & \text{if } d_{kl} > \underline{d}
     \end{eqnarray}$$
 
 6. 确定组合支配矩阵：
@@ -215,5 +215,62 @@ ELECTRE 即“取自现实的选择与消除”。ELECTRE 方法分别在每一�
 
     观察获得的组合支配矩阵，如果 $e_{kl} = 1$，说明选择 $\mathbf{A}_{k}$ 无论以调和原则还是不调原则看都强于选择 $\mathbf{A}_{l}$。因此，在组合支配矩阵中有元素为1的列，表示该列对应的选择被元素1所在行对应的选择支配。去掉这些列，剩下没有元素为1的列对应的就是最优的选择。
 
+## TOPSIS 方法
+
+TOPSIS 全称为 the Technique for Order Preference by Similarity to Ideal Solution，是 ELECTRE 方法的一个变体。TOPSIS 使用最小距离的概念，认为好的选项应离理想解决方案尽可能近，而离最不理想的解决方案尽可能远。
+
+TOPSIS 的假设之一是每个选择标准对最终功用的影响都是线性的，这样就容易定义最理想和最不理想的解决方案。TOPSIS 方法的一般步骤如下：
+
+1. 构造标准化决策矩阵：
+
+    假设原有的决策矩阵 $\mathbf{D}$ 的元素为 $x_{ij}$，标准化后的矩阵 $\mathbf{R}$ 的元素如下计算：
+
+    $$r_{ij} = \frac{x_{ij}}{\sqrt{\sum_{k = 1}^{m}x_{kj}^{2}}}$$
+
+2. 构造加权标准化决策矩阵：
+
+    和 ELECTRE 方法的第2步类似，得到 $$\mathbf{V} =
+    \begin{Bmatrix}
+    w_{1}r_{11} & w_{2}r_{12} & w_{3}r_{13} & \ldots & w_{n}r_{1n} \\
+    w_{1}r_{21} & w_{2}r_{22} & w_{3}r_{23} & \ldots & w_{n}r_{2n} \\
+    \cdot & & & & \cdot \\
+    \cdot & & & & \cdot \\
+    \cdot & & & & \cdot \\
+    w_{1}r_{m1} & w_{2}r_{m2} & w_{3}r_{m3} & \ldots & w_{n}r_{mn}
+    \end{Bmatrix}$$
+
+3. 确定理想和最不理想的解：
+
+    用加权标准化决策矩阵 $\mathbf{V}$ 的元素 $v_{ij}$，理想解和最不理想解定义如下：
+
+    $$\mathbf{A^{*}} = \{(\underset{i}{\text{max }} v_{ij} | j \in J), (\underset{i}{\text{min }} v_{ij} | j \in J^{/}), i = 1, 2, 3, \ldots, m\} = \{v_{1^{*}}, v_{2^{*}}, \ldots, v_{n^{*}}\}$$
+
+    $$\mathbf{A^{-}} = \{(\underset{i}{\text{min }} v_{ij} | j \in J), (\underset{i}{\text{max }} v_{ij} | j \in J^{/}), i = 1, 2, 3, \ldots, m\} = \{v_{1^{-}}, v_{2^{-}}, \ldots, v_{n^{-}}\}$$
+
+    其中 $J$ 是其增加引起总功用增加的选择原则的集合，$J^{/}$ 则是其增加引起总功用减少的选择原则的集合。
+
+4. 计算分离度：
+
+    即计算各选择与假想的理想解和最不理想解的距离，有
+
+    $$S_{i^{*}} = \sqrt{\sum_{j = 1}^{n}(v_{ij} - v_{j^{*}})^{2}}, \text{for } i = 1, 2, 3, \ldots, m,$$
+
+    $$S_{i^{-}} = \sqrt{\sum_{j = 1}^{n}(v_{ij} - v_{j^{-}})^{2}}, \text{for } i = 1, 2, 3, \ldots, m.$$
+
+5. 计算与理想解的相对接近程度：
+
+    $$C_{i^{*}} = \frac{S_{i^{-}}}{S_{i^{*}} + S_{i^{-}}}, i = 1, 2, 3, \ldots, m.$$
+    这样，$0 \leq C_{i^{*}} \leq 1$。
+
+6. 按照选项的理想程度排序：
+
+    与理想解最接近，即 $C_{i^{*}}$ 最大的选择最优，其余的解也可确定从较理想到最不理想的次序。
+
 [^mcda-wiki]: Wikipedia entry: Multiple-criteria decision analysis <https://en.wikipedia.org/wiki/Multi-criteria_decision_analysis>
 [^dominate]: 当选项 $A$ 在一或多个比较原则下强于选项 $A'$，且在其他原则下与 $A'$ 相等，则称 $A$ 支配（dominate）$A'$，或 $A'$ 被 $A$ 支配。
+[^disc-domi-matrix]: 对这个定义存在疑问。我参考的 E. Triantaphyllou 所著的 Multi-criteria Decision Making Methods: A comparative study （2000）认为 $\mathbf{G}$ 的元素应该是 $$\begin{eqnarray}
+    g_{kl} = 1, & \text{if } d_{kl} \geq \underline{d} \\
+    g_{kl} = 0, & \text{if } d_{kl} < \underline{d}
+    \end{eqnarray}$$
+
+    但从直觉上说，只有正文中的定义才能表达这个意图：$f_{kl} = 1$，说明 $\mathbf{A}_{k}$ 相对 $\mathbf{A}_{l}$ 在一些指标中具有明显的优势，而 $g_{kl} = 1$ 说明 $\mathbf{A}_{k}$ 在不如 $\mathbf{A}_{l}$ 的指标中也没有明显的劣势，这样才能认定 $\mathbf{A}_{k}$ 事实上支配 $\mathbf{A}_{l}$。我搜索了更多的文献，有一部分沿用了 Triantaphyllou 的说法，而其他的如 The ELECTRE method based on interval numbers and its application to the selection of leather manufacture alternatives （Zhang and Xu 2006）则是使用正文中的定义。如果有更确定的证据，我将更新正文和这个注释。
