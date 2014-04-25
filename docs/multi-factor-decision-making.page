@@ -88,6 +88,56 @@ AHP 是一种非常流行的多因素决策方法。在这种方法中，决策�
 
 在 AHP 方法的原始形式中，相对于每个选择原则，各选项的分值被标准化，使其总和为1。Belton 和 Gear 发现，这样获得的比较结果具有不一致性。例如，当与已知的非最优选项相同的一个选项被加入后，比较的结果会发生变化。Belton 和 Gear 因此提出了修改的 AHP 方法，将每个 $a_{ij}$ 值除以 $a_{ij}$ 的最大值。Triantaphyllou 和 Mann 则指出即使与已有选项都不相同的选项的加入也会造成比较结果的改变，无论原始的 AHP 还是修改后的 AHP 方法都无法完全避免这个问题。
 
+AHP 方法的内容可以分为四个步骤：1. 用分层方法管理复杂度；2. 使用比例尺度表示两两比较结果；3. 对比较结果进行分析；4. 合并比较结果和识别较优选择。
+
+1. 选择原则的分层表示：
+
+    多因素决策中考虑的选择原则可能很多，AHP 方法认为这些选择原则可以按照层次结构加以组织，以方便后续的分析。例如，在考虑采购电脑系统的决策过程中，需要考虑的选择原则可以按下图组织：
+
+    ![电脑系统采购过程中的选择原则层次示意图](http://expoundite-net.qiniudn.com/mcdmcriteria-hierarchy.png)
+
+2. 使用比例尺度表示两两比较结果：
+
+    对每个其下不再细分层次的选择原则 $c_{j}$，假设有 $\mathbf{A}_{1}, \mathbf{A}_{2}, \ldots, \mathbf{A}_{m}$ 等一共 $m$ 个选项，可以用两两比较矩阵 $\mathbf{P}_{j}$ 来表示这些选项两两比较的结果。$\mathbf{P}_{j}$ 的元素 $p_{ik}$ 有如下的性质：
+
+    (1) $p_{ik} \in \{1/9, 1/8, 1/7, 1/6, 1/5, 1/4, 1/3, 1/2, 1, 2, 3, 4, 5,6, 7, 8, 9\}$；
+
+    (2) $p_{ik} = 1 \text{ if } i = k$；
+
+    (3) $p_{ik} = 1 / p_{ki}$；
+
+    也就是说，$\mathbf{P}_{j}$ 是一个取值在离散有限集中的正互反矩阵（$m \times m$）。如果 $\mathbf{A}_{m}$ 在选择原则 $c_{j}$ 下显著优于 $\mathbf{A}_{n}$，则 $p_{mn}$ 的取值可能取较大的正整数，有优势但不明显，则取较小的正整数，二者表现相同则取1。这样，决策者对各种选择两两比较的偏好可以通过此矩阵表示出来。对所有的选择原则，一共需要做出 $n$ 个这样的矩阵。
+
+    类似地，对 $n$ 个需要考虑的选择原则，也要做出1个大小为 $n \times n$ 的比较矩阵 $\mathbf{P}$，表示决策者对这些选择原则重要性的两两比较结果。
+
+3. 对比较结果进行分析：
+
+    标准化：对每个比较矩阵中的每个元素，除以该元素所在列各元素的总和。
+
+    计算矩阵特征向量：比较矩阵 $\mathbf{P}_{j}$ 标准化后，取其每一行元素的平均值，即为该矩阵的特征向量 $\mathbf{E}_{j} = [e_{j_{1}}, e_{j_{2}}, \ldots, e_{j_{m}}]^{T}$。对选择原则的比较矩阵 $\mathbf{P}$，也有 $\mathbf{E} = [e_{1}, e_{2}, \ldots, e_{n}]^{T}$。该特征向量即表示了被比较的各选项或选择原则的相对可接受度或重要度。
+
+    计算加权和向量：按照矩阵乘法的原则，将每个比较矩阵右乘以它的特征向量，得到加权和向量，即
+    $$\mathbf{S}_{j} = \mathbf{P}_{j} \times \mathbf{E}_{j} =
+    \begin{bmatrix}
+    p_{11}e_{j_{1}} + p_{12}e_{j_{2}} + \ldots + p_{1m}e_{j_{m}} \\
+    p_{21}e_{j_{1}} + p_{22}e_{j_{2}} + \ldots + p_{2m}e_{j_{m}} \\
+    \cdots \\
+    \cdots \\
+    \cdots \\
+    p_{m1}e_{j_{1}} + p_{m2}e_{j_{2}} + \ldots + p_{mm}e_{j_{m}}
+    \end{bmatrix}$$
+    $$\mathbf{S} = \mathbf{P} \times \mathbf{E} =
+    \begin{bmatrix}
+    p_{11}e_{1} + p_{12}e_{2} + \ldots + p_{1n}e_{n} \\
+    p_{21}e_{1} + p_{22}e_{2} + \ldots + p_{2n}e_{n} \\
+    \cdots \\
+    \cdots \\
+    \cdots \\
+    p_{n1}e_{1} + p_{n2}e_{2} + \ldots + p_{nn}e_{n}
+    \end{bmatrix}$$ <!-- need short notations here -->
+
+    计算一致度向量：$$\mathbf{C}_{j}$$ 和 $$\mathbf{C}$$ 分别等于 $$\mathbf{S}_{j}$$ 和 $$\mathbf{S}$$
+
 ## ELECTRE 方法
 
 ELECTRE 即“取自现实的选择与消除”。ELECTRE 方法分别在每一原则下对选项进行逐对比较。即使某一选项并不支配[^dominate]其他选项，决策者仍可根据二者在不同比较原则下的分数差值和阈值确定一选项是否优于另一选项，这种优于关系被称为 outranking relation。对所有选项在所有比较原则下进行这种比较后，决策者可以确定最优的选择，或者至少一系列较优选择。
@@ -102,14 +152,14 @@ ELECTRE 即“取自现实的选择与消除”。ELECTRE 方法分别在每一�
 
     获得的标准化矩阵 $\mathbf{X}$：
 
-    $$ \mathbf{X} = \begin{Bmatrix}
+    $$ \mathbf{X} = \begin{bmatrix}
     x_{11} & x_{12} & x_{13} & \cdots & x_{1n} \\
     x_{21} & x_{22} & x_{23} & \cdots & x_{2n} \\
     \cdot & & & & \cdot \\
     \cdot & & & & \cdot \\
     \cdot & & & & \cdot \\
     x_{m1} & x_{m2} & x_{m3} & \cdots & x_{mn}
-    \end{Bmatrix}$$
+    \end{bmatrix}$$
 
     其中 $m$ 是选项的数量，$n$ 是选择原则的数量，$x_{ij}$ 是选项 $i$ 在原则 $j$ 下的标准化得分。
 
@@ -118,26 +168,26 @@ ELECTRE 即“取自现实的选择与消除”。ELECTRE 方法分别在每一�
     对 $\mathbf{X}$ 的每一列乘以对应的选择原则的权重。权重 $(w_{1},w_{2},w_{3}, \ldots, w_{n})$ 是决策者决定的。加权后的矩阵 $\mathbf{Y}$ 即为
 
     $$\mathbf{Y} = \mathbf{X} \mathbf{W} =
-    \begin{Bmatrix}
+    \begin{bmatrix}
     w_{1}x_{11} & w_{2}x_{12} & w_{3}x_{13} & \ldots & w_{n}x_{1n} \\
     w_{1}x_{21} & w_{2}x_{22} & w_{3}x_{23} & \ldots & w_{n}x_{2n} \\
     \cdot & & & & \cdot \\
     \cdot & & & & \cdot \\
     \cdot & & & & \cdot \\
     w_{1}x_{m1} & w_{2}x_{m2} & w_{3}x_{m3} & \ldots & w_{n}x_{2n}
-    \end{Bmatrix}$$
+    \end{bmatrix}$$
 
     其中
 
     $$\mathbf{W} =
-    \begin{Bmatrix}
+    \begin{bmatrix}
     w_{1} & 0 & 0 & \ldots & 0 \\
     0 & w_{2} & 0 & \ldots & 0 \\
     \cdot & & & & \cdot \\
     \cdot & & & & \cdot \\
     \cdot & & & & \cdot \\
     0 & 0 & 0 & \ldots & w_{n}
-    \end{Bmatrix}$$
+    \end{bmatrix}$$
 
     且
 
@@ -156,14 +206,14 @@ ELECTRE 即“取自现实的选择与消除”。ELECTRE 方法分别在每一�
     显然，$0 \leq c_{kl} \leq 1$，该值表示选择 $\mathbf{A}_{k}$ 相对于选择 $\mathbf{A}_{l}$ 的重要性。协调矩阵 $\mathbf{C}$ 定义如下：
 
     $$\mathbf{C} =
-    \begin{Bmatrix}
+    \begin{bmatrix}
     - & c_{12} & c_{13} & \ldots & c_{1m} \\
     c_{21} & - & c_{23} & \ldots & c_{2m} \\
     \cdot & & & & \cdot \\
     \cdot & & & & \cdot \\
     \cdot & & & & \cdot \\
     c_{m1} & c_{m2} & c_{m3} & \ldots & -
-    \end{Bmatrix}$$
+    \end{bmatrix}$$
 
     根据定义，当 $k = l$ 时，$\mathbf{C}$ 的元素为空。
 
@@ -174,14 +224,14 @@ ELECTRE 即“取自现实的选择与消除”。ELECTRE 方法分别在每一�
     因此不调矩阵形如：
 
     $$\mathbf{D} =
-    \begin{Bmatrix}
+    \begin{bmatrix}
     - & d_{12} & d_{13} & \ldots & d_{1m} \\
     - & d_{21} & - & d_{23} & \ldots & d_{2m} \\
     \cdot & & & & \cdot \\
     \cdot & & & & \cdot \\
     \cdot & & & & \cdot \\
     d_{m1} & d_{m2} & d_{m3} \ldots & -
-    \end{Bmatrix}$$
+    \end{bmatrix}$$
 
     注意根据 $c_{kl}$ 和 $d_{kl}$ 的定义，$\mathbf{C}$ 和 $\mathbf{D}$ 不是对称矩阵。
 
@@ -230,14 +280,14 @@ TOPSIS 的假设之一是每个选择标准对最终功用的影响都是线性�
 2. 构造加权标准化决策矩阵：
 
     和 ELECTRE 方法的第2步类似，得到 $$\mathbf{V} =
-    \begin{Bmatrix}
+    \begin{bmatrix}
     w_{1}r_{11} & w_{2}r_{12} & w_{3}r_{13} & \ldots & w_{n}r_{1n} \\
     w_{1}r_{21} & w_{2}r_{22} & w_{3}r_{23} & \ldots & w_{n}r_{2n} \\
     \cdot & & & & \cdot \\
     \cdot & & & & \cdot \\
     \cdot & & & & \cdot \\
     w_{1}r_{m1} & w_{2}r_{m2} & w_{3}r_{m3} & \ldots & w_{n}r_{mn}
-    \end{Bmatrix}$$
+    \end{bmatrix}$$
 
 3. 确定理想和最不理想的解：
 
