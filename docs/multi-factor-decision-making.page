@@ -52,7 +52,7 @@ tags: decision-making, optimization
 
 基于上述两种解空间的表述方式，多因素决策用两个概念分别表示两种表述下的目标。
 
-1. 在选择原则空间表述中，$\mathbf{q^{*}} \in \mathbf{Q}$ 是非支配（nondominated）的，如果没有其他的 $\mathbf{q} \in \mathbf{Q}$ 使 $\mathbf{q} \geq \mathbf{q^{*}}$ 且 $\mathbf{q} \neq \mathbf{q^{*}}$。粗略地说，非支配表示该解不差于准则空间内的其他解。
+1. 在选择原则空间表述中，$\mathbf{q^{*}} \in \mathbf{Q}$ 是非被支配（nondominated）的，如果没有其他的 $\mathbf{q} \in \mathbf{Q}$ 使 $\mathbf{q} \geq \mathbf{q^{*}}$ 且 $\mathbf{q} \neq \mathbf{q^{*}}$。粗略地说，非支配表示该解不差于准则空间内的其他解。
 
 2. 在决策空间表述中，$\mathbf{x^{*}} \in \mathbf{X}$ 是有效的，如果不存在其他的 $\mathbf{x} \in \mathbf{X}$ 使 $\mathbf{f(x)} \geq \mathbf{f(x^{*})}$ 且 $\mathbf{f(x)} \neq \mathbf{f(x^{*})}$。
 
@@ -76,6 +76,144 @@ $$A^{*}_{WSM-score} = \underset{i}{\text{max}} \sum^{n}_{j=1}a_{ij}w_{j}, \text{
 
 ## 加权积（WPM）方法
 
-加权积方法与加权和方法类似，但它是通过
+加权积方法与加权和方法类似，但它是通过不同选项之间的比值来比较选项的优劣。权重以次方的形式被引入比较中。由于结果采用无量纲比值的形式，由多维指标表示的选择也可以直接进行比较。例如，两个选择 $A_{K}$ 和 $A_{L}$ 之间的比较可以用下式表示：
+
+$$R(A_{K}/A_{L}) = \prod_{j=1}^{n}(a_{Kj}/a_{Lj})^{w_{j}}$$
+
+如果 $R(A_{K}/A_{L})$ 的值大于1，则说明选项 $A_{K}$ 优于选项 $A_{L}$。如此在不同的选项间比较即可得到最优的选项。需要注意的是给出同样的决策矩阵 $\mathbf{A}$，使用 WSM 和 WPM 方法获得的最优选择可能不同。
+
+## 层次分析过程（AHP）方法
+
+AHP 是一种非常流行的多因素决策方法。在这种方法中，决策矩阵 $a_{ij}$ 的值是通过专家意见决定的相对值，因此可以处理多种量纲表示的选择原则，这一点与 WPM 相似。而每个决策选项的分数又是以 $a_{ij}$ 和 $w_{j}$ 的权重表示，与 WSM 相似。
+
+在 AHP 方法的原始形式中，相对于每个选择原则，各选项的分值被标准化，使其总和为1。Belton 和 Gear 发现，这样获得的比较结果具有不一致性。例如，当与已知的非最优选项相同的一个选项被加入后，比较的结果会发生变化。Belton 和 Gear 因此提出了修改的 AHP 方法，将每个 $a_{ij}$ 值除以 $a_{ij}$ 的最大值。Triantaphyllou 和 Mann 则指出即使与已有选项都不相同的选项的加入也会造成比较结果的改变，无论原始的 AHP 还是修改后的 AHP 方法都无法完全避免这个问题。
+
+## ELECTRE 方法
+
+ELECTRE 即“取自现实的选择与消除”。ELECTRE 方法分别在每一原则下对选项进行逐对比较。即使某一选项并不支配[^dominate]其他选项，决策者仍可根据二者在不同比较原则下的分数差值和阈值确定一选项是否优于另一选项，这种优于关系被称为 outranking relation。对所有选项在所有比较原则下进行这种比较后，决策者可以确定最优的选择，或者至少一系列较优选择。
+
+从决策矩阵出发，ELECTRE 方法的步骤示范如下：
+
+1. 决策矩阵标准化：
+
+    对决策矩阵的各元素按照下式标准化：
+
+    $$x_{ij} = \frac{a_{ij}}{\sqrt{\sum_{k=1}^{m}a_{kj}^{2}}}$$
+
+    获得的标准化矩阵 $\mathbf{X}$：
+
+    $$ \mathbf{X} = \begin{Bmatrix}
+    x_{11} & x_{12} & x_{13} & \cdots & x_{1n} \\
+    x_{21} & x_{22} & x_{23} & \cdots & x_{2n} \\
+    \cdot & & & & \cdot \\
+    \cdot & & & & \cdot \\
+    \cdot & & & & \cdot \\
+    x_{m1} & x_{m2} & x_{m3} & \cdots & x_{mn}
+    \end{Bmatrix}$$
+
+    其中 $m$ 是选项的数量，$n$ 是选择原则的数量，$x_{ij}$ 是选项 $i$ 在原则 $j$ 下的标准化得分。
+
+2. 对标准化决策矩阵加权：
+
+    对 $\mathbf{X}$ 的每一列乘以对应的选择原则的权重。权重 $(w_{1},w_{2},w_{3}, \ldots, w_{n})$ 是决策者决定的。加权后的矩阵 $\mathbf{Y}$ 即为
+
+    $$\mathbf{Y} = \mathbf{X} \mathbf{W} =
+    \begin{Bmatrix}
+    w_{1}x_{11} & w_{2}x_{12} & w_{3}x_{13} & \ldots & w_{n}x_{1n} \\
+    w_{1}x_{21} & w_{2}x_{22} & w_{3}x_{23} & \ldots & w_{n}x_{2n} \\
+    \cdot & & & & \cdot \\
+    \cdot & & & & \cdot \\
+    \cdot & & & & \cdot \\
+    w_{1}x_{m1} & w_{2}x_{m2} & w_{3}x_{m3} & \ldots & w_{n}x_{2n}
+    \end{Bmatrix}$$
+
+    其中
+
+    $$\mathbf{W} =
+    \begin{Bmatrix}
+    w_{1} & 0 & 0 & \ldots & 0 \\
+    0 & w_{2} & 0 & \ldots & 0 \\
+    \cdot & & & & \cdot \\
+    \cdot & & & & \cdot \\
+    \cdot & & & & \cdot \\
+    0 & 0 & 0 & \ldots & w_{n}
+    \end{Bmatrix}$$
+
+    且
+
+    $$\sum_{i=1}^{n}w_{i} = 1$$
+
+3. 决定协调（Concordance）和不调（Discordance）集：
+
+    两个选择 $\mathbf{A}_{k}$ 和 $\mathbf{A}_{l}$ 的协调集 $C_{kl}$ 定义为 $\mathbf{A}_{k}$ 优于 $\mathbf{A}_{l}$ 的所有选择原则的集合，即 $$C_{kl} = \{j, y_{kj} \geq y_{lj}\}, j = 1, 2, 3, \ldots, n.$$ 其补集即为不调集 $$D_{kj} = \{j, y_{kj} < y_{lj}\}, j = 1, 2, 3, \ldots, n.$$
+
+4. 构建协调和不调矩阵：
+
+    协调矩阵 $\mathbf{C}$ 的元素是用协调指数表示的。协调指数 $c_{kl}$ 是协调集 $\mathbf{C}_{kl}$ 中的元素（选择原则）所对应的权重值，即
+
+    $$c_{kl} = \sum_{j \in C_{kl}}w_{j}, j = 1, 2, 3, \ldots, n$$
+
+    显然，$0 \leq c_{kl} \leq 1$，该值表示选择 $\mathbf{A}_{k}$ 相对于选择 $\mathbf{A}_{l}$ 的重要性。协调矩阵 $\mathbf{C}$ 定义如下：
+
+    $$\mathbf{C} =
+    \begin{Bmatrix}
+    - & c_{12} & c_{13} & \ldots & c_{1m} \\
+    c_{21} & - & c_{23} & \ldots & c_{2m} \\
+    \cdot & & & & \cdot \\
+    \cdot & & & & \cdot \\
+    \cdot & & & & \cdot \\
+    c_{m1} & c_{m2} & c_{m3} & \ldots & -
+    \end{Bmatrix}$$
+
+    根据定义，当 $k = l$ 时，$\mathbf{C}$ 的元素为空。
+
+    不调矩阵 $\mathbf{D}$ 表示选择 $\mathbf{A}_{k}$ 相对于选择 $\mathbf{A}_{l}$ 的劣势。矩阵的元素 $d_{kl}$ 定义如下：
+
+    $$d_{kl} = \frac{\underset{j \in \mathbf{D}_{kl}}{\text{max}} |y_{kj} - y_{lj}|}{\underset{j}{\text{max}} |y_{kj} - y_{lj}|}$$
+
+    因此不调矩阵形如：
+
+    $$\mathbf{D} =
+    \begin{Bmatrix}
+    - & d_{12} & d_{13} & \ldots & d_{1m} \\
+    - & d_{21} & - & d_{23} & \ldots & d_{2m} \\
+    \cdot & & & & \cdot \\
+    \cdot & & & & \cdot \\
+    \cdot & & & & \cdot \\
+    d_{m1} & d_{m2} & d_{m3} \ldots & -
+    \end{Bmatrix}$$
+
+    注意根据 $c_{kl}$ 和 $d_{kl}$ 的定义，$\mathbf{C}$ 和 $\mathbf{D}$ 不是对称矩阵。
+
+5. 确定协调和不调支配矩阵（Dominance Matrices）：
+
+    确定协调和不调支配矩阵前，需要首先确定协调支配阈值 $\underline{c}$ 和不调被支配阈值 $\underline{d}$。其意义是，只有当 $c_{kl} \geq \underline{c}$ 时，才能认为选项 $\mathbf{A}_{k}$ 支配 $\mathbf{A}_{l}$；类似地，只有当 $d_{kl} \geq \underline{d}$ 时，才能认为 $\mathbf{A}_{k}$ 在足够的程度上劣于 $\mathbf{A}_{l}$。$\underline{c}$ 和 $\underline{d}$ 可以用调和和不调指数的平均值表示，即
+
+    $$\underline{c} = \frac{1}{m(m-1)}\sum_{\substack{k = 1\\ \text{and } k \neq l}}^{m}\sum_{\substack{l = 1\\ \text{and } l \neq k}}^{m}c_{kl}$$
+
+    $$\underline{d} = \frac{1}{m(m-1)}\sum_{\substack{k = 1\\ \text{and } k \neq l}}^{m}\sum_{\substack{l = 1\\ \text{and } l \neq k}}^{m}d_{kl}$$
+
+    协调支配矩阵 $\mathbf{F}$ 的元素定义为
+
+    $$\begin{eqnarray}
+    f_{kl} = 1, & \text{if } c_{kl} \geq \underline{c} \\
+    f_{kl} = 0, & \text{if } c_{kl} < \underline{c}
+    \end{eqnarray}$$
+
+    不调支配矩阵 $\mathbf{G} 的元素定义为
+
+    $$\begin{eqnarray}
+    g_{kl} = 1, & \text{if } d_{kl} \geq \underline{d} \\
+    g_{kl} = 0, & \text{if } d_{kl} < \underline{d}
+    \end{eqnarray}$$
+
+6. 确定组合支配矩阵：
+
+    组合支配矩阵的每个元素是协调和不调支配矩阵中对应元素的乘积，即 $$e_{kl} = f_{kl} \times g_{kl}$$
+
+7. 去除最差的选项：
+
+    观察获得的组合支配矩阵，如果 $e_{kl} = 1$，说明选择 $\mathbf{A}_{k}$ 无论以调和原则还是不调原则看都强于选择 $\mathbf{A}_{l}$。因此，在组合支配矩阵中有元素为1的列，表示该列对应的选择被元素1所在行对应的选择支配。去掉这些列，剩下没有元素为1的列对应的就是最优的选择。
 
 [^mcda-wiki]: Wikipedia entry: Multiple-criteria decision analysis <https://en.wikipedia.org/wiki/Multi-criteria_decision_analysis>
+[^dominate]: 当选项 $A$ 在一或多个比较原则下强于选项 $A'$，且在其他原则下与 $A'$ 相等，则称 $A$ 支配（dominate）$A'$，或 $A'$ 被 $A$ 支配。
