@@ -125,6 +125,12 @@ AHP 方法的内容可以分为四个步骤：1. 用分层方法管理复杂度�
     \cdots \\
     \cdots \\
     p_{m1}e_{j_{1}} + p_{m2}e_{j_{2}} + \ldots + p_{mm}e_{j_{m}}
+    \end{bmatrix}
+    = \begin{bmatrix}
+    s_{j_{1}} \\
+    s_{j_{2}} \\
+    \cdots \\
+    s_{j_{m}}
     \end{bmatrix}$$
     $$\mathbf{S} = \mathbf{P} \times \mathbf{E} =
     \begin{bmatrix}
@@ -134,7 +140,14 @@ AHP 方法的内容可以分为四个步骤：1. 用分层方法管理复杂度�
     \cdots \\
     \cdots \\
     p_{n1}e_{1} + p_{n2}e_{2} + \ldots + p_{nn}e_{n}
-    \end{bmatrix}$$ <!-- need short notations here -->
+    \end{bmatrix}
+    = \begin{bmatrix}
+    s_{1} \\
+    s_{2} \\
+    \cdots \\
+    s_{n}
+    \end{bmatrix}
+    $$
 
     计算一致度向量：$$\mathbf{C}_{j}$$ 和 $$\mathbf{C}$$ 分别等于 $$\mathbf{S}_{j}$$ 和 $$\mathbf{S}$$
 
