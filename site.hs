@@ -1,6 +1,7 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid (mappend, mconcat)
+import           Data.Maybe (fromMaybe)
 import           Hakyll
 import           System.Directory (getModificationTime)
 import           Control.Monad (forM, liftM)
@@ -46,9 +47,21 @@ main = hakyll $ do
             >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
             >>= relativizeUrls
 
+    -- bibliography
+    match "csl/*" $ compile cslCompiler
+
+    match "bib/*" $ compile biblioCompiler
+
     match "**.page" $ do
         route $ setExtension ""
-        compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
+        compile $ do
+            item <- getUnderlying
+            bibFile <- liftM (fromMaybe "") $ getMetadataField item "biblio"
+            cslFile <- liftM (fromMaybe "chicago") $ getMetadataField item "csl"
+            let compiler = if bibFile /= "" then
+                              bibtexCompiler cslFile bibFile
+                           else pandocCompilerWith defaultHakyllReaderOptions woptions
+            compiler
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
             >>= relativizeUrls
@@ -75,6 +88,12 @@ postCtx tags =
     modificationTimeField "updated" "%Y-%m-%d" `mappend`
     tagsField "tags" tags `mappend`
     defaultContext
+
+bibtexCompiler :: String -> String -> Compiler (Item String)
+bibtexCompiler cslFileName bibFileName = do
+    csl <- load (fromFilePath $ "csl/"++cslFileName)
+    bib <- load (fromFilePath $ "bib/"++bibFileName)
+    liftM (writePandocWith woptions) (getResourceBody >>= readPandocBiblio defaultHakyllReaderOptions csl bib)
 
 feedConfiguration :: FeedConfiguration
 feedConfiguration = FeedConfiguration
