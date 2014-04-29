@@ -125,7 +125,11 @@ tags: game
 
 # 电影化游戏的市场趋势如何？
 
-比较[VGChartz][vgchartz]2011年和2013年全球销量榜单的前50位，可以看出两个趋势：电影化游戏的排名上升和以任天堂为代表的日式游戏的失势。
+比较[VGChartz][vgchartz]2011年和2013年全球销量榜单的前50位，可以看出两个趋势：电影化游戏的排名上升和以任天堂为代表的日式游戏的失势。电影化的游戏似乎天然地就最能吸引人们的目光，在这个主机世代交替的时间点更是如此。然而从榜单上获取信息，便容易受偏见的影响：我们看到的是非常成功的产品。如果再看看[开发费用最高的游戏][wiki-expensive]的游戏榜单，那些投入了大笔开发费用却被取消的游戏提醒我们，电影化游戏也有它的市场风险。像 *Homefront* 这样的失败完全可以拖垮制作组和发行公司。
+
+另一方面，电影化游戏的情节和画面很容易给它挣到一个“M”或“18岁以上”的评级，和电影一样，这也是影响销量的一大因素。从[统计数字][game-stats]上看，休闲和移动平台游戏越来越受欢迎，女性和老年人玩家的数量在增加，这都会影响电影化游戏的投入产出比。
+
+在一般工作室都在抱怨开发成本高的今天，我们所知的电影化游戏也许会成为少数大厂的专利，但也许会有更多人尝试把电影的手法引入游戏中，Kinect 这样的硬件也将使动作捕捉等开发手段的价格逐渐降低。电影化游戏也许会更普及，并且在这个过程中变为更广义的游戏表现形式。
 
 # 结语
 
@@ -135,6 +139,8 @@ tags: game
 [gartner-games]: https://www.gartner.com/newsroom/id/2614915 "Gartner Says Worldwide Video Game Market to Total $93 Billion in 2013"
 [wiki-fullmotion]: https://en.wikipedia.org/wiki/Category:Full_motion_video_based_games "Category:Full motion video based games - Wikipedia, the free encyclopedia"
 [vgchartz]: http://www.vgchartz.com/yearly/2013/Global/ "Global Yearly Video Game Chart - VGChartz"
+[wiki-expensive]: https://en.wikipedia.org/wiki/List_of_most_expensive_video_games_to_develop "List of most expensive video games to develop"
+[game-stats]: http://www.bigfishgames.com/blog/2014-global-gaming-stats-whos-playing-what-and-why/ "2014 Global Gaming Stats: Who's Playing What, and Why?"
 
 [^only-a-game]: 对这个问题和相关概念的探讨，见[这篇blog](http://onlyagame.typepad.com/only_a_game/2005/08/story_plot_narr.html)。
 
