@@ -64,6 +64,10 @@ div.navigation a:hover {
     color: #e26700;
     }
 
+div.references p {
+    text-indent: 0;
+    }
+
 span.button {
     position:relative;
     width: 50px;
