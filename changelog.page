@@ -18,6 +18,10 @@ tags: site
 
 [部署]使用[七牛云存储](http://www.qiniu.com/)作为图床。
 
+[内容]增加关于[多因素决策](/multi-factor-decision-making)
+
+[功能]增加自动从 bib 文件生成参考文献功能。
+
 ## 2014年3月
 
 [内容]添加了关于[理财](/money)的文章。
