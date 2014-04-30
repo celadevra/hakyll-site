@@ -1,0 +1,26 @@
+---
+title: 关于本网站
+created: 2014-04-30
+author: Haoyang Xu
+description: 建立这个网站的目的，使用的工具，以及将来的愿景。
+status: links
+belief: highly likely
+tags: site
+...
+
+<!-- Status choices are: links, notes, draft, in progress, finished -->
+<!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
+
+使我想要建立这个网站的原因是，我曾经是个 blogger。
+
+作为国内最早开始写 blog 的一批人之一，我从2004年开始写 blog，从[博客中国](http://www.blogchina.com)到 Blogger 再到 Wordpress 再到后来的数不清的各种平台，再到自己在 [Bluehost](http://bluehost.com) 上架设 Wordpress 和 GitHub 上的 Octopress，我一直写到了2013年。前前后后大概写了三四百篇文章，散落在各处，包括：
+
+* <snakehsu.blogspot.com>
+* <celadevra.blogspot.com>
+* <celadevra.github.io>
+
+出于猎奇的心理，你可能会饶有兴致地去翻看那些旧文章，但我已经几乎不去看它们了。就我所知，很多人也不会再去看ta们曾经写过的 blog。Blog 对于记录事件和一时的心情是很有用的，对于练笔和整理思路可能也是很有用的，但作为一种想法和知识的积累，它的效用非常有限。Blog 的题材，从最无聊的记录生活细节，到有点深度地就某个事件发表一些看法，都受到时效性的限制。过了半年或更长时间，如果再看当时写的这些文章，不免有今夕何夕之感，它们的阅读价值也就大打折扣。
+
+而这前提是，我还能找到当时写下的文章。Blog 写作者很难针对一个具体的问题打破沙锅问到底，因为一天能用于写字的时间只有那么多，而第二天ta可能没有精力再写，或者转向了其他的题目，许多可以深挖的坑就只好浅尝辄止。因此，经常更新 blog 可以看做是勤奋的表现，却也可以是掩饰缺乏耐性的借口。
+
+2013年下半年，我注意到了 <http://gwern.net> 这个网站。关于它的作者 Gwern 我所知甚少，但他（？）提出的 Long Site，Long Content 的观点完全改变了我对互联网内容发布的看法，影响他的 [Long Now](http://en.wikipedia.org/wiki/Long%20Now) 思想看起来也很有意思。看了他的网站以后，我想仿效他的做法，做一个内容可以长期存在，并且在较长时间内都具有参考价值的个人网站，于是就有了你现在看到的一切。
