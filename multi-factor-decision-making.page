@@ -94,7 +94,7 @@ AHP 方法的内容可以分为四个步骤：1. 用分层方法管理复杂度�
 
 1. 选择原则的分层表示：
 
-    多因素决策中考虑的选择原则可能很多，AHP 方法认为这些选择原则可以按照层次结构加以组织，以方便后续的分析。例如，在考虑采购电脑系统的决策过程中，需要考虑的选择原则可以按下图组织：
+    多因素决策中考虑的选择原则可能很多，AHP 方法认为这些选择原则可以按照层次结构加以组织，以方便后续的分析，并且将影响范围和程度相近的因素组织在同一层级内[@saaty1990ht]。例如，在考虑采购电脑系统的决策过程中，需要考虑的选择原则可以按下图组织：
 
     ![电脑系统采购过程中的选择原则层次示意图](http://expoundite-net.qiniudn.com/mcdmcriteria-hierarchy.png)
 
@@ -183,7 +183,7 @@ AHP 方法的内容可以分为四个步骤：1. 用分层方法管理复杂度�
 
     $$CR = \frac{CI}{RI}$$
 
-    如果 CR $< 0.10$，则可认为比较结果的一致性较好，否则需要对两两比较的结果进行修订，直到取得理想的 CR 值。
+    如果 CR $< 0.10$，则可认为比较结果的一致性较好，否则需要对两两比较的结果进行修订，直到取得理想的 CR 值。CI的具体意义见 @saaty1990ht。
 
 4. 合并比较结果和识别较优选择：
 
@@ -192,6 +192,24 @@ AHP 方法的内容可以分为四个步骤：1. 用分层方法管理复杂度�
     $$\mathbf{Q} = \mathbf{E}_{c} \times \mathbf{E}$$
 
     $\mathbf{Q}$ 中最大的数所在的行对应的选择即为最优。
+
+AHP 方法基于成对比较和使用相对比值表示偏好的特点，使其能够方便地结合定量和定性指标，并结合多名专家的意见。由于对权重因素的考虑，AHP 并不要求最优选择在各方面都支配其他选择，因而非常适合涉及指标间存在反馈关系的决策问题如环境影响、复杂系统选择等。[@ramanathan2001an]
+
+<!-- on combining many expert opinions: see Ramanathan, R. and Ganesh, L. S. (1994). Group preference aggregation methods employed in the AHP: an evaluation and an intrinsic process for deriving members’ weightages. European Journal of Operational Research 79, 249–265. | Peniwati, K. (1996). The Analytic Hierarchy Process: The possibility theorem for group decision making. In Proceedings of the Fourth International Symposium on the Analytic Hierarchy Process, pp. 202–214. Simon Fraser University, Burnaby, British Columbia, Canada. | Saaty, T. L. (2000). Fundamentals of Decision Making and Priority Theory with The Analytic Hierarchy Process. Pittsburg: RWS Publications. -->
+
+<!-- ### 变体
+
+#### 比较量表的表示
+
+Lootsma, F. A. (1999). Multi-criteria Decision Analy- sis via Ratio and Difference Judgement. Dordrecht: Kluwer.
+
+#### 权重估计方法
+
+Crawford, G. and Williams, C. (1985). A note on the analysis of subjective judgment matrices. Journal of Mathematical Psychology 29, 387–405.
+
+#### 秩逆转和解决方法
+
+-->
 
 ## ELECTRE 方法
 
