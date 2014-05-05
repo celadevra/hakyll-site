@@ -62,7 +62,7 @@ csl: harvard1.csl
 
 # 多因素决策学派与方法
 
-多因素决策的方法背后是对多因素决策问题的不同认识。主要的多因素决策学派包括多目标数学规划学派（WSM，WPM），目标规划学派，法国学派（ELECTRE），模糊集理论学派，进化和遗传算法学派以及层次分析法学派（AHP）。
+多因素决策的方法背后是对多因素决策问题的不同认识。主要的多因素决策学派包括多目标数学规划学派（WSM，WPM），目标规划学派，法国学派（ELECTRE），模糊集理论学派，进化和遗传算法学派以及层次分析法学派（AHP）。这些学派以三种不同的方式解决多因素决策问题：基于权重的单一合并偏好度方法，如 WSM、WPM 和 AHP；秩比较方法如 ELECTRE，TOPSIS 和 PROMETHEE，以及交互式的局部判断偏好比较方法如 MOMP。[@ssebuggwawo2010gd]
 
 多因素决策方法中，大多数需要把各种选择转化为数值加以分析。这种转化涉及三个步骤：1. 识别选择和评判标准；2. 对各选择标准的相对重要性以及各选择对这些选择标准的影响赋值；3. 对数值进行处理，以确定各选项的先后次序。通用地，这类问题可以表述为，有 $m$ 种选择 $A_{1}, A_{2}, A_{3}, \ldots, A_{m}$，以及 $n$ 个决策准则 $C_{1}, C_{2}, C_{3}, \ldots, C_{n}$，决策者根据已有的信息，可以对每个决策原则下每种选择的得分赋值 $a_{ij}$，对 $1,2,3,\ldots,m$ 中的每个 $i$ 和 $1,2,3,\ldots,n$ 中的每个 $j$，这样就得到了决策矩阵 $\mathbf{A}$。另外对每个选择标准还应定义一个权重 $w_{j}$。有了 $a_{ij}$ 和 $w_{j}$，即可使用下面的方法解决多因素决策问题。[@triantaphyllou2000mc]
 
@@ -208,6 +208,10 @@ Lootsma, F. A. (1999). Multi-criteria Decision Analy- sis via Ratio and Differen
 Crawford, G. and Williams, C. (1985). A note on the analysis of subjective judgment matrices. Journal of Mathematical Psychology 29, 387–405.
 
 #### 秩逆转和解决方法
+
+Belton, V. and Gear, T. (1983). On a shortcoming of Saaty’s method of analytic hierarchies. Omega 11, 228–230.
+
+Harker, P. T. and Vargas, L. G. (1990). Reply to ‘Remarks on the Analytic Hierarchy Process’ by J. S. Dyer. Management Science 36, 269–273.
 
 -->
 
