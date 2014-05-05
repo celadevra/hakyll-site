@@ -393,6 +393,8 @@ TOPSIS 的假设之一是每个选择标准对最终功用的影响都是线性�
 
     与理想解最接近，即 $C_{i^{*}}$ 最大的选择最优，其余的解也可确定从较理想到最不理想的次序。
 
+# 问题构建与方法选择
+
 # 参考资料
 
 [^mcda-wiki]: Wikipedia entry: Multiple-criteria decision analysis <https://en.wikipedia.org/wiki/Multi-criteria_decision_analysis>
