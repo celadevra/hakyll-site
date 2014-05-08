@@ -197,6 +197,12 @@ AHP 方法基于成对比较和使用相对比值表示偏好的特点，使其�
 
 <!-- on combining many expert opinions: see Ramanathan, R. and Ganesh, L. S. (1994). Group preference aggregation methods employed in the AHP: an evaluation and an intrinsic process for deriving members’ weightages. European Journal of Operational Research 79, 249–265. | Peniwati, K. (1996). The Analytic Hierarchy Process: The possibility theorem for group decision making. In Proceedings of the Fourth International Symposium on the Analytic Hierarchy Process, pp. 202–214. Simon Fraser University, Burnaby, British Columbia, Canada. | Saaty, T. L. (2000). Fundamentals of Decision Making and Priority Theory with The Analytic Hierarchy Process. Pittsburg: RWS Publications. -->
 
+### 多方决策条件下的 AHP
+
+由于 AHP 显式地表示决策者的偏好，AHP 被认为很适合在群体决策过程中作为一种意见合并机制来使用。AHP 在群体决策中可以反映不同决策者的个人价值和公认价值，以及不可直接测量的选择对偏好的隐含影响；AHP 也能帮助决策者在讨论中更多地关注目标本身而非选择的不同；在整个决策过程中，AHP 促使决策者们就各种选择对目标的贡献重要度以及可得的所有信息充分地交换意见。而且，AHP 也在运算过程中记录了个人的每个选择对最终结果的影响。
+
+群体中的每个决策者可以分开应用 AHP，然后试图以讨论的方式达成共识，或通过投票决定群体最终采用的选择。在这些过程中，AHP 可以用来作为文档和演示工具，便于决策者解释其偏好。如果共识不能达成，投票不能接受，或者各专家的意见可视为有同等重要性，还可以用计算几何平均值的方法取得最终的选择偏好排序。在最后一种情况下，各决策者甚至可以采用ta们认为合适的模型和分层方法。[@lai2002gr]
+
 <!-- ### 变体
 
 #### 比较量表的表示
