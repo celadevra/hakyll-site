@@ -352,7 +352,7 @@ ELECTRE 即“取自现实的选择与消除”。ELECTRE 方法分别在每一�
 
 ## PROMETHEE 方法
 
-PROMETHEE 方法也是基于支配的概念。严格意义上的支配关系在多因素决策问题中很少出现，因此实际情况下常使用 outranking 关系来取得可操作的近似支配关系。和 ELECTRE 方法不同的是 PROMETHEE 方法将 outranking 关系的构造也作为方法的一个重要步骤。PROMETHEE 方法对不同选择在各准则下的比较进行了扩展。
+PROMETHEE 方法也是基于支配的概念。严格意义上的支配关系在多因素决策问题中很少出现，因此实际情况下常使用 outranking 关系来取得可操作的近似支配关系。和 ELECTRE 方法不同的是 PROMETHEE 方法将 outranking 关系的构造也作为方法的一个重要步骤。PROMETHEE 方法对不同选择在各准则下的比较进行了扩展。[@brans1985ap]
 
 常规的比较方法认为选择原则是一种二元的偏好结构 $$\begin{eqnarray}
   A_{1} & \mathbf{P} & A_{2} & \text{ iff } f(A_{1}) \geq f(A_{2}) \\
