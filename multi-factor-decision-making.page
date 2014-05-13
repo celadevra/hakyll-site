@@ -373,8 +373,8 @@ $$
 
 * 一般原则：$$p(x) = \left\{
 \begin{aligned}
-  0 & \forall x \leq 0, \\
-  1 & \forall x > 0;
+  0, & \forall x \leq 0, \\
+  1, & \forall x > 0;
   \end{aligned}
   \right.
 $$
