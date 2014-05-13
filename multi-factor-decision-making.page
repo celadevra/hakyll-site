@@ -361,66 +361,65 @@ PROMETHEE 方法也是基于支配的概念。严格意义上的支配关系在�
 
 其中，$A_{1}$ 和 $A_{2}$ 是用于比较的两个选择，$f(A_{1})$ 和 $f(A_{2})$ 是在某一准则下二者的表现。ELECTRE 方法使用协调和不谐的概念表述两个选择的表现相差交大和犹豫区间的概念，而 PROMETHEE 方法则进一步扩展了选择的偏好度可能具有的关系。
 
-定义一个偏好度函数 $$P(A_{1}, A_{2}) = \[\left\{
+定义一个偏好度函数 $$P(A_{1}, A_{2}) = \left\{
 \begin{aligned}
   0 & \text{if} & f(A_{1}) \leq f(A_{2}) \\
   p[f(A_{1}, A_{2})] & \text{if} & f(A_{1}) > f(A_{2})
 \end{aligned}
 \right.
-\]
 $$
 
 在具体的情况下，一般可以认为偏好的不同体现为二者表现的差值，即 $$ p[f(A_{1}, A_{2})] = p(f(A_{1}) - f(A_{2}))$$，为方便，令 $x = f(A_{1}) - f(A_{2})$。则决策者面对选择原则下不同的比较结果可以套用以下的比较策略：
 
-* 一般原则：$$p(x) = \[\left\{
+* 一般原则：$$p(x) = \left\{
 \begin{aligned}
-  0 & \any x \leq 0, \\
-  1 & \any x > 0;
+  0 & \forall x \leq 0, \\
+  1 & \forall x > 0;
   \end{aligned}
   \right.
-\]$$
+$$
 
-* 类原则（Quasi-criteria）：$$p(x) = \[\left\{
+* 类原则（Quasi-criteria）：$$p(x) = \left\{
 \begin{aligned}
   0, & x \leq l, \\
   1, & x > l
   \end{aligned}
   \right.
-\]$$ $l$ 是决策者定义的阈值。
+$$ $l$ 是决策者定义的阈值。
 
-* 线性偏好度原则：$$p(x) = \[\left\{
+* 线性偏好度原则：$$p(x) = \left\{
 \begin{aligned}
-  x / m, & x /leq m, \\
+  x / m, & x \leq m, \\
   1, & x > m
   \end{aligned}
   \right.
-\]$$ 其中 $m$ 是决策者定义的参数。
+$$ 其中 $m$ 是决策者定义的参数。
 
-* 平台型原则：$$p(x) = \[\left\{
+* 平台型原则：$$p(x) = \left\{
 \begin{aligned}
   0, & x \leq q, \\
   1/2, & q < x \leq q + p, \\
   1, & x > q + p
   \end{aligned}
   \right.
-\]$$
+$$
 
-* 带有阈值的线性偏好原则：$$p(x) = \[\left\{
+* 带有阈值的线性偏好原则：$$p(x) = \left\{
 \begin{aligned}
   0, & x \leq s, \\
   (x-s)/r, & s \leq x \leq s + r, \\
   1, & x \geq s + r
   \end{aligned}
   \right.
-\]$$
+$$
 
-* 高斯原则：$$p(x) = \[\left\{
+* 高斯原则：$$p(x) = \left\{
 \begin{aligned}
   0, & x \leq 0, \\
   1- e^{-x^{2}/2\theta^{2}}, & x \geq 0
   \end{aligned}
   \right.
-\]$$
+$$
 
 对 $n$ 个选择进行两两比较，共可得到 $b = \frac{n(n-1)}{2}$ 个比较结果，将其分别套用到上面的六种原则之一，则可得到这些比较对应的偏好函数 $P_{h}(A_{j}, A_{k})$。令 $$\pi(A_{j}, A_{k}) = \frac{1}{b}\sum_{h=1}{b}P_{h}(A_{j}, A_{k})$$，称之为偏好指数，该值越接近1，则说明偏好越强。根据每一对 $A_{j}, A_{k}$ 的 $\pi$ 值，可作出有向图。选择集 $\mathbf{A}$ 中的每个元素 $A_{j}$ 即为有向图上的一个节点，对它可计算入流量和出流量：
 
