@@ -11,4 +11,4 @@ install:
 script:
   - ghc --make ./site.hs
   - ./site build
-  - ./travis upload.sh
+  - ./travisupload.sh
