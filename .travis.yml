@@ -1,6 +1,4 @@
 language: haskell
-install:
-  - cabal install hakyll
 script:
   - ghc --make ./site.hs
   - ./site build
@@ -10,5 +8,5 @@ deploy:
   access_key_id: "AKIAIJZCTZV4SIBMFATA"
   secret_access_key: "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"
   bucket: "expoundite.net"
-  local-dir: _site
+  local-dir: "./_site"
   endpoint: expoundite.net.s3-website-us-east-1.amazonaws.com
