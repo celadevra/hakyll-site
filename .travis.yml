@@ -6,8 +6,9 @@ script:
   
 deploy:
   provider: s3
-  access_key_id: "AKIAIJZCTZV4SIBMFATA"
-  secret_access_key: "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"
+  access_key_id: AKIAIBLMJMMNELCLSNDQ
+  secret_access_key:
+    secure: cq1AVJRYASGlBJCqvlXqxmb6xC9vHU5HkhCn0d2YwzRE7/ov7jFFBG64mSLeLMJE+tALEU5vdVcF4YQOSrsyho99qogeptHV11VoaCwn5HAz/ko0QMaVsQBEHWXsxxpCGDe/eKOqQTV3ADXjTx4+r9cG60hXutA03FqkJml6kzs=
   bucket: "expoundite.net"
-  local-dir: "./_site"
+  local-dir: $TRAVIS_BUILD_DIR/_site
   endpoint: expoundite.net.s3-website-us-east-1.amazonaws.com
