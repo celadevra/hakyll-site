@@ -1,4 +1,5 @@
 language: haskell
+install: cabal install hakyll
 script:
   - ghc --make ./site.hs
   - ./site build
