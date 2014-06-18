@@ -3,6 +3,7 @@ install: cabal install hakyll
 script:
   - ghc --make ./site.hs
   - ./site build
+  - cp -r ./_site ./todeploy
   
 deploy:
   provider: s3
@@ -10,5 +11,5 @@ deploy:
   secret_access_key:
     secure: cq1AVJRYASGlBJCqvlXqxmb6xC9vHU5HkhCn0d2YwzRE7/ov7jFFBG64mSLeLMJE+tALEU5vdVcF4YQOSrsyho99qogeptHV11VoaCwn5HAz/ko0QMaVsQBEHWXsxxpCGDe/eKOqQTV3ADXjTx4+r9cG60hXutA03FqkJml6kzs=
   bucket: "expoundite.net"
-  local-dir: $TRAVIS_BUILD_DIR/_site
+  local-dir: $TRAVIS_BUILD_DIR/todeploy
   endpoint: expoundite.net.s3-website-us-east-1.amazonaws.com
