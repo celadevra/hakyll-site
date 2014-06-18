@@ -1,15 +1,15 @@
 language: haskell
-install: cabal install hakyll
+env:
+  global:
+    secure: "doWOQrOH/b/fxAu5f/T8nzH7OFeA4dxHgdEt+nquOnu/bIWrJbNFORZ1BDZqw/t0NTmha55CwtjwioTPhXb22B/AALjJsm9f5AGpqVwdr9OmiMekjYrAkVlAqk8zkl0/k+TkwhzRS9qf5
+108PszwI9+Tu/wMSTybFZgzJqoclDY="
+    secure: "T8QDE3CaaZmY0d4df3HhsX+WQtFlLWiHiIhjZim0KmPVlVRk7gG7EZbNYRBHU+mNu7Jh1Tri7j0QGjvPlepO57DYdSkx+0WSGbKIlbgzLhRK4EaoWooc9IUkNbH3uG7GDbLq0oexxN6+Y
+pNE4TjKCPYym9roKuH8l0p1a9D6hxk="
+install: 
+  - cabal install hakyll
+  - sudo apt-get install s3cmd
 script:
   - ghc --make ./site.hs
   - ./site build
-deploy:
-  provider: s3
-  access_key_id: AKIAIBLMJMMNELCLSNDQ
-  secret_access_key:
-    secure: cq1AVJRYASGlBJCqvlXqxmb6xC9vHU5HkhCn0d2YwzRE7/ov7jFFBG64mSLeLMJE+tALEU5vdVcF4YQOSrsyho99qogeptHV11VoaCwn5HAz/ko0QMaVsQBEHWXsxxpCGDe/eKOqQTV3ADXjTx4+r9cG60hXutA03FqkJml6kzs=
-  bucket: "expoundite.net"
-  local-dir: $TRAVIS_BUILD_DIR/_site
-  endpoint: expoundite.net.s3-website-us-east-1.amazonaws.com
-  on:
-    branch: master
+after_script:
+  - s3cmd sync _site s3://expoundite.net --guess-mime-type --mime-type 'text/html' --recursive --delete-removed --acl-public
