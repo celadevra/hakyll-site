@@ -1,3 +1,4 @@
+_site/*
 _cache/*
 _test/*
 _testcache/*
