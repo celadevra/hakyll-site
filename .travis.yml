@@ -1,16 +1,15 @@
 language: haskell
 env:
   global:
-    secure: T8QDE3CaaZmY0d4df3HhsX+WQtFlLWiHiIhjZim0KmPVlVRk7gG7EZbNYRBHU+mNu7Jh1Tri7j0QGjvPlepO57DYdSkx+0WSGbKIlbgzLhRK4EaoWooc9IUkNbH3uG7GDbLq0oexxN6+Y
-      pNE4TjKCPYym9roKuH8l0p1a9D6hxk=
+    secure: T8QDE3CaaZmY0d4df3HhsX+WQtFlLWiHiIhjZim0KmPVlVRk7gG7EZbNYRBHU+mNu7Jh1Tri7j0QGjvPlepO57DYdSkx+0WSGbKIlbgzLhRK4EaoWooc9IUkNbH3uG7GDbLq0oexxN6+YpNE4TjKCPYym9roKuH8l0p1a9D6hxk=
+    secure: e7yHEA7//e+rgONBIcg/I+1PzQMzVOKeR6KKs++7PyWhmvty+qZt7UotLuwEFqq8P82lc2Jng9GogZRqeIA5F4Mw+lVX/EccdEAakvsIvxi1v7h00M9rigN+Kb+8/4rKRbSTuwHx8/p9WOqkJFgUF/9BGSxgYq/tS+V4X1wkHHE=
 install:
 - cabal install hakyll
 - sudo apt-get install s3cmd
 script:
-- ghc --make ./site.hs
-- "./site build"
-- echo 'access_key = $AWS_ACCESS_KEY_ID' >> .s3cfg
-- echo 'secret_key = $AWS_SECRET_ACCESS_KEY' >> .s3cfg
-- "./travisupload.sh"
-dd:
-  secure: e7yHEA7//e+rgONBIcg/I+1PzQMzVOKeR6KKs++7PyWhmvty+qZt7UotLuwEFqq8P82lc2Jng9GogZRqeIA5F4Mw+lVX/EccdEAakvsIvxi1v7h00M9rigN+Kb+8/4rKRbSTuwHx8/p9WOqkJFgUF/9BGSxgYq/tS+V4X1wkHHE=
+  - ghc --make ./site.hs
+  - ./site build
+  - echo "access_key = $AWS_ACCESS_KEY_ID" >> .s3cfg
+  - echo "secret_key = $AWS_SECRET_ACCESS_KEY" >> .s3cfg
+  - tail .s3cfg
+  - ./travisupload.sh
