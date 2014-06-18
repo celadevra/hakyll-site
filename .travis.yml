@@ -7,8 +7,8 @@ env:
 pNE4TjKCPYym9roKuH8l0p1a9D6hxk="
 install: 
   - cabal install hakyll
-  - gem install s3sync
+  - sudo apt-get install s3cmd
 script:
   - ghc --make ./site.hs
   - ./site build
-  - s3sync --acl=public_read _site expoundite.net
+  - ./travis upload.sh
