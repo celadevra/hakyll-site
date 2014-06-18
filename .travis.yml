@@ -3,7 +3,7 @@ install:
   - cabal install hakyll
 script:
   - ghc --make ./site.hs
-  - site build
+  - ./site build
   
 deploy:
   provider: s3
