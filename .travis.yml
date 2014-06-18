@@ -7,9 +7,8 @@ env:
 pNE4TjKCPYym9roKuH8l0p1a9D6hxk="
 install: 
   - cabal install hakyll
-  - sudo apt-get install s3cmd
+  - gem install s3sync
 script:
   - ghc --make ./site.hs
   - ./site build
-after_script:
-  - s3cmd sync _site s3://expoundite.net --guess-mime-type --mime-type 'text/html' --recursive --delete-removed --acl-public
+  - s3sync --acl=public_read _site expoundite.net
