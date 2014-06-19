@@ -3,6 +3,8 @@ env:
   global:
   - secure: Ms4M625v3kxV3oEtyBOGwKNVnmYNh4oF8zr1TLFjKCfcymSUf/36vwEj9ym+3X48gt7WTt4ytr3JNBPzVfVSE0rBjGrtJIWs5Pgs2jyq6FQeTvmh7PPRMKI5ne+BqksFE+CgaS20jqk2DFzfC+Wv6SK/CO6ykBLaU26VVS0cKzU=
   - secure: JVfS188jQ8AWs6pkHMze4vLrass7DWKVVnx632wwJO3Ws+ASyBd4JmwEdLg5M8C9FRI/1yO87M8lB24sWg2qrcGG9C7IrK1HuwRnuEJfxJ14eIQAKBJqwlS0FenvBAw30gU8rBzcassm2tcdN4TvmkFeQcspD69CjjZXVAnTw/w=
+  - secure: e8K7cvxKYwBHx1EQFPzkB1PaE9gT9QyELh25RI7siyH3YPxFAyiYYneiXn3vKjO/M8Y8J6RucR2H8er1UhrRM6t4wTQdMXbWEox5/maKTubBwoBkQtYPvYiBUpFwyMTxCLju2g0Jzkp/1a4VeEwFcSLsHHEQp0UvACum9U/TXnw=
+  - secure: BbEJR+VXASM9jf/+1h/W4J9rV3D+W9BXQDccy5a3pHChvHiz6SCZ8CCZeItCGl4Ahx3XqTLbVT75dVktmqD0E3gawyGaosSGD5us+xQo7Kli+DqQ3GLwybX/D7ZFsHZ9vdSIrXHCDDKFu0HzQ0uHLJ2luzMzDyTv5dQIaN+IvNE=
 install:
 - cabal install hakyll
 - sudo apt-get install s3cmd
