@@ -1,15 +1,16 @@
 language: haskell
 env:
   global:
-    secure: T8QDE3CaaZmY0d4df3HhsX+WQtFlLWiHiIhjZim0KmPVlVRk7gG7EZbNYRBHU+mNu7Jh1Tri7j0QGjvPlepO57DYdSkx+0WSGbKIlbgzLhRK4EaoWooc9IUkNbH3uG7GDbLq0oexxN6+YpNE4TjKCPYym9roKuH8l0p1a9D6hxk=
-    secure: e7yHEA7//e+rgONBIcg/I+1PzQMzVOKeR6KKs++7PyWhmvty+qZt7UotLuwEFqq8P82lc2Jng9GogZRqeIA5F4Mw+lVX/EccdEAakvsIvxi1v7h00M9rigN+Kb+8/4rKRbSTuwHx8/p9WOqkJFgUF/9BGSxgYq/tS+V4X1wkHHE=
+  - secure: e7yHEA7//e+rgONBIcg/I+1PzQMzVOKeR6KKs++7PyWhmvty+qZt7UotLuwEFqq8P82lc2Jng9GogZRqeIA5F4Mw+lVX/EccdEAakvsIvxi1v7h00M9rigN+Kb+8/4rKRbSTuwHx8/p9WOqkJFgUF/9BGSxgYq/tS+V4X1wkHHE=
+  - secure: R/4v6zXuEYs57cdEFf8DKC7nnnLNqm+YIPObmsqW9HPVhOQFWy50MZb9KvtmwntTcp01qS5RWGPolxmwdMTb8FXakXm2jFHB2VwMrFUzjso5UPIoO2cQcmr16ffZ94sYZfEmQH1anNk98He2G4MzElq9RzM8wkroollmnggYN4c=
+  - secure: drpLfxZWmcWVvQrrfUk9y71jjwIA2hK4FLwXWMKZefcgD8o6UOPIdqsklHy4tlWGt18Esnojy1jFmbyTPfx/myyJZ0b+IlYQl8ltzkmGmdncpg7LnRDWAs15GdKg9Smam4f7W2x3Tc0U4MwehzvgLjzC8OAQNEJ3uheI39Z1rpM=
 install:
 - cabal install hakyll
 - sudo apt-get install s3cmd
 script:
-  - ghc --make ./site.hs
-  - ./site build
-  - echo "access_key = $AWS_ACCESS_KEY_ID" >> .s3cfg
-  - echo "secret_key = $AWS_SECRET_ACCESS_KEY" >> .s3cfg
-  - tail .s3cfg
-  - ./travisupload.sh
+- ghc --make ./site.hs
+- "./site build"
+- echo "access_key = $AWS_ACCESS_KEY_ID" >> .s3cfg
+- echo "secret_key = $AWS_SECRET_ACCESS_KEY" >> .s3cfg
+- tail .s3cfg
+- "./travisupload.sh"
