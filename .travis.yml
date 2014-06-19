@@ -1,8 +1,8 @@
 language: haskell
 env:
   global:
-  - secure: A1LQWuHx/l9kxPNfQhR+nC8uvjxsKeeU1jG4wdpGpJdO1u49OYiVBdk21miIero0bRGhOXB3thxPsTCwcxNzYX0Y/5mo2zAK6PdvlQhZROQbXWCr2Qm+TdSspEDN7B1qFXfhPZFdvc4tQE4L7zlCtxRfHQb7jRSrtRUEOlVin1c=
-  - secure: Srfd2SvWN9jWdJl9yAlVFHArC8lg93b9lQwdwmL4H370HYm3YRboixVxpuZJTeifQ30YNVUCVwqUzuFRnOVp8kU2IkcifeDid7NijcPHt3YosTmIOC9a2ky2xdCoDXxps/AiNCTkPwkVHC8pWTQW/GpPytu6c2fw1zp1wM9smOM=
+  - secure: W2sMCQLdYhjOXPaBaDii4TBN8XOe5XimGH0J7q0XwZHOw04G+QniYCRyXwdb3fSUGHKrT8eAYHSa50+uaCM0Z1tzjg6tdGn0IfBedcU/mWR7G/GpTxXygYQkGc1imNe3B8PawAarPc6J7uGALGw41+moZJpzr/hGLGQSjhskCK8=
+  - secure: fDCLOFwjSnqftS3bdkCx2JPsXIOxWu7DM3VfjphBJMGVKx4Nf8VHN8IXjs4mRjWo51F41yJKI8KTsIhcqmQQLlFNPJ1k6WY8d2sZHGDjN2b7E28RUmurUeGT3GMxl8bk18QHuS7/HEiJQA4YdMuUOXaZ4HatKVHttHTdILDcZ5Y=
 install:
 - cabal install hakyll
 - sudo apt-get install s3cmd
