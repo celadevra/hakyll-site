@@ -11,7 +11,7 @@ script:
 - s3cmd get s3://expoundite.net/cache.zip cache.zip
 - unzip cache.zip
 - "./site build"
-- zip cache.zip _cache
+- zip -r cache.zip _cache/
 - cp cache.zip _site
 - echo "access_key = $AWS_ACCESS_KEY_ID" >> .s3cfg
 - echo "secret_key = $AWS_SECRET_ACCESS_KEY" >> .s3cfg
