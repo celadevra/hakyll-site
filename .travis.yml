@@ -8,7 +8,7 @@ install:
 - sudo apt-get install s3cmd
 script:
 - ghc --make ./site.hs
-- s3cmd get s3://expoundite.net/cache.zip cache.zip
+- s3cmd -c .s3cfg get s3://expoundite.net/cache.zip cache.zip
 - unzip cache.zip
 - "./site build"
 - zip -r cache.zip _cache/
