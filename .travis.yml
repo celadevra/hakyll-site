@@ -3,6 +3,9 @@ env:
   global:
   - secure: DDLQi5WYnCAUhKQNBwq4rBnmYATP/OskewKyEwyw6DymjfBKdH+/enf8rdb8C+eSSJbsTgb3mtDYmgWK7fPTBG6rWLqKayC6CgFTrcG0tEF67KaSLpdk3dtezmlwIcR9jRrI2YqyAmMexoS4MW6zDj4Lv2wqAPGJepdTtbvAOHg=
   - secure: McmMItOzZxayXsb0Yl/8/cSwU13Dc2BLEwOCldN9yXKUXgL2wOki1Xv9/tWLiWFcJoEnffYXcFyY3H04UcKPeI+y1KJsbXwf0YF6Uz2SsqkwtcEi4eKUHnRNGOb3biFzhwWzwI+8iibZx6yAREUyggJncIC9q/DGg/FMoXklc50=
+branches:
+  only:
+    - master
 install:
 - cabal install hakyll
 - sudo apt-get install s3cmd
