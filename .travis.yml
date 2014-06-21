@@ -10,10 +10,6 @@ script:
 - ghc --make ./site.hs
 - echo "access_key = $AWS_ACCESS_KEY_ID" >> .s3cfg
 - echo "secret_key = $AWS_SECRET_ACCESS_KEY" >> .s3cfg
-- s3cmd -c .s3cfg get s3://expoundite.net/cache.zip cache.zip
-- unzip cache.zip
-- rm cache.zip
+- "./retouch.sh"
 - "./site build"
-- zip -r cache.zip _cache/
-- cp cache.zip _site
 - "./travisupload.sh"
