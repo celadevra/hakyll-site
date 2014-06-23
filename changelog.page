@@ -47,6 +47,44 @@ tags: site
  
  其中 `s3:PutObjectAcl` 在网上介绍使用 S3 备份的教程中很少提到，我因为需要给文件加上 `public-read` 的 ACL 属性，所以需要这句。
 
+2. `.travis.yml`：这个文件是 Travis CI 工作时需要读取的各种设置和测试步骤的描述文件。我的设置如下：
+
+ ~~~~ {.yaml}
+ language: haskell
+env:
+  global:
+  - secure: DDLQi5WYnCAUhKQNBwq4rBnmYATP/OskewKyEwyw6DymjfBKdH+/enf8rdb8C+eSSJbsTgb3mtDYmgWK7fPTBG6rWLqKayC6CgFTrcG0tEF67KaSLpdk3dtezmlwIcR9jRrI2YqyAmMexoS4MW6zDj4Lv2wqAPGJepdTtbvAOHg=
+  - secure: McmMItOzZxayXsb0Yl/8/cSwU13Dc2BLEwOCldN9yXKUXgL2wOki1Xv9/tWLiWFcJoEnffYXcFyY3H04UcKPeI+y1KJsbXwf0YF6Uz2SsqkwtcEi4eKUHnRNGOb3biFzhwWzwI+8iibZx6yAREUyggJncIC9q/DGg/FMoXklc50=
+branches:
+  only:
+    - master
+install:
+- cabal install hakyll
+- sudo apt-get install s3cmd
+script:
+- ghc --make ./site.hs
+- echo "access_key = $AWS_ACCESS_KEY_ID" >> .s3cfg
+- echo "secret_key = $AWS_SECRET_ACCESS_KEY" >> .s3cfg
+- "./retouch.sh"
+- "./site build"
+- "./travisupload.sh"
+ ~~~~
+ 
+ 其中，`secure:` 后面是使用 Travis 命令行工具加密的 AWS Access Key ID 和 Secret Access Key。获得这两行的方法是
+ 
+ ~~~~ {.bash}
+ $ travis encrypt AWS_ACCESS_KEY_ID="MYKEYID" --add
+ $ travis encrypt AWS_SECRET_ACCESS_KEY="MYSECRETKEY" --add
+ ~~~~
+ 
+ 要注意的是运行前先要确定 `.travis.yml` 里没有之前生成的 `secure` 字段；用双引号把 Amazon 那里拷来的 Key ID 和 Key 包起来是可以的，但一定不要把环境变量的名称也用引号包起来，否则解密后会找不到这两个变量。在测试的步骤中，`echo` 的两行用来把这两个环境变量的值放进 .s3cfg。
+
+3. `.s3cfg`：这是 s3cmd 的设置文件。在本机上先用 `s3cmd --configure` 生成默认的配置，这个过程中 s3cmd 会询问 Key ID 和 Key，填第1步中那个专用用户的即可。测试可以访问 Amazon S3 上的 bucket 后，去掉 `access_key = ...` 和 `secret_key = ...` 这两行，再把它放进 repo 里。
+
+4. 修复文件的修改时间。Travis CI 是使用 Git 的 checkout 命令获取需要测试的代码快照的，这个过程得到的代码文件修改时间都是测试发生当时，这样我的文章的修改时间这个属性就没法用了。在 [`retouch.sh`](https://github.com/celadevra/hakyll-site/blob/master/retouch.sh) 这个文件中，我用文件在代码库中最近一次 commit 的时间作为修改时间，并用 `touch` 命令把文件的修改时间改回去。这一步必须在 Hakyll 开始编译站点前完成。
+
+再加上同步到 S3 的命令，将这些改动 commit 到 master 分支，并在 Travis 里打开与这个代码库的 hook 之后，就可以等 Travis 完成安装编译和上传的全过程了。这样，当 Github 上的 master 分支一有改变，约10分钟后，更新的网站就会自动传到 S3。
+
 ## 2014年5月
 
 [内容]添加[关于](/about)页面。
