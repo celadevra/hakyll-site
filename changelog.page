@@ -10,6 +10,43 @@ tags: site
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
+## 2014年6月
+
+[部署]增添利用 [Travis CI](https://travis-ci.org/) 的自动部署功能。
+
+最近我的生活和工作方式都发生了一些变化：晚上要带孩子，而且工作中使用 iPad 替代笔记本电脑，不能经常使用 MacBook Pro 上的 git repo 来更新网站了。因此我尝试着用 Travis CI 来自动安装依赖、编译 HTML，并上传到 Amazon S3。
+
+1. Amazon IAM 设置：因为这个配置要把 S3 的访问密钥传到 Travis 的环境中，所以最好是使用 Amazon IAM 生成专门的用户和组并分配权限，这样即使用户的密钥泄露也不会对其他 AWS 的服务产生影响。这个用户或组的访问策略可以这样写：
+
+ ~~~~ {.json}
+ {
+  "Statement": [
+    {
+      "Action": [
+        "s3:ListAllMyBuckets"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::*"
+    },
+    {
+      "Action": [ 
+          "s3:ListBucket", 
+          "s3:PutObject",
+          "s3:PutObjectAcl",
+          "S3:DeleteObject"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+          "arn:aws:s3:::expoundite.net", 
+          "arn:aws:s3:::expoundite.net/*"
+      ]
+    }
+  ]
+ }
+ ~~~~
+ 
+ 其中 `s3:PutObjectAcl` 在网上介绍使用 S3 备份的教程中很少提到，我因为需要给文件加上 `public-read` 的 ACL 属性，所以需要这句。
+
 ## 2014年5月
 
 [内容]添加[关于](/about)页面。
