@@ -18,7 +18,7 @@ tags: site
 
 1. Amazon IAM 设置：因为这个配置要把 S3 的访问密钥传到 Travis 的环境中，所以最好是使用 Amazon IAM 生成专门的用户和组并分配权限，这样即使用户的密钥泄露也不会对其他 AWS 的服务产生影响。这个用户或组的访问策略可以这样写：
 
- ~~~~ {.json}
+~~~~ {.json}
  {
   "Statement": [
     {
@@ -42,15 +42,15 @@ tags: site
       ]
     }
   ]
- }
- ~~~~
+}
+~~~~
  
  其中 `s3:PutObjectAcl` 在网上介绍使用 S3 备份的教程中很少提到，我因为需要给文件加上 `public-read` 的 ACL 属性，所以需要这句。
 
 2. `.travis.yml`：这个文件是 Travis CI 工作时需要读取的各种设置和测试步骤的描述文件。我的设置如下：
 
- ~~~~ {.yaml}
- language: haskell
+~~~~ {.yaml}
+language: haskell
 env:
   global:
   - secure: DDLQi5WYnCAUhKQNBwq4rBnmYATP/OskewKyEwyw6DymjfBKdH+/enf8rdb8C+eSSJbsTgb3mtDYmgWK7fPTBG6rWLqKayC6CgFTrcG0tEF67KaSLpdk3dtezmlwIcR9jRrI2YqyAmMexoS4MW6zDj4Lv2wqAPGJepdTtbvAOHg=
@@ -68,16 +68,16 @@ script:
 - "./retouch.sh"
 - "./site build"
 - "./travisupload.sh"
- ~~~~
+~~~~
  
  其中，`secure:` 后面是使用 Travis 命令行工具加密的 AWS Access Key ID 和 Secret Access Key。获得这两行的方法是
  
- ~~~~ {.bash}
+~~~~ {.bash}
  $ travis encrypt AWS_ACCESS_KEY_ID="MYKEYID" --add
  $ travis encrypt AWS_SECRET_ACCESS_KEY="MYSECRETKEY" --add
- ~~~~
+~~~~
  
- 要注意的是运行前先要确定 `.travis.yml` 里没有之前生成的 `secure` 字段；用双引号把 Amazon 那里拷来的 Key ID 和 Key 包起来是可以的，但一定不要把环境变量的名称也用引号包起来，否则解密后会找不到这两个变量。在测试的步骤中，`echo` 的两行用来把这两个环境变量的值放进 .s3cfg。
+要注意的是运行前先要确定 `.travis.yml` 里没有之前生成的 `secure` 字段；用双引号把 Amazon 那里拷来的 Key ID 和 Key 包起来是可以的，但一定不要把环境变量的名称也用引号包起来，否则解密后会找不到这两个变量。在测试的步骤中，`echo` 的两行用来把这两个环境变量的值放进 .s3cfg。
 
 3. `.s3cfg`：这是 s3cmd 的设置文件。在本机上先用 `s3cmd --configure` 生成默认的配置，这个过程中 s3cmd 会询问 Key ID 和 Key，填第1步中那个专用用户的即可。测试可以访问 Amazon S3 上的 bucket 后，去掉 `access_key = ...` 和 `secret_key = ...` 这两行，再把它放进 repo 里。
 
