@@ -10,3 +10,5 @@ hakyll-site
 - Amazon AWS
 - Travis CI
 - jQuery
+
+网站发布在 <http://expoundite.net/>
