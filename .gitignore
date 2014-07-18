@@ -8,3 +8,4 @@ site.o
 dev
 dev.hi
 dev.o
+Gemfile.lock
