@@ -7,6 +7,7 @@ branches:
   only:
     - master
 install:
+- cabal install attoparsec==0.12
 - cabal install hakyll
 - sudo apt-get install s3cmd
 script:
