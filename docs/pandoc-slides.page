@@ -99,9 +99,9 @@ PowerPoint 等幻灯片制作工具的优势是可以选用本地各种各样的
 其一，使用系统上自带的字体，利用 CSS 本身的 fallback 机制实现在不同平台上相近的显示效果。我在 OS X 平台上制作幻灯片，播放可能是在 Windows 机器上，所以我这样写 CSS：
 
 ``` {.css}
----
+...
 font-family: 'Baskerville-SemiBold', Arial, 'STKaiti', '楷体', 'SimKai', serif;
----
+...
 ```
 
 这样做的问题在于你没有 Windows 系统的话，很难实际测试生成幻灯片的效果，而且效果确实不怎么样。而且，这样做在后面利用工具生成 PDF 的时候还会造成很大麻烦。
