@@ -6,7 +6,7 @@ description: 我读《巴黎城记》。
 status: finished
 belief: likely
 tags: city, history
-...
+---
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->

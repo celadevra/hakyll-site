@@ -6,7 +6,7 @@ description: What I think is suitable to present to you.
 status: finished
 belief: highly likely
 tags: index
-...
+---
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->

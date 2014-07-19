@@ -8,7 +8,7 @@ belief: highly likely
 tags: decision-making, optimization
 biblio: mcdm.bib
 csl: harvard1.csl
-...
+---
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->

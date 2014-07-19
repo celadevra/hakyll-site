@@ -6,7 +6,7 @@ description: 我对维基百科中文版的编辑工作
 status: in progress
 belief: log
 tags: wikipedia, knowledge
-...
+---
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->

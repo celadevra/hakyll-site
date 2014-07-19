@@ -6,7 +6,7 @@ description: 我如何处理拿到的钱
 status: finished
 belief: possible
 tags: money, self
-...
+---
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->

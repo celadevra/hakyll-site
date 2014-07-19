@@ -6,7 +6,7 @@ description: 本网站的进化过程
 status: in progress
 belief: certain
 tags: site
-...
+---
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
