@@ -1,0 +1,13 @@
+!!! 5
+%html
+  %head
+    %title Essays
+    = partial _js
+    = partial _styles
+    -# styles for home page only
+    :scss
+      -# to be determined
+  %body
+    = yield 
+    = partial _footer
+
