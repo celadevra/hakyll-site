@@ -53,6 +53,8 @@ set :js_dir, 'js'
 
 set :images_dir, 'img'
 
+set :partials_dir, 'layouts/partials'
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment

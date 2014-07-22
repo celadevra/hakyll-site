@@ -1,0 +1,12 @@
+
+!!! 5
+%html
+  %head
+    %title= [current_page.data.title, " | Essays"].join ""
+    = partial _js
+    = partial _styles
+  %body
+    = partial _nav
+    = yield 
+    = partial _footer
+

@@ -3,11 +3,9 @@
   %head
     %title Essays
     = partial _js
-    = partial _styles
-    -# styles for home page only
-    :scss
-      -# to be determined
+    %link {:type => "text/css", :href => "stylesheets/home.css", :rel => "stylesheet"}
   %body
+    = partial _nav
     = yield 
     = partial _footer
 
