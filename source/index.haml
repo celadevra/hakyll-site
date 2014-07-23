@@ -2,10 +2,10 @@
 %html
   %head
     %title Essays
-    = partial _js
+    = partial "js"
     %link {:type => "text/css", :href => "stylesheets/home.css", :rel => "stylesheet"}
   %body
-    = partial _nav
+    = partial "nav"
     = yield 
-    = partial _footer
+    = partial "footer"
 
