@@ -1,5 +1,6 @@
 {
-    "source": "./source"
+    "source": "./source",
+    "clean": true,
     "metadata": {
         "title": "expoundite.net",
         "description": "My website"
