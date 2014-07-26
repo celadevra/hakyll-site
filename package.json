@@ -6,10 +6,10 @@
   "dependencies": {
     "metalsmith-markdown": "^0.2.1",
     "metalsmith-templates": "^0.5.2",
-    "metalsmith-permalinks": "^0.3.2"
+    "metalsmith-permalinks": "^0.3.2",
+    "metalsmith": "^0.9.0"
   },
   "devDependencies": {
-    "metalsmith": "^0.9.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
