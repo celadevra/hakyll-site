@@ -1,0 +1,13 @@
+{
+    "metadata": {
+        "title": "expoundite.net",
+        "description": "My website"
+    },
+    "plugins": {
+        "metalsmith-markdown": {},
+        "metalsmith-permalinks": {
+            "pattern": ":title"
+        },
+        "metalsmith-templates": "jade"
+    }
+}
