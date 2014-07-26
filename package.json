@@ -1,0 +1,31 @@
+{
+  "name": "expoundite-net",
+  "version": "0.0.0",
+  "description": "My site built with Metalsmith",
+  "main": "index.js",
+  "dependencies": {
+    "metalsmith-markdown": "^0.2.1",
+    "metalsmith-templates": "^0.5.2",
+    "metalsmith-permalinks": "^0.3.2"
+  },
+  "devDependencies": {
+    "metalsmith": "^0.9.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/celadevra/hakyll-site.git"
+  },
+  "keywords": [
+    "blog",
+    "web"
+  ],
+  "author": "Haoyang Xu",
+  "license": "Public Domain",
+  "bugs": {
+    "url": "https://github.com/celadevra/hakyll-site/issues"
+  },
+  "homepage": "https://github.com/celadevra/hakyll-site"
+}
