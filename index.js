@@ -6,8 +6,12 @@ var Metalsmith = require('metalsmith'),
 
 Metalsmith(__dirname)
     .source('./source')
-    .use(branch('*.page')
-        .use(markdown()))
+    .use(branch('*.md')
+        .use(markdown())
+        .use(templates({
+            engine: 'handlebars',
+            directory: 'handlebars'
+        })))
     //.use(templates({
     //    engine: 'jade',
     //    directory: 'jade'
