@@ -18,8 +18,7 @@ compile 'index' do
     layout 'home'
 end
 
-compile 'home' do
-    filter :haml
+compile '404' do
 end
 
 compile '*' do
@@ -50,4 +49,4 @@ route '*' do
   end
 end
 
-layout '*', :erb
+layout '*', :haml

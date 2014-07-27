@@ -1,11 +1,11 @@
 !!! 5
 %html
   %head
-    %title= [current_page.data.title, " | Essays"].join ""
-    = partial "js"
-    = partial "styles"
+    %title= [@item[:title], " | Essays"].join ""
+    = render "js"
+    = render "styles"
   %body
-    = partial "nav"
+    = render "nav"
     = yield 
-    = partial "footer"
+    = render "footer"
 
