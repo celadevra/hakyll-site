@@ -13,15 +13,28 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
+compile 'index' do
+    filter :kramdown
+    layout 'home'
+end
+
+compile 'home' do
+    filter :haml
+end
+
 compile '*' do
-  if item[:extension] == 'css'
-    # don’t filter stylesheets
+  if (item[:extension] == ('css' || 'html'))
+    # don’t filter stylesheets and html
   elsif item.binary?
     # don’t filter binary items
   else
-    filter :erb
-    layout 'default'
+    filter :kramdown
+    layout 'layout'
   end
+end
+
+route '404' do
+    item.identifier.chop + '.html'
 end
 
 route '*' do
