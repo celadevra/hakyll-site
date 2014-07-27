@@ -1,0 +1,166 @@
+---
+title: 网站更新记录
+created: 2014-01-23
+author: Haoyang Xu
+description: 本网站的进化过程
+status: in progress
+belief: certain
+tags: site
+---
+
+<!-- Status choices are: links, notes, draft, in progress, finished -->
+<!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
+## 2014年6月
+
+[部署]增添利用 [Travis CI](https://travis-ci.org/) 的自动部署功能。
+
+最近我的生活和工作方式都发生了一些变化：晚上要带孩子，而且工作中使用 iPad 替代笔记本电脑，不能经常使用 MacBook Pro 上的 git repo 来更新网站了。因此我尝试着用 Travis CI 来自动安装依赖、编译 HTML，并上传到 Amazon S3。
+
+1. Amazon IAM 设置：因为这个配置要把 S3 的访问密钥传到 Travis 的环境中，所以最好是使用 Amazon IAM 生成专门的用户和组并分配权限，这样即使用户的密钥泄露也不会对其他 AWS 的服务产生影响。这个用户或组的访问策略可以这样写：
+
+~~~~ {.json}
+ {
+  "Statement": [
+    {
+      "Action": [
+        "s3:ListAllMyBuckets"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::*"
+    },
+    {
+      "Action": [ 
+          "s3:ListBucket", 
+          "s3:PutObject",
+          "s3:PutObjectAcl",
+          "S3:DeleteObject"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+          "arn:aws:s3:::expoundite.net", 
+          "arn:aws:s3:::expoundite.net/*"
+      ]
+    }
+  ]
+}
+~~~~
+ 
+ 其中 `s3:PutObjectAcl` 在网上介绍使用 S3 备份的教程中很少提到，我因为需要给文件加上 `public-read` 的 ACL 属性，所以需要这句。
+
+2. `.travis.yml`：这个文件是 Travis CI 工作时需要读取的各种设置和测试步骤的描述文件。我的设置如下：
+
+~~~~ {.yaml}
+language: haskell
+env:
+  global:
+  - secure: DDLQi5WYnCAUhKQNBwq4rBnmYATP/OskewKyEwyw6DymjfBKdH+/enf8rdb8C+eSSJbsTgb3mtDYmgWK7fPTBG6rWLqKayC6CgFTrcG0tEF67KaSLpdk3dtezmlwIcR9jRrI2YqyAmMexoS4MW6zDj4Lv2wqAPGJepdTtbvAOHg=
+  - secure: McmMItOzZxayXsb0Yl/8/cSwU13Dc2BLEwOCldN9yXKUXgL2wOki1Xv9/tWLiWFcJoEnffYXcFyY3H04UcKPeI+y1KJsbXwf0YF6Uz2SsqkwtcEi4eKUHnRNGOb3biFzhwWzwI+8iibZx6yAREUyggJncIC9q/DGg/FMoXklc50=
+branches:
+  only:
+    - master
+install:
+- cabal install hakyll
+- sudo apt-get install s3cmd
+script:
+- ghc --make ./site.hs
+- echo "access_key = $AWS_ACCESS_KEY_ID" >> .s3cfg
+- echo "secret_key = $AWS_SECRET_ACCESS_KEY" >> .s3cfg
+- "./retouch.sh"
+- "./site build"
+- "./travisupload.sh"
+~~~~
+ 
+ 其中，`secure:` 后面是使用 Travis 命令行工具加密的 AWS Access Key ID 和 Secret Access Key。获得这两行的方法是
+ 
+~~~~ {.bash}
+ $ travis encrypt AWS_ACCESS_KEY_ID="MYKEYID" --add
+ $ travis encrypt AWS_SECRET_ACCESS_KEY="MYSECRETKEY" --add
+~~~~
+ 
+要注意的是运行前先要确定 `.travis.yml` 里没有之前生成的 `secure` 字段；用双引号把 Amazon 那里拷来的 Key ID 和 Key 包起来是可以的，但一定不要把环境变量的名称也用引号包起来，否则解密后会找不到这两个变量。在测试的步骤中，`echo` 的两行用来把这两个环境变量的值放进 .s3cfg。
+
+3. `.s3cfg`：这是 s3cmd 的设置文件。在本机上先用 `s3cmd --configure` 生成默认的配置，这个过程中 s3cmd 会询问 Key ID 和 Key，填第1步中那个专用用户的即可。测试可以访问 Amazon S3 上的 bucket 后，去掉 `access_key = ...` 和 `secret_key = ...` 这两行，再把它放进 repo 里。
+
+4. 修复文件的修改时间。Travis CI 是使用 Git 的 checkout 命令获取需要测试的代码快照的，这个过程得到的代码文件修改时间都是测试发生当时，这样我的文章的修改时间这个属性就没法用了。在 [`retouch.sh`](https://github.com/celadevra/hakyll-site/blob/master/retouch.sh) 这个文件中，我用文件在代码库中最近一次 commit 的时间作为修改时间，并用 `touch` 命令把文件的修改时间改回去。这一步必须在 Hakyll 开始编译站点前完成。
+
+再加上同步到 S3 的命令，将这些改动 commit 到 master 分支，并在 Travis 里打开与这个代码库的 hook 之后，就可以等 Travis 完成安装编译和上传的全过程了。这样，当 Github 上的 master 分支一有改变，约10分钟后，更新的网站就会自动传到 S3。
+
+## 2014年5月
+
+[内容]添加[关于](/about)页面。
+
+## 2014年4月
+
+[外观]在页脚处增加 Ripple 捐助链接。
+
+[部署]修正联系 email。
+
+[部署]使用[七牛云存储](http://www.qiniu.com/)作为图床。
+
+[内容]增加关于[多因素决策](/multi-factor-decision-making)的文章。
+
+[功能]参考 jtanguy@Github 的实现，增加自动从 bib 文件生成参考文献功能。
+
+[内容]增加关于[电影化游戏](/movie-games)的文章。
+
+## 2014年3月
+
+[内容]添加了关于[理财](/money)的文章。
+
+## 2014年2月
+
+[部署]考虑了成本、可用性等因素后，我决定将网站的内容存储在 Amazon S3 上。和大多数虚拟主机和网页托管服务相比[^nfsn]，S3 在网站内容总量小于1G，访问量小于2万 PV 和流量不超过10G时的性价比是无人能敌的，而且也不用担心被攻击和系统日常维护的问题。
+
+因为我采用了生成的 HTML 不带扩展名的方案，所以在上传内容到 S3 的时候出了一些麻烦。S3 收到文件后，会利用扩展名来猜测文件的 MIME type。对于不带扩展名的文件，S3 自动当成 `binary/octet-stream` 类型处理，这样就无法访问 HTML 文件中的内容了。
+
+既然生成 HTML 不带扩展名这个做法是从 Gwern 那里学来的，我就在网上搜索他是如何解决这个问题的。很幸运地，他确实在[一篇讨论贴][gwern-s3cmd]中提及了他的解决方法。和 Gwern 的方法不同的是，s3cmd 从1.0.1版本开始，已经支持用 `--mime-type` 参数设置猜不到 MIME type 时的默认 MIME type。所以上传文件时的命令行这样写就可以：
+
+~~~~ {.bash}
+s3cmd sync _site/ s3://haoyangwrit.es
+  --guess-mime-type
+  --mime-type 'text/html'
+  --recursive
+  --delete-removed
+  --acl-public
+~~~~
+
+此外，在 name.com 久觅域名无果后，我在 domain.com 买了 haoyangwrit.es 这个域名，还比较满意。现已用亚马逊官方提供的方法将域名绑定到了存放网站的 bucket。
+
+由于在 domain.com 注册域名比较麻烦（需要回复 ICANN 发出的确认邮件，而我似乎还没有看到这个东西），我还是回到了熟悉的 name.com，并注册了 expoundite.net 这个域名，S3 上的 bucket 也相应地改变了。name.com 改变 NS 记录的速度非常快，几分钟以后，我已经用上了用 Amazon Route 53 管理的新域名。
+
+[内容]开始了新文件，关于[北京的城市更新](/docs/urban-renewal)。我对这个题目还没有太多概念，但我相信只要进行足够多的思考和阅读，我是可以写出有用的东西来的。
+
+[部署]为了节省 S3 的请求和流量费用，我注册了 [CloudFlare][] 的免费 CDN 服务，而这又要求我继续改变 NS 记录。我已经把 Route 53 上的记录删掉，可以每月节省0.5美元，但因为默认的 TTL 是48小时，此刻我还是在通过原有的 DNS 记录解析域名，也就暂时没有用到 CloudFlare 的功能。
+
+[外观]改善了 figure caption 的显示，现在读者能意识到 figure caption 不是正文的一部分了。
+
+[内容]添加关于个人财务决定的讨论[文章](/docs/money)。
+
+[部署]开始使用 CloudFlare CDN，并利用 CF 的功能添加了 Google Analytics。
+
+[内容]添加两篇旧文章：[城市更新背后的逻辑](/logic-behind-urban-renewal)和[作为工作的研究和作为发现的工作](/non-academia-research)。
+
+[功能]使用国产的多说作为评论系统。
+
+## 2014年1月
+
+[功能]我从 gwern.net 和 Danny Su 的 blog 代码中各抄了一点东西，实现了网站的 RSS 和 tags 页面功能。有一点原创性的工作，就是这个网站虽然采用了和 gwern.net 类似的根据页面更新时间而不是创建时间排列 RSS 项目的功能，但我没有像他那样用 Gitit 里的 module 来实现，而是在 fannesposito.com 的代码基础上重写了 `createdFirst` 这个函数，利用 `System.Directory` module 中的 `getModificationTime` 函数来获取文件的更新时间：
+
+``` {.haskell}
+createdFirst :: [Item String] -> Compiler [Item String]
+createdFirst items =
+    let itemsWithTime = unsafeCompiler $ forM items $ \item -> do
+        utc <- getModificationTime $ toFilePath $ itemIdentifier item
+        return (utc,item);
+    in liftM (\xs -> reverse . map snd $ sortBy (comparing fst) xs) itemsWithTime
+```
+
+然后用类似调用 Hakyll 自带的 `recentFirst` 函数的方式调用 `createdFirst` 获得前10项最新的更新。
+
+[外观]我仿照 gwern.net 的样式写了个很丑但还算能看的 CSS，并利用 Typeplate 和 normalize.css，搭起了网站基本的样子。
+
+用符号字体改善了导航栏。字体用的是来自 fontsquirrel.com 的 [Entypo](http://www.fontsquirrel.com/fonts/entypo)，由 Daniel Bruce 设计，按照 Creative Commons BY-SA v3.0 [许可证](http://creativecommons.org/licenses/by-sa/3.0/)发布。
+
+[gwern-s3cmd]: https://groups.google.com/d/topic/hakyll/XewxMLIjRIw "How to link your own posts?"
+[CloudFlare]: http://www.cloudflare.com/ "The web performance and security company"
+[^nfsn]: 甚至包括以价格低廉著称的 nearlyfreespeech.net 和 Hostigation。
