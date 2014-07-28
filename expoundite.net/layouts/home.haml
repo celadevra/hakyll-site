@@ -2,10 +2,10 @@
 %html
   %head
     %title Essays
-    = render "js"
+    -# = render "js"
     %link {:type => "text/css", :href => "stylesheets/home.css", :rel => "stylesheet"}
   %body
-    = render "nav"
+    = render "_nav"
     = yield 
-    = render "footer"
+    = render "_footer"
 

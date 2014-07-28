@@ -2,10 +2,10 @@
 %html
   %head
     %title= [@item[:title], " | Essays"].join ""
-    = render "js"
-    = render "styles"
+    -# = render "js"
+    -# = render "styles"
   %body
-    = render "nav"
-    = yield 
-    = render "footer"
+    = render "_nav"
+    = yield
+    = render "_footer"
 
