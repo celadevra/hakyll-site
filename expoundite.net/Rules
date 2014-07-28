@@ -21,6 +21,9 @@ end
 compile '404' do
 end
 
+compile 'google*' do
+end
+
 compile '*' do
   if (item[:extension] == ('css' || 'html'))
     # don’t filter stylesheets and html
@@ -33,6 +36,10 @@ compile '*' do
 end
 
 route '404' do
+    item.identifier.chop + '.html'
+end
+
+route 'google*' do
     item.identifier.chop + '.html'
 end
 
