@@ -43,6 +43,10 @@ route 'google*' do
     item.identifier.chop + '.html'
 end
 
+route '/' do
+    item.identifier + 'index'
+end
+
 route '*' do
   if item[:extension] == 'css'
     # Write item with identifier /foo/ to /foo.css
@@ -52,7 +56,8 @@ route '*' do
     item.identifier.chop + '.' + item[:extension]
   else
     # Write item with identifier /foo/ to /foo/index.html
-    item.identifier + 'index.html'
+    # item.identifier + 'index.html'
+    item.identifier.chop
   end
 end
 
