@@ -6,6 +6,8 @@
     -# = render "styles"
   %body
     = render "_nav"
-    = yield
+    = render "_info"
+    %article
+      = yield
     = render "_footer"
 
