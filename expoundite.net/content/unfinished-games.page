@@ -5,7 +5,7 @@ author: Haoyang Xu
 description: 不可能完成的游戏正在成为主流和新的表达方式。
 status: finished
 belief: highly likely
-tags: game, steam, mod
+tags: ['game', 'steam', 'mod']
 ---
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->

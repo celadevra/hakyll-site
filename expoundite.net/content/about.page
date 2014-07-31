@@ -5,7 +5,7 @@ author: Haoyang Xu
 description: 建立这个网站的目的，使用的工具，以及将来的愿景。
 status: links
 belief: highly likely
-tags: site
+tags: ['site']
 ---
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->

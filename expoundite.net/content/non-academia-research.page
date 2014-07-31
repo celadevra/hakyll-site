@@ -5,7 +5,7 @@ author: Haoyang Xu
 description: 如何颠覆现有的科研体系以及在象牙塔外拥有更加充实的生活。
 status: finished
 belief: likely
-tags: research, academia
+tags: ['research', 'academia']
 ---
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->

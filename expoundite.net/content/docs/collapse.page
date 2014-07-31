@@ -5,7 +5,7 @@ author: Haoyang Xu
 description: 贾罗德·戴蒙德的书 Collapse 的读后感
 status: finished
 belief: likely
-tags: resilience, resource, environment
+tags: ['resilience', 'resource', 'environment']
 ---
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->

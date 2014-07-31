@@ -5,7 +5,7 @@ author: Haoyang Xu
 description: 2006年游览瑞士 Zermatt 的游记。
 status: finished
 belief: certain
-tags: travel, experience
+tags: ['travel', 'experience']
 ---
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->

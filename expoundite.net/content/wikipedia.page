@@ -5,7 +5,7 @@ author: Haoyang Xu
 description: 我对维基百科中文版的编辑工作
 status: in progress
 belief: log
-tags: wikipedia, knowledge
+tags: ['wikipedia', 'knowledge']
 ---
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->

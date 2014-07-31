@@ -5,7 +5,7 @@ author: Haoyang Xu
 description: 育儿经验和常识，来自网络媒体搜集
 status: draft
 belief: likely
-tags: baby, howto
+tags: ['baby', 'howto']
 ---
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->

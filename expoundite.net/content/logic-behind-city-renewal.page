@@ -5,7 +5,7 @@ author: Haoyang Xu
 description: 我读《巴黎城记》。
 status: finished
 belief: likely
-tags: city, history
+tags: ['city', 'history']
 ---
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->

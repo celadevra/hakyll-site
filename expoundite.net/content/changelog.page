@@ -5,7 +5,7 @@ author: Haoyang Xu
 description: 本网站的进化过程
 status: in progress
 belief: certain
-tags: site
+tags: ['site']
 ---
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->

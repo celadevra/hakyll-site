@@ -5,7 +5,7 @@ author: Haoyang Xu
 description: 简介使用 Pandoc 制作 HTML5 幻灯片和输出 PDF 的方法。
 status: notes
 belief: likely
-tags: howto, pandoc, slide
+tags: ['howto', 'pandoc', 'slide']
 ---
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->

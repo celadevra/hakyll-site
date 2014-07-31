@@ -4,7 +4,7 @@ created: 2014-01-20
 author: Haoyang Xu
 status: finished
 belief: likely
-tags: story, game
+tags: ['story', 'game']
 ---
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->
