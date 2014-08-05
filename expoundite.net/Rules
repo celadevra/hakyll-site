@@ -22,7 +22,7 @@ preprocess do
     end
     tags = tags.uniq!
     tags.each do |t|
-        Nanoc::Item.new("#{items_with_tag(t)}", { :title =>  "Tag: #{t}" }, '/tags/#{t}')
+        @items << Nanoc::Item.new("#{items_with_tag(t)}", { :title =>  "Tag: #{t}" }, "/tags/#{t}")
     end
 end
 
