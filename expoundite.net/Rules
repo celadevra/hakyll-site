@@ -13,6 +13,19 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
+preprocess do
+    tags = []
+    @items.each do |item|
+        unless item[:tags].nil?
+            tags = tags + item[:tags]
+        end
+    end
+    tags = tags.uniq!
+    tags.each do |t|
+        Nanoc::Item.new("#{items_with_tag(t)}", { :title =>  "Tag: #{t}" }, '/tags/#{t}')
+    end
+end
+
 compile 'index' do
     filter :kramdown
     layout 'home'
