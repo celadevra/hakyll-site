@@ -22,7 +22,7 @@ preprocess do
     end
     tags = tags.uniq!
     tags.each do |t|
-        @items << Nanoc::Item.new("#{items_with_tag(t)}", { :title =>  "Tag: #{t}" }, "/tags/#{t}")
+        @items << Nanoc::Item.new("", { :title =>  "Tag: #{t}", :tag => t }, "/tags/#{t}")
     end
 end
 
@@ -35,6 +35,10 @@ compile '404' do
 end
 
 compile 'google*' do
+end
+
+compile '/tags/*/' do
+  layout 'tags'
 end
 
 compile '*' do

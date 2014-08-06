@@ -1,0 +1,16 @@
+
+!!! 5
+%html
+  %head
+    %title= [@item[:title], " | Essays"].join ""
+    -# = render "js"
+    -# = render "styles"
+  %body
+    = render "_nav"
+    .tags_list 
+      - items_with_tag(@item[:tag]).each do |i|
+        %p= link_to i[:title], i.identifier.chop
+        end
+
+    = render "_footer"
+
