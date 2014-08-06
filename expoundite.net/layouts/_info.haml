@@ -1,6 +1,6 @@
 .info
   .ctime= @item[:created]
-  .mtime
+  .mtime= @item[:mtime].strftime('%Y-%m-%d')
   .tags= tags_for(@item, {base_url: "/tags/"})
   .belief= @item[:belief]
   .status= @item[:status]
