@@ -1,6 +1,6 @@
 .info
-  .ctime= @item[:created]
-  .mtime= @item[:mtime].strftime('%Y-%m-%d')
-  .tags= tags_for(@item, {base_url: "/tags/"})
-  .belief= @item[:belief]
-  .status= @item[:status]
+  .ctime= "Created on<br/>#{@item[:created]}"
+  .mtime= "Modified on<br/>#{@item[:mtime].strftime('%Y-%m-%d')}"
+  .tags= "Tagged<br/>#{tags_for(@item, {base_url: "/tags/"})}"
+  .belief= "Belief:<br/>#{@item[:belief]}"
+  .status= "Status:<br/>#{@item[:status]}"
