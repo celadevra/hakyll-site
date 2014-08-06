@@ -42,8 +42,8 @@ compile '/tags/*/' do
 end
 
 compile '*' do
-  if (item[:extension] == ('css' || 'html'))
-    # don’t filter stylesheets and html
+  if (item[:extension] == ('css' || 'js' || 'html'))
+    # don’t filter sjs, tylesheets and html
   elsif item.binary?
     # don’t filter binary items
   else
@@ -62,6 +62,12 @@ end
 
 route '/' do
     item.identifier + 'index'
+end
+
+route '/js/*' do
+  if item[:extension] == 'js' || 'min.js'
+    item.identifier.chop + '.' + item[:extension]
+  end
 end
 
 route '*' do
