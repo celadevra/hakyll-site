@@ -41,6 +41,10 @@ compile '/tags/*/' do
   layout 'tags'
 end
 
+compile '/sass/*/' do
+  filter :sass
+end
+
 compile '*' do
   if (item[:extension] == ('css' || 'js' || 'html'))
     # don’t filter sjs, tylesheets and html
@@ -68,6 +72,10 @@ route '/js/*' do
   if item[:extension] == 'js' || 'min.js'
     item.identifier.chop + '.' + item[:extension]
   end
+end
+
+route '/sass/*/' do
+  '/css/' + item.identifier.chop + '.' + '.css'
 end
 
 route '*' do
