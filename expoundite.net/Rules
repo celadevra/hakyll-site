@@ -42,7 +42,7 @@ compile '/tags/*/' do
 end
 
 compile '/sass/*/' do
-  filter :sass
+  filter :sass, syntax: :scss
 end
 
 compile '*' do
@@ -75,7 +75,7 @@ route '/js/*' do
 end
 
 route '/sass/*/' do
-  '/css/' + item.identifier.chop + '.' + '.css'
+  '/css' + item.identifier.chop.gsub(/\/sass/, '') + '.' + 'css'
 end
 
 route '*' do
