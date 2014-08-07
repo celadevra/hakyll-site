@@ -16,6 +16,7 @@
 preprocess do
     tags = []
     @items.each do |item|
+        item[:created_at] = item[:mtime]
         unless item[:tags].nil?
             tags = tags + item[:tags]
         end
@@ -46,6 +47,10 @@ compile '/sass/style*/' do
 end
 
 compile '/sass/*/' do
+end
+
+compile '/rss/' do
+  filter :erb
 end
 
 compile '*' do
@@ -82,6 +87,10 @@ route '/sass/style*/' do
 end
 
 route '/sass/*/' do
+end
+
+route '/rss/' do
+  '/rss.xml'
 end
 
 route '*' do
