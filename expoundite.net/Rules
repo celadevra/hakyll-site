@@ -27,7 +27,7 @@ preprocess do
     end
 end
 
-compile 'index' do
+compile '/' do
     filter :kramdown
     layout 'home'
 end
