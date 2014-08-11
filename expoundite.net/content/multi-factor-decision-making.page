@@ -6,7 +6,7 @@ description: 工作中可能用到的几种多因素决策方法：特点、假�
 status: in progress
 belief: highly likely
 tags: ['decision-making', 'optimization']
-biblio: mcdm.bib
+bib: mcdm.bib
 csl: harvard1.csl
 ---
 
