@@ -20,7 +20,8 @@ module Nanoc::Filters
       keys_p = content.scan(%r{\[@[A-Za-z0-9:-_].*?\]}).map {|key| key.gsub(/[@\[\]]/, '')}
       keys_t = content.scan(%r{\b@[A-Za-z0-9:-_].*?}).map {|key| key.gsub(/@/, '')}
       keys = (keys_p + keys_t).uniq
-      content += cp.render(:bibliography).to_s
+      #content += (cp.render :bibliography, id: keys[0]).to_s
+      content += cp.bibliography { keys }.to_s
       content
     end
   end
