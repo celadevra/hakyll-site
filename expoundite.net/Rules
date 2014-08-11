@@ -60,6 +60,7 @@ compile '*' do
     # don’t filter binary items
   else
     filter :kramdown
+    filter :cite
     layout 'layout'
   end
 end
