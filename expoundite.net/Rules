@@ -50,12 +50,15 @@ end
 compile '/sass/*/' do
 end
 
+compile '/js/*/' do
+end
+
 compile '/rss/' do
   filter :erb
 end
 
 compile '*' do
-  if (item[:extension] == ('css' || 'js' || 'html'))
+  if (item[:extension] == 'css' || item[:extension] == 'js' || item[:extension] == 'html' || item[:extension] == 'min.js')
     # don’t filter sjs, tylesheets and html
   elsif item.binary?
     # don’t filter binary items
@@ -81,8 +84,8 @@ route '/' do
     item.identifier + 'index'
 end
 
-route '/js/*' do
-  if item[:extension] == 'js' || 'min.js'
+route '/js/*/' do
+  if (item[:extension].eql?('js') || item[:extension].eql?('min.js'))
     item.identifier.chop + '.' + item[:extension]
   end
 end
