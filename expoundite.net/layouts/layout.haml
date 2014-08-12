@@ -8,6 +8,7 @@
     = render "_nav"
     = render "_info"
     %article
+      %h1.title= @item[:title]
       = yield
     = render "_footer"
 
