@@ -50,11 +50,11 @@ end
 compile '/sass/*/' do
 end
 
-compile '/js/*/' do
-end
-
 compile '/rss/' do
   filter :erb
+end
+
+compile '/js/*' do
 end
 
 compile '*' do
@@ -84,10 +84,8 @@ route '/' do
     item.identifier + 'index'
 end
 
-route '/js/*/' do
-  if (item[:extension].eql?('js') || item[:extension].eql?('min.js'))
-    item.identifier.chop + '.' + item[:extension]
-  end
+route '/js/*' do
+  item.identifier.chop + '.' + item[:extension]
 end
 
 route '/sass/style*/' do
