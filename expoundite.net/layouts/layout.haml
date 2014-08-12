@@ -2,6 +2,8 @@
 %html
   %head
     %title= [@item[:title], " | expoundite.net"].join ""
+    %meta{:contents => "text/html; charset=UTF-8", :http_equiv => "Content-Type"}
+    %meta{:charset => "UTF-8"}
     = render "_js"
     = render "_styles"
   %body
