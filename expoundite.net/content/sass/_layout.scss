@@ -1,11 +1,26 @@
-div.name {
-    width: 33%;
+$left: 25%;
+
+.name {
+    width: $left;
     max-width: 400px;
     float: left;
 }
 
-div.nav {
-    width: 67%;
+.nav {
+    width: 75%;
     max-width: 800px;
     float: right;
+    .button {
+        width: 14%;
+        display: inline-block;
+        float: left;
+        text-align: center;
+    }
+}
+
+.info {
+    width: $left;
+    max-width: 400px;
+    float: left;
+    height: 100%;
 }
