@@ -88,7 +88,7 @@ route '/js/*' do
   item.identifier.chop + '.' + item[:extension]
 end
 
-route '/sass/style*/' do
+route '/sass/[^_]*/' do
   '/css' + item.identifier.chop.gsub(/\/sass/, '') + '.' + 'css'
 end
 
