@@ -1,16 +1,7 @@
 $left: 25%;
 
-.name {
-    width: $left;
-    max-width: 400px;
-    float: left;
-}
-
 .info {
-    width: $left;
-    max-width: 400px;
     float: left;
-    height: 100%;
 }
 
 .powered, .copyleft {
@@ -18,6 +9,5 @@ $left: 25%;
 }
 
 article {
-    width: 50%;
     float: left;
 }
