@@ -7,10 +7,10 @@
     = render "_styles"
   %body
     = render "_nav"
+    %h3= @item[:title]
     .tags_list 
       - items_with_tag(@item[:tag]).each do |i|
         %p= link_to i[:title], i.identifier.chop
-        end
 
     = render "_footer"
 
