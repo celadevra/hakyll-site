@@ -1,6 +1,6 @@
-.info.pure-u-1.pure-u-md-1-4
-  .ctime= "Created on<br/>#{@item[:created]}"
-  .mtime= "Modified on<br/>#{@item[:mtime].strftime('%Y-%m-%d')}"
-  .tags= "Tagged<br/>#{tags_for(@item, {base_url: "/tags/"})}"
-  .belief= "Belief:<br/>#{@item[:belief]}"
-  .status= "Status:<br/>#{@item[:status]}"
+.info.pure-u-1.pure-u-md-1
+  %span.ctime= "Created on #{@item[:created]}"
+  %span.mtime= "Modified on #{@item[:mtime].strftime('%Y-%m-%d')}"
+  %span.tags= "Tagged #{tags_for(@item, {base_url: "/tags/"})}"
+  %span.belief= "Belief: #{@item[:belief]}"
+  %span.status= "Status: #{@item[:status]}"

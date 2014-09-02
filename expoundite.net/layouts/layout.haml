@@ -9,9 +9,9 @@
     = render "_styles"
   %body
     = render "_nav"
-    = render "_info"
     %article.pure-u-1.pure-u-md-3-4
       %h1.title= @item[:title]
+      = render "_info"
       = yield
     = render "_footer"
 
