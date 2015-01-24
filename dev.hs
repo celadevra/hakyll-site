@@ -86,6 +86,24 @@ main = hakyllWith testConf $ do
           >>= relativizeUrls
 
     match "templates/*" $ compile templateCompiler
+    
+    -- generate a index page for blog posts
+    -- the index page shows content for the most recent 5 posts
+    -- then the link to the archive page
+    create ["blog-index.html"] $ do
+      route $ idRoute
+      compile $ do
+        posts <- fmap (take 5) . recentFirst =<< loadAll "blog/*"
+        let blogCtx =
+              listField "posts" (postCtx tags) (return posts) `mappend`
+              titleField "title" `mappend`
+              urlField "url" `mappend`
+              dateField "date" "%B %e, %Y" `mappend`
+              teaserField "body" "body" `mappend`
+              defaultContext
+        makeItem ""
+            >>= loadAndApplyTemplate "templates/blogindex.html" blogCtx
+            -- >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
 
     -- render RSS from recently changed files
 
@@ -99,7 +117,7 @@ main = hakyllWith testConf $ do
     create ["blog-rss.xml"] $ do
         route $ idRoute
         compile $ do
-            posts <- fmap (take 10) . createdFirst =<<
+            posts <- fmap (take 10) . recentFirst =<<
                 loadAllSnapshots "blog/*" "content"
             renderRss feedConfiguration (feedContext tags) posts
 
@@ -184,5 +202,5 @@ tagPage tags title pattern = do
     makeItem ""
         >>= loadAndApplyTemplate "templates/tags.html"
                 (constField "posts" list `mappend` constField "title" title `mappend`
-                    defaultContext)
+                    defaultContext) -- TODO: DRY tags.html, append default.html below
         >>= relativizeUrls
