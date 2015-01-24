@@ -100,8 +100,8 @@ feedConfiguration = FeedConfiguration
     { feedTitle       = "Haoyang Xu"
     , feedDescription = "RSS feed for Haoyang's website"
     , feedAuthorName  = "Haoyang Xu"
-    , feedAuthorEmail = "haoyang@idenizen.net"
-    , feedRoot        = "http://idenizen.net"
+    , feedAuthorEmail = "haoyang@expoundite.net"
+    , feedRoot        = "http://expoundite.net"
     }
 
 feedContext :: Tags -> Context String
