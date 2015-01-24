@@ -72,7 +72,7 @@ main = hakyllWith testConf $ do
             >>= relativizeUrls
             
     match "blog/*" $ do
-      route $ setExtension ""
+      route $ setExtension "html"
       compile $ do
           item <- getUnderlying
           bibFile <- liftM (fromMaybe "") $ getMetadataField item "biblio"
