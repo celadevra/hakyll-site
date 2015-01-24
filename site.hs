@@ -91,7 +91,7 @@ main = hakyll $ do
                 loadAllSnapshots "*.page" "content"
             renderRss feedConfiguration (feedContext tags) posts
             
-    create ["blog/rss.xml"] $ do
+    create ["blog-rss.xml"] $ do
         route $ idRoute
         compile $ do
             posts <- fmap (take 10) . createdFirst =<<
