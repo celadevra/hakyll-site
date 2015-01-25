@@ -46,6 +46,12 @@ main = hakyll $ do
         compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
             >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
             >>= relativizeUrls
+            
+   match "newsletter/*" $ do
+       route $ setExtension ""
+       compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
+           >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
+           >>= relativizeUrls
 
     -- bibliography
     match "csl/*" $ compile cslCompiler
