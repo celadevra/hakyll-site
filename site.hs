@@ -65,20 +65,6 @@ main = hakyll $ do
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
             >>= relativizeUrls
-            
-    match "blog/*" $ do
-      route $ setExtension ""
-      compile $ do
-          item <- getUnderlying
-          bibFile <- liftM (fromMaybe "") $ getMetadataField item "biblio"
-          cslFile <- liftM (fromMaybe "chicago") $ getMetadataField item "csl"
-          let compiler = if bibFile /= "" then
-                            bibtexCompiler cslFile bibFile
-                         else pandocCompilerWith defaultHakyllReaderOptions woptions
-          compiler
-          >>= saveSnapshot "content"
-          >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
-          >>= relativizeUrls
 
     match "templates/*" $ compile templateCompiler
 
@@ -89,13 +75,6 @@ main = hakyll $ do
         compile $ do
             posts <- fmap (take 10) . createdFirst =<<
                 loadAllSnapshots "*.page" "content"
-            renderRss feedConfiguration (feedContext tags) posts
-            
-    create ["blog-rss.xml"] $ do
-        route $ idRoute
-        compile $ do
-            posts <- fmap (take 10) . createdFirst =<<
-                loadAllSnapshots "blog/*" "content"
             renderRss feedConfiguration (feedContext tags) posts
 
     tagsRules tags $ \tag pattern -> do
