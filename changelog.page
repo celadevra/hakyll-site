@@ -10,6 +10,202 @@ tags: site
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
+## 2015年4月
+
+[内容] 添加 [[与不理想的世界和解|make-this-not-true-translation]]
+
+[内容] 修订 [[read-me]]。
+
+[部署] 改用 ikiwiki 并把 host 搬到 DigitalOcean。
+
+## 2015年1月
+
+[内容] 添加新文章 [But I didn't](/but-i-didnt)。
+
+[内容] 恢复原来的 [Changelog](/changelog)。
+
+## 2014年11月
+
+因为偶然的机会接触到 Asciidoc 这种标记语言，被其强大的描述能力吸引，又因为 Awestruct 对 Asciidoc 支持不错，所以决定将网站生成引擎改成 Awestruct。
+
+[部署] [rbenv](https://github.com/sstephenson/rbenv) 是用于管理 Ruby 版本和环境的软件。它允许不同的项目在不同的 Ruby 版本下运行，每个项目可以有自己的 Gem 配置。
+
+安装方法：
+
+~~~~ {.sh }
+$ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+$ echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+$ source ~/.bash_profile
+$ type rbenv
+rbenv is a function # <- 说明 rbenv 安装成功了
+rbenv ()
+{
+    local command;
+    command="$1";
+    if [ "$#" -gt 0 ]; then
+        shift;
+    fi;
+    case "$command" in
+        rehash | shell)
+            eval "`rbenv "sh-$command" "$@"`"
+        ;;
+        *)
+            command rbenv "$command" "$@"
+        ;;
+    esac
+}
+""" ]]
+
+rbenv 本身并不自带安装 Ruby 版本的功能。要直接下载、编译 Ruby 并安装到 rbenv 管理的位置，可以使用同一作者提供的 [ruby-build](https://github.com/sstephenson/ruby-build#readme) 脚本。
+
+~~~~ {.sh }
+$ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+""" ]]
+
+因为本目录下已经有 `.ruby-versions` 文件，直接运行 `rbenv install` 命令即可启动 Ruby 的下载和安装。
+
+~~~~ {.sh }
+$ gem install bundler
+""" ]]
+
+------
+在我使用的某台 Gentoo 机器上，执行上述命令报错：
+
+~~~~ {.sh }
+/home/snakehsu/.rbenv/versions/2.1.2/lib/ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:awestruct-in `require': cannot load such file -- auto_gem (LoadError)
+        from /home/snakehsu/.rbenv/versions/2.1.2/lib/ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+""" ]]
+
+在网上简单搜索一下就能得到 [答案](http://liuzhe.tk/note/2013/03/07/gentoo_ruby_error.html)，这可能是由于 Gentoo 的 `dev-lang/ruby` 安装过程中会设置 `RUBYOPT=-rauto_gem`（ https://logstash.jira.com/browse/LOGSTASH-2221 ），因此需要取消这个设置：
+
+~~~~ {.sh }
+unset RUBYOPT;   sudo env-update
+""" ]]
+------
+
+安装 Asciidoctor 和 awestruct：
+
+~~~~ {.sh }
+$ rbenv rehash
+$ bundle install
+""" ]]
+
+初始化 awestruct，使用 Foundation 框架：
+
+~~~~ {.sh }
+$ awestruct -i -f foundation
+$ rake setup # 确保环境变量正确设置
+""" ]]
+
+修改 `.gitignore`：
+
+~~~~ {.sh }
+$ cat >> .gitignore << LINES
+/.awestruct/
+/.ruby-*
+/.sass-cache/
+/_site/
+/_tmp/
+LINES
+""" ]]
+
+将其他文件加入 git 管理：
+
+~~~~ {.sh }
+$ git add .
+""" ]]
+
+配置 `_config/site.yml`。
+
+添加 `movefiles.rb`，使两个目录下生成的文件直接到站点根目录下。
+
+修改 `_ext/pipeline.rb`，调用 `movefiles.rb` 和优化 URL 的扩展。
+
+修改 `_layouts/base.html.haml`，加入 metadata 的展示。
+
+安装 Asciidoctor Style Factory：
+
+~~~~ {.sh }
+$ git submodule add -b embedded-stylesheets \
+https://github.com/asciidoctor/asciidoctor-stylesheet-factory.git \
+stylesheets/_themes
+""" ]]
+
+修改 `stylesheet/app.scss` 以使用新的主题。
+
+使用 Foundation 5 框架：
+
+这个没有 Awestruct 的官方支持，因此我修改了 `Gemfile`，安装了 Foundation 的命令行工具，并用它生成一个 `_foundation` 目录，里面有 Foundation 5 框架用到的 SCSS 和 JS 文件。
+
+根据 Awesturct 的 [源代码](https://github.com/awestruct/awestruct/blob/8569e1054923883b3a53336a5dda0fdfe464c5d9/lib/awestruct/engine.rb#L328)，Compass 的各种选项可以在 `_config/compass.rb` 中配置。
+
+修改 `stylesheet/app.scss` 中的 `@import` 语句，指向 Foundation 5 的 SCSS 组件路径。
+
+[功能] Highlight.js 支持下的语法高亮：
+
+克隆 Highlight.js 代码库并编译：
+
+~~~~ {.sh }
+$ git clone git://github.com/isagalaev/highlight.js.git
+$ cd highlight.js
+$ node tools/build.js -t browser :common
+""" ]]
+
+------
+又是 Gentoo 的坑。用 Portage 里自带的 nodejs ebuild 安装 node 和 npm 的话，不会设置 `NODE_PATH` 环境变量，因此要先用 npm 安装编译的依赖：
+
+~~~~ {.sh }
+$ sudo npm install -g lodash commander gear del gear-lib
+""" ]]
+
+然后带上环境变量编译
+
+~~~~ {.sh }
+$ NODE_PATH=/usr/lib/node_modules:$NODE_PATH node tools/build.js -t browser :common
+""" ]]
+------
+
+在 Highlight.js 代码树中 `src/styles` 里挑一个合适的样式，拷到网站的 `stylesheets` 目录下并在模板中加入引用语句。最后将编译生成的 `build/highlight.pack.js` 拷贝到网站代码库中，并修改模板使其能在浏览时加载。
+
+[功能] 参考文献生成
+
+Asciidoctor 支持 `&lt;&#8203;&lt;key>>` 格式的引用footnote:[注意，前面的两个小于号之间有一个0宽度空白（U+200B），这是我为了阻止 Asciidoctor 把这个例子也识别成一个真正的 cite key 而添加的，直接复制粘贴会有问题。]，参考文献信息则以 `[bibliography]` 块中的列表呈现。我添加了一个 extension，用来从一个 BibTeX 文件中根据正文中的 citation key 生成参考文献（使用 citeproc-ruby 和 bibtex-ruby），并改写正文中的 `[bibliography]` 区块。
+
+~~~~ {.ruby }
+require 'citeproc'
+require 'csl/styles'
+require 'bibtex'
+
+class CitationProcess
+
+  def execute(site)
+    site.pages.each do |page|
+      bib = site.bib
+      style = site.csl
+      cp = CiteProc::Processor.new style: style, format: 'text'
+      cp.import BibTeX.open(bib).to_citeproc
+      # get list of cited items
+      cited = page.raw_content.scan(/<<[\w_:]*>>/).collect {|w| w.gsub!(/[<>]*/, '')}.uniq
+
+        biblio = Array.new
+        unless cited.empty?
+          cited.each do |key|
+            ref = cp.render( :bibliography, id: key )
+            page.raw_content.gsub!(Regexp.new("<<#{key}>>", true), "[#cite-#{key}]*<<#{key}>>*")
+            entry = ". [[#{key}]]link:#cite-#{key}[[#{key}]] " + ref.join()
+            biblio << entry
+          end
+          page.raw_content.gsub!(/\[bibliography\]/, "[bibliography]" + "\n" + "#{biblio.join("\n")}")
+        end
+      end
+  end
+end
+""" ]]
+
+## 2014年8月--11月
+由于 Hakyll 遇到 Cabal 的依赖限制问题，这段时间不能在 Travis CI 上自动部署了，于是开始考虑换平台。先后试用了 Middleman，nanoc，Metalsmith，Gulp.js 等等等等，浪费了不少时间。
+
 ## 2014年6月
 
 [部署]增添利用 [Travis CI](https://travis-ci.org/) 的自动部署功能。
