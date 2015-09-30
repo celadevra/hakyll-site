@@ -1,6 +1,7 @@
 ---
 title: 关于 ikiwiki 的第一印象
 created: 2015-03-21
+...
 
 Joey Hess 是个神人。他能够在山里用[太阳能发电](http://joey.hess.usesthis.com)，然后写出不亚于任何顶尖软件作者的作品。git-annex 我还没有找到机会实际使用，这次作为一种积极的拖延，把网站的后台换成 ikiwiki，正好可以体验一下这位大神的作品。
 

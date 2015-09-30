@@ -53,11 +53,11 @@ main = hakyll $ do
             >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
             >>= relativizeUrls
 
-    match "blog/*" $ do
+    match "blog/*.md" $ do
         route $ setExtension ""
         compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
             >>= saveSnapshot "content"
-            >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
+            >>= loadAndApplyTemplate "templates/default.html" (blogPostCtx tags)
             >>= relativizeUrls
 
      -- bibliography
@@ -99,6 +99,12 @@ postCtx :: Tags -> Context String
 postCtx tags =
     dateField "created" "%Y-%m-%d" `mappend`
     modificationTimeField "updated" "%Y-%m-%d" `mappend`
+    tagsField "tags" tags `mappend`
+    defaultContext
+
+blogPostCtx :: Tags -> Context String
+blogPostCtx tags =
+    dateField "created" "%Y-%m-%d" `mappend`
     tagsField "tags" tags `mappend`
     defaultContext
 
