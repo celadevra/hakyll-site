@@ -90,6 +90,13 @@ main = hakyll $ do
                 loadAllSnapshots "*.page" "content"
             renderRss feedConfiguration (feedContext tags) posts
 
+    create ["blog/index.rss"] $ do
+        route $ idRoute
+        compile $ do
+        posts <- fmap (take 10) . createdFirst =<<
+            loadAllSnapshots "blog/*.md" "content"
+        renderRss feedConfiguration (feedContext tags) posts
+
     tagsRules tags $ \tag pattern -> do
                  let title = "Tag: " ++ tag
                  route idRoute
