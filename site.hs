@@ -53,6 +53,12 @@ main = hakyll $ do
            >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
            >>= relativizeUrls
 
+   match "blog/*" $ do
+       route $ setExtension ""
+       compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
+           >>= saveSnapshot "content"
+           >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
+           >>= relativizeUrls
     -- bibliography
     match "csl/*" $ compile cslCompiler
 
