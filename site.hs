@@ -57,7 +57,7 @@ main = hakyll $ do
         route $ setExtension ""
         compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
             >>= saveSnapshot "content"
-            >>= loadAndApplyTemplate "templates/default.html" (blogPostCtx tags)
+            >>= loadAndApplyTemplate "templates/blog.html" (blogPostCtx tags)
             >>= relativizeUrls
 
      -- bibliography
