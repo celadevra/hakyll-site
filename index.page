@@ -25,6 +25,9 @@ body { max-width: 1700px; }
 p + p { text-indent: 0; }
 </style>
 
+> expoundite.net 邮件列表因个人原因暂停中。往期请看页面底部的链接。
+<!-- expoundite.net 现在有邮件列表了，2015年1月起每月1日发送。请到link:#newsletter[页面下方]订阅。-->
+
 ## 文化和评论
 
 [更大，更美，未完成][unfinished-games]
@@ -32,6 +35,12 @@ p + p { text-indent: 0; }
 [城市更新背后的逻辑][logic-behind-urban-renewal]
 
 [电影化游戏][movie-games]
+
+[与不理想的世界和解][make-this-not-true-translation]
+
+[不死者与生者][story-of-the-undead]
+
+[灾难，重建和士绅化][gentrification]
 
 ## 维基百科
 
@@ -41,11 +50,17 @@ p + p { text-indent: 0; }
 
 [作为工作的研究和作为发现的工作][non-academia-research]
 
+[But I didn't][but-i-didnt]
+
 [理财][money]
 
 ## STEM
 
 [多因素决策方法概览][multi-factor-decision-making]
+
+[GDAL - 通用的地理数据转换工具][gdal]
+
+[Leaflet.js][leaflet]
 
 [unfinished-games]: /unfinished-games
 [logic-behind-urban-renewal]: /logic-behind-city-renewal
@@ -54,3 +69,9 @@ p + p { text-indent: 0; }
 [wikipedia-log]: /wikipedia
 [multi-factor-decision-making]: /multi-factor-decision-making
 [movie-games]: /movie-games
+[but-i-didnt]: /but-i-didnt
+[leaflet]: /leaflet
+[gdal]: /gdal
+[make-this-not-true-translation]: /make-this-not-true-translation
+[story-of-the-undead]: /story-of-the-undead
+[gentrification]: /gentrification
