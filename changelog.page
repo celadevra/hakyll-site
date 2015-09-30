@@ -55,19 +55,19 @@ rbenv ()
         ;;
     esac
 }
-""" ]]
+~~~~
 
 rbenv 本身并不自带安装 Ruby 版本的功能。要直接下载、编译 Ruby 并安装到 rbenv 管理的位置，可以使用同一作者提供的 [ruby-build](https://github.com/sstephenson/ruby-build#readme) 脚本。
 
 ~~~~ {.sh }
 $ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-""" ]]
+~~~~
 
 因为本目录下已经有 `.ruby-versions` 文件，直接运行 `rbenv install` 命令即可启动 Ruby 的下载和安装。
 
 ~~~~ {.sh }
 $ gem install bundler
-""" ]]
+~~~~
 
 ------
 在我使用的某台 Gentoo 机器上，执行上述命令报错：
@@ -75,13 +75,13 @@ $ gem install bundler
 ~~~~ {.sh }
 /home/snakehsu/.rbenv/versions/2.1.2/lib/ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:awestruct-in `require': cannot load such file -- auto_gem (LoadError)
         from /home/snakehsu/.rbenv/versions/2.1.2/lib/ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
-""" ]]
+~~~~
 
 在网上简单搜索一下就能得到 [答案](http://liuzhe.tk/note/2013/03/07/gentoo_ruby_error.html)，这可能是由于 Gentoo 的 `dev-lang/ruby` 安装过程中会设置 `RUBYOPT=-rauto_gem`（ https://logstash.jira.com/browse/LOGSTASH-2221 ），因此需要取消这个设置：
 
 ~~~~ {.sh }
 unset RUBYOPT;   sudo env-update
-""" ]]
+~~~~
 ------
 
 安装 Asciidoctor 和 awestruct：
@@ -89,14 +89,14 @@ unset RUBYOPT;   sudo env-update
 ~~~~ {.sh }
 $ rbenv rehash
 $ bundle install
-""" ]]
+~~~~
 
 初始化 awestruct，使用 Foundation 框架：
 
 ~~~~ {.sh }
 $ awestruct -i -f foundation
 $ rake setup # 确保环境变量正确设置
-""" ]]
+~~~~
 
 修改 `.gitignore`：
 
@@ -108,13 +108,13 @@ $ cat >> .gitignore << LINES
 /_site/
 /_tmp/
 LINES
-""" ]]
+~~~~
 
 将其他文件加入 git 管理：
 
 ~~~~ {.sh }
 $ git add .
-""" ]]
+~~~~
 
 配置 `_config/site.yml`。
 
@@ -130,7 +130,7 @@ $ git add .
 $ git submodule add -b embedded-stylesheets \
 https://github.com/asciidoctor/asciidoctor-stylesheet-factory.git \
 stylesheets/_themes
-""" ]]
+~~~~
 
 修改 `stylesheet/app.scss` 以使用新的主题。
 
@@ -150,20 +150,20 @@ stylesheets/_themes
 $ git clone git://github.com/isagalaev/highlight.js.git
 $ cd highlight.js
 $ node tools/build.js -t browser :common
-""" ]]
+~~~~
 
 ------
 又是 Gentoo 的坑。用 Portage 里自带的 nodejs ebuild 安装 node 和 npm 的话，不会设置 `NODE_PATH` 环境变量，因此要先用 npm 安装编译的依赖：
 
 ~~~~ {.sh }
 $ sudo npm install -g lodash commander gear del gear-lib
-""" ]]
+~~~~
 
 然后带上环境变量编译
 
 ~~~~ {.sh }
 $ NODE_PATH=/usr/lib/node_modules:$NODE_PATH node tools/build.js -t browser :common
-""" ]]
+~~~~
 ------
 
 在 Highlight.js 代码树中 `src/styles` 里挑一个合适的样式，拷到网站的 `stylesheets` 目录下并在模板中加入引用语句。最后将编译生成的 `build/highlight.pack.js` 拷贝到网站代码库中，并修改模板使其能在浏览时加载。
@@ -201,7 +201,7 @@ class CitationProcess
       end
   end
 end
-""" ]]
+~~~~
 
 ## 2014年8月--11月
 由于 Hakyll 遇到 Cabal 的依赖限制问题，这段时间不能在 Travis CI 上自动部署了，于是开始考虑换平台。先后试用了 Middleman，nanoc，Metalsmith，Gulp.js 等等等等，浪费了不少时间。

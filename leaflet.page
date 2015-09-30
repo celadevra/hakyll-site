@@ -1,0 +1,147 @@
+---
+title: Leaflet.js
+created: 2015-07-01
+author: Haoyang Xu
+description: 轻量化、移动平台友好的简易地图绘制工具
+status: in progress
+belief: possible
+tags: geomatics, map, javascript
+...
+
+Leaflet.js 是 Vladimir Agafonkin 开发的轻量化互动地图显示工具。虽然压缩后只有34KB大小，Leaflet 能够实现几乎所有常用的互动式地图的功能，如缩放、与地图标记交互、图层控制等，而且与包括 IE 7+ 在内的各种主流浏览器兼容。Leaflet 具有简单易用、性能优良的特点，被 Flickr、Pinterest、Mapbox、WSJ 等各行各业，规模不一的企业广泛应用。它的插件机制更进一步扩大了它的应用范围。
+
+# 组成
+
+Leaflet 的代码包括7个主要的部分：
+
+* 核心部分，主要是构造原型，处理浏览器兼容，提供基础工具函数等。
+* 地图部分，定义地图的状态等基本属性，处理动画，提供操作的事件接口。
+* 坐标部分，定义地图的投影和边界，提供投影自定义接口，定义座标系。
+* 几何部分，提供点、线、多边形的对象原型和方法，处理简单的坐标变换。
+* 图层部分，提供各种栅格和矢量瓦片、标记图层的处理功能。
+* DOM 部分，处理文档对象模型中的各种事件。
+* 控件部分，提供放缩、平移、图层开关等各种控件及事件句柄。
+
+其 API 也基本上是按照这7个部分组织的。
+
+## src/Leaflet.js
+
+这个文件实现载入 Leaflet 的功能，提供变量 `L`，作为访问 Leaflet 对象的各种方法的入口。
+
+考虑到各种应用场景，Leaflet 提供了3种定义变量 `L` 的方式，[第一种](https://github.com/Leaflet/Leaflet/blob/master/src/Leaflet.js#L19)是作为 Node.js 的一个[模块](https://nodejs.org/api/modules.html#modules_modules)，使用 `module.exports` 输出，让其他的 Node 应用调用。这样 Leaflet 的各种方法和属性都可以方便地通过 `L` 调用，而不必每次都临时 `export` 需要用的方法。
+
+[第二种](https://github.com/Leaflet/Leaflet/blob/master/src/Leaflet.js#L21-L24)是将 Leaflet 作为一个 [AMD 模块](https://en.wikipedia.org/wiki/Asynchronous_module_definition)，在 Dojo，require.js 等环境的支持下使用。
+
+第三种就是简单地将 `L` 定义为一个全局变量。考虑到其他地方可能已经定义了 `L`，文件提供了一个函数 [`expose()`](https://github.com/Leaflet/Leaflet/blob/master/src/Leaflet.js#L6-L15) 来储存可能有的旧变量 `L` 到 `oldL`，再将 Leaflet 的入口赋给 `L`。
+
+注意文件到这里还没有具体给 L 设置除版本号以外的属性和方法，那些是其他的文件和函数将要做的事。
+
+## src/core/Class.js
+
+这个文件提供了 Leaflet 的面向对象功能，包括模拟一个 class（`Class` 构造器），用新的原型扩展 class 的属性（`Class.extend` 方法），向原型中添加属性（`Class.include` 和 `Class.mergeOptions` 方法），设置初始化对象时使用的函数（`Class.addInitHook` 方法）等。
+
+其中最复杂的就是 `Class.extend` 方法。不过这种复杂也只是出于将扩展前 class 的各种属性和方法迁移到新的 class 中的需要。建立新 class 的原型时使用了 `L.Util.create` 函数。
+
+## src/core/Util.js
+
+这个文件包括 Leaflet 代码中不少地方都会用到的一些工具类函数，`L.Util.extend` 将1个或多个对象的属性添加到一个对象中；`L.Util.create` 从给定的一个原型创建一个对象，在 `src/core/Class.js` 中用来从旧 class 的原型建立新 class 的原型；`L.Util.bind` 用来从一个函数和参数对象构造一个带参数对象的对此函数的调用；`L.Util.stamp` 返回一个 Leaflet 对象的唯一 id；`L.Util.throttle` 使用 JavaScript 的 `setTimeout()` 函数控制某一函数运行的最大频率；`L.Util.wrapNum` 确保返回的数值处在一定的区间内，用来确保经度有效；`L.Util.falseFn` 用于延时；`L.Util.formatNum` 用来将数值四舍五入到一定的位数；`L.Util.trim` 去除字符串两侧的空白字符；`L.Util.splitWords` 将字符串从空白处断开为词；`L.Util.setOptions` 设定一个对象的选项，并会继承其父对象的选项；`L.Util.getParamString` 从 URL 的 GET 参数中提取属性和值；`L.Util.template` 提供瓦片层 URL 的名称替换模板；`L.Util.isArray` 判定对象是否是数组对象或其衍生类；`L.Util.indexOf` 获取元素在数组中的位置；`L.Util.emptyImageUrl` 设定为用于覆盖内存内容的空白图像。
+
+此外文件中还提供了一个匿名函数，定义了 `L.Util.requestAnimFrame` 和 `L.Util.cancelAnimFrame` 两个方法，分别用来包装动画函数使其利用浏览器提供的[动画 API](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/)，和中断动画请求。
+
+用得最经常的4个函数，`L.Util.{extend, bind, stamp, setOptions}` 分别被简化成了 `L.extend` `L.bind` `L.stamp` 和 `L.setOptions`。
+
+## src/core/Browser.js
+
+处理各种浏览器的兼容问题。整个文件就是一个匿名函数，用来检测 User Agent 和浏览器的 3D、retina 等能力，将结果记录到 `L.Browser` 这个对象中。
+
+## src/core/Events.js
+
+定义了 `L.Evented` 这个类，这是使用 `L.Class.extend` 构造的一个扩展类，用来处理各种 Leaflet 自定义的事件。`_on` 和 `_off` 方法分别给事件加上和去除监听函数，对于每个事件会记录它所在的上下文，即发出事件的对象，并跟踪每个对象上监听器的个数。`on` 和 `off` 分别是上述两个函数的 wrapper，处理被监听对象类型的多种情况。`fire` 使对象能够发出事件并扩散事件到父对象。`listens` 用于判定该对象或父对象是否监听某事件。`once` 添加一个监听单次事件的监听器，在事件结束后去除监听器。`addEventParent` 和 `removeEventParent` 分别添加和去除事件扩散的父对象。`_propagateEvent` 调用 `fire` 实现事件的扩散。
+
+# 功能
+
+Leaflet 提供了完整的交互式网页地图功能，包括多种图层的显示，标志的放置和弹出式信息框，地图的放缩平移，桌面和移动平台浏览器的兼容，点击、悬停等交互事件的支持等。
+
+Leaflet 生成的交互地图中，弹出框对象支持 `class` 属性，控件也有[特定的 class](http://stackoverflow.com/questions/21078310/how-can-i-style-layer-control-in-leaflet-js)，因此可以使用 CSS3 定制弹出框和控件的外观。Leaflet 提供了 `divIcon` [方法](http://leafletjs.com/reference.html#divicon)，可以使用一个 `<div>` 元素绘制标记，并允许定制该元素的样式和其中的 HTML 内容。
+
+Leaflet 应用 CSS3 的[硬件加速](http://www.html5rocks.com/en/mobile/optimization-and-performance/)功能，在 WebKit 和其他现代浏览器上能够加快地图的渲染。它使用的另一个加速渲染的办法是忽略显示范围以外的点和线段，以及将距离小于某一阈值的点合并为一个点显示，再用 [RDP 算法](http://en.wikipedia.org/wiki/Douglas-Peucker_algorithm)简化曲线。
+
+# 插件
+
+如果嫌 Leaflet 的功能有限，Vladimir 鼓励大家为它开发插件，扩展它的功能。从现有插件的数量来看，Leaflet 欠缺的功能还真是挺多的 :-P 。插件可以是 Leaflet 名字空间下的一个“类”，或者某个模块下的一个属性或方法。
+
+## Mapbox
+
+Mapbox 的 JavaScript API，mapbox.js，也是 Leaflet 的一个插件。它的特点是简化了图层数据的添加操作，增加了 geocoding 等功能，并针对 Mapbox 提供的数据服务准备了授权机制和 Web 服务接口。
+
+# Leaflet 实操
+
+## [Hello World](http://jsfiddle.net/celadevra/hvxrfyca/)
+
+参考官方 [Quick Start](http://leafletjs.com/examples/quick-start.html) 教程，完成设置后初始化地图：
+
+~~~~ {.js}
+var map = L.map('map').setView([51.505, -0.09], 13);
+~~~~
+
+
+这时候除了默认的控件以外什么都看不见，需要添加底图。教程中用的是 Mapbox 的底图，这张图需要在 Mapbox 注册帐号才能使用。
+
+~~~~ {.js}
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+maxZoom: 18,
+id: 'your.mapbox.project.id',
+accessToken: 'your.mapbox.public.access.token'
+                }).addTo(map);
+~~~~
+
+
+将代码加到页面上，并更新 id 和 accessToken 后，刷新页面就可以看到地图了，是以泰晤士河为地图中心，放缩等级为13的地图。
+
+没有 Mapbox 帐号，要使用 OpenStreetMap 的地图，可以参考 [OSM 的底图说明](https://switch2osm.org/using-tiles/getting-started-with-leaflet/)，将上面的代码改成：
+
+~~~~ {.js}
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
+}).addTo(map);
+~~~~
+
+
+## 添加标识
+
+最基本的标志就是网络地图上常见的大头钉了，只需要增加1行代码。
+
+~~~~ {.js}
+var marker = L.marker([51.5, -0.09]).addTo(map);
+~~~~
+
+
+还可以用 `L.circle` `L.polygon` 等函数向地图上添加各种形状。
+
+`addTo()` 函数的方便之处是它返回的仍然是前面的对象，于是我们可以对 `marker` 做进一步的操作，例如添加一个弹出框：
+
+~~~~ {.js}
+marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+~~~~
+
+
+## 处理事件
+
+地图上的每个对象都有一套监听的事件，可以用它们来实现更丰富的交互。
+
+~~~~ {.js}
+var popup = L.popup();
+
+function onMapClick(e) {
+  popup
+    .setLatLng(e.latlng)
+    .setContent("You clicked the map at " + e.latlng.toString())
+    .openOn(map);
+}
+
+map.on('click', onMapClick);
+~~~~
+
+
+上述代码监听点击地图的事件，并弹出关于被点击处坐标的提示。
