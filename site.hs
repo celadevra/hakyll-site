@@ -57,22 +57,26 @@ main = hakyll $ do
         route $ setExtension ""
         compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
             >>= saveSnapshot "content"
-            >>= loadAndApplyTemplate "templates/blog.html" (blogPostCtx tags)
+            >>= loadAndApplyTemplate "templates/posts.html" (blogPostCtx tags)
+            >>= loadAndApplyTemplate "templates/bloglist.html" (blogPostCtx tags)
             >>= relativizeUrls
 
     -- create index page for blog posts
-    create ["blog/index.html"] $ do
-                               route idRoute
-                               compile $ do
-                                   posts <- loadAll "blog/*.md"
-                                   sorted <- recentFirst posts
-                                   itemTpl <- loadBody "templates/postitem.html"
-                                   list <- applyTemplateList itemTpl (blogPostCtx tags) sorted
-                                   makeItem list
-                                         >>= loadAndApplyTemplate "templates/posts.html" (allPostsCtx tags)
-                                         -- >>= loadAndApplyTemplate "templates/blog.html" (allPostsCtx tags)
-                                         >>= relativizeUrls
-     -- bibliography
+    create ["blog/index"] $ do
+                  route idRoute
+                  compile $ do
+                    posts <- loadAllSnapshots "blog/*.md" "content"
+                    sortedTen <- liftM (take 10) (recentFirst posts)
+                    sortedRest <- liftM (drop 10) (recentFirst posts)
+                    itemTpl <- loadBody "templates/posts.html"
+                    restItemTpl <- loadBody "templates/postitem.html"
+                    list <- applyTemplateList itemTpl (blogPostCtx tags) sortedTen
+                    listRest <- applyTemplateList restItemTpl defaultContext sortedRest
+                    makeItem (list ++ listRest)
+                                 >>= loadAndApplyTemplate "templates/bloglist.html" (allPostsCtx tags)
+                                 >>= relativizeUrls
+
+    -- bibliography
     match "csl/*" $ compile cslCompiler
 
     match "bib/*" $ compile biblioCompiler

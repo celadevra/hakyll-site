@@ -4,7 +4,7 @@ import           Data.Monoid (mappend, mconcat)
 import           Data.Maybe (fromMaybe)
 import           Hakyll
 import           System.Directory (getModificationTime)
-import           Control.Monad (forM, liftM, liftM2)
+import           Control.Monad (forM, liftM)
 --import           System.Time (formatCalendarTime, toUTCTime)
 import           Data.List (sortBy)
 import           Data.Ord (comparing)
