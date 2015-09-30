@@ -60,6 +60,18 @@ main = hakyll $ do
             >>= loadAndApplyTemplate "templates/blog.html" (blogPostCtx tags)
             >>= relativizeUrls
 
+    -- create index page for blog posts
+    create ["blog/index.html"] $ do
+                               route idRoute
+                               compile $ do
+                                   posts <- loadAll "blog/*.md"
+                                   sorted <- recentFirst posts
+                                   itemTpl <- loadBody "templates/postitem.html"
+                                   list <- applyTemplateList itemTpl (blogPostCtx tags) sorted
+                                   makeItem list
+                                         >>= loadAndApplyTemplate "templates/posts.html" (allPostsCtx tags)
+                                         -- >>= loadAndApplyTemplate "templates/blog.html" (allPostsCtx tags)
+                                         >>= relativizeUrls
      -- bibliography
     match "csl/*" $ compile cslCompiler
 
@@ -108,6 +120,10 @@ postCtx tags =
     modificationTimeField "updated" "%Y-%m-%d" `mappend`
     tagsField "tags" tags `mappend`
     defaultContext
+
+allPostsCtx :: Tags -> Context String
+allPostsCtx tags =
+    constField "title" "All posts" `mappend` (blogPostCtx tags)
 
 blogPostCtx :: Tags -> Context String
 blogPostCtx tags =

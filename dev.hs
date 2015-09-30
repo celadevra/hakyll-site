@@ -4,7 +4,7 @@ import           Data.Monoid (mappend, mconcat)
 import           Data.Maybe (fromMaybe)
 import           Hakyll
 import           System.Directory (getModificationTime)
-import           Control.Monad (forM, liftM)
+import           Control.Monad (forM, liftM, liftM2)
 --import           System.Time (formatCalendarTime, toUTCTime)
 import           Data.List (sortBy)
 import           Data.Ord (comparing)
@@ -70,12 +70,14 @@ main = hakyllWith testConf $ do
                                route idRoute
                                compile $ do
                                    posts <- loadAll "blog/*.md"
-                                   sorted <- recentFirst posts
-                                   itemTpl <- loadBody "templates/postitem.html"
-                                   list <- applyTemplateList itemTpl (blogPostCtx tags) sorted
-                                   makeItem list
-                                         >>= loadAndApplyTemplate "templates/posts.html" (allPostsCtx tags)
-                                         -- >>= loadAndApplyTemplate "templates/blog.html" (allPostsCtx tags)
+                                   sortedTen <- liftM (take 10) (recentFirst posts)
+                                   sortedRest <- liftM (drop 10) (recentFirst posts)
+                                   itemTpl <- loadBody "templates/posts.html"
+                                   restItemTpl <- loadBody "templates/postitem.html"
+                                   list <- applyTemplateList itemTpl (blogPostCtx tags) sortedTen
+                                   listRest <- applyTemplateList restItemTpl defaultContext sortedRest
+                                   makeItem (list ++ listRest)
+                                         >>= loadAndApplyTemplate "templates/bloglist.html" (allPostsCtx tags)
                                          >>= relativizeUrls
 
     -- bibliography
