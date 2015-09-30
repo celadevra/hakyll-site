@@ -70,7 +70,7 @@ main = hakyllWith testConf $ do
                                route idRoute
                                compile $ do
                                    posts <- loadAll "blog/*.md"
-                                   sorted <- createdFirst posts
+                                   sorted <- recentFirst posts
                                    itemTpl <- loadBody "templates/postitem.html"
                                    list <- applyTemplateList itemTpl (blogPostCtx tags) sorted
                                    makeItem list
