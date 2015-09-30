@@ -62,14 +62,15 @@ main = hakyllWith testConf $ do
         route $ setExtension "html"
         compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
             >>= saveSnapshot "content"
-            >>= loadAndApplyTemplate "templates/blog.html" (blogPostCtx tags)
+            >>= loadAndApplyTemplate "templates/posts.html" (blogPostCtx tags)
+            >>= loadAndApplyTemplate "templates/bloglist.html" (blogPostCtx tags)
             >>= relativizeUrls
 
     -- create index page for blog posts
     create ["blog/index.html"] $ do
                                route idRoute
                                compile $ do
-                                   posts <- loadAll "blog/*.md"
+                                   posts <- loadAllSnapshots "blog/*.md" "content"
                                    sortedTen <- liftM (take 10) (recentFirst posts)
                                    sortedRest <- liftM (drop 10) (recentFirst posts)
                                    itemTpl <- loadBody "templates/posts.html"
