@@ -58,6 +58,13 @@ main = hakyllWith testConf $ do
             >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
             >>= relativizeUrls
             
+    match "blog/*.md" $ do
+        route $ setExtension "html"
+        compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
+            >>= saveSnapshot "content"
+            >>= loadAndApplyTemplate "templates/blog.html" (blogPostCtx tags)
+            >>= relativizeUrls
+
     -- bibliography
     match "csl/*" $ compile cslCompiler
 
@@ -88,6 +95,13 @@ main = hakyllWith testConf $ do
                 loadAllSnapshots "*.page" "content"
             renderRss feedConfiguration (feedContext tags) posts
             
+    create ["blog/index.rss"] $ do
+        route $ idRoute
+        compile $ do
+        posts <- fmap (take 10) . createdFirst =<<
+            loadAllSnapshots "blog/*.md" "content"
+        renderRss feedConfiguration (feedContext tags) posts
+
     tagsRules tags $ \tag pattern -> do
                  let title = "Tag: " ++ tag
                  route $ setExtension "html"
@@ -97,6 +111,12 @@ postCtx :: Tags -> Context String
 postCtx tags =
     dateField "created" "%Y-%m-%d" `mappend`
     modificationTimeField "updated" "%Y-%m-%d" `mappend`
+    tagsField "tags" tags `mappend`
+    defaultContext
+
+blogPostCtx :: Tags -> Context String
+blogPostCtx tags =
+    dateField "created" "%Y-%m-%d" `mappend`
     tagsField "tags" tags `mappend`
     defaultContext
 
