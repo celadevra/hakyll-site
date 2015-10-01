@@ -8,6 +8,7 @@ belief: highly likely
 tags: decision-making, optimization
 biblio: mcdm.bib
 csl: harvard1.csl
+mathjax: true
 ...
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->
