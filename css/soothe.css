@@ -12,10 +12,8 @@ div.header {
 
 div.header div.navigation {
     margin: 0 auto 0 auto; 
-    font-family: entyporegular;
-    font-size: 100pt;
+    font-size: 20pt;
     margin-bottom: 10px;
-    line-height: 100px;
     }
 
 .info span.bullet {
@@ -70,7 +68,6 @@ div.references p {
 
 span.button {
     position:relative;
-    width: 50px;
     display: inline-block;
     background: transparent;
     }
@@ -88,6 +85,18 @@ span.tapestry {
     display:none;
     }
 
+.content h1 {
+    width: 100%;
+    text-align: center;
+    border-bottom: solid 1px;
+    padding: 200px 0 10px 0;
+}
+
+.content h1 span {
+    background-color: #000;
+    padding: 20px 20px 10px 20px;
+    color: #fff;
+}
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
     border-bottom: none;
     }
