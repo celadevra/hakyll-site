@@ -10,11 +10,13 @@ div.header {
     margin: 0 1% 0 3%;
     }
 
-div.header div.navigation {
-    margin: 0 auto 0 auto; 
-    font-size: 20pt;
-    margin-bottom: 10px;
-    }
+.info {
+    float: left;
+    width: 20%;
+}
+.info ul {
+    list-style: none;
+}
 
 .info span.bullet {
     font-family: entyporegular;
@@ -52,16 +54,6 @@ a:visited {
     border-bottom: 2px green dashed;
     }
 
-div.navigation a {
-    border-bottom: none;
-    color: rgba(0,0,0,0.2);
-    }
-
-div.navigation a:hover {
-    Background-color: #fff;
-    color: #e26700;
-    }
-
 div.references p {
     text-indent: 0;
     }
@@ -70,19 +62,6 @@ span.button {
     position:relative;
     display: inline-block;
     background: transparent;
-    }
-
-span.tapestry {
-    position:absolute;
-    top: 48px;
-    left: 18px;
-    width: 50px;
-    font-family: sans-serif;
-    font-size: 20px;
-    font-variant: small-caps;
-    color: #e26700;
-    z-index: -1;
-    display:none;
     }
 
 .content h1 {
@@ -100,6 +79,13 @@ span.tapestry {
     position: relative;
     bottom: -10px;
 }
+
+.content p {
+    width: 60%;
+    left: 20%;
+    font-size: 16pt;
+}
+
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
     border-bottom: none;
     }

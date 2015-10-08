@@ -6,18 +6,30 @@ $partial("templates/header.html")$
             <div class="desc">$description$</div>
             $endif$
             <div class="info">
+	      <ul>
+		<li>
                 $if(tags)$
                 <span class="bullet">C</span>
                 <span class="item">$tags$&nbsp; </span>
                 $endif$
+		</li>
+		<li>
                 <span class="bullet">&amp;</span>
                 <span class="item">$created$&nbsp; </span>
+		</li>
+		<li>
                 <span class="bullet">j</span>
                 <span class="item">$updated$&nbsp; </span>
+		</li>
+		<li>
                 <span class="bullet">?</span>
                 <span class="item">$status$&nbsp; </span>
+		</li>
+		<li>
                 <span class="bullet">W</span>
                 <span class="item">$belief$</span>
+		</li>
+	      </ul>
             </div>
 
             $body$
