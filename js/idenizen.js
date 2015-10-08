@@ -1,3 +1,16 @@
+jQuery.expr[':'].regex = function(elem, index, match) {
+    var matchParams = match[3].split(','),
+	validLabels = /^(data|css):/,
+	attr = {
+	    method: matchParams[0].match(validLabels) ?
+		matchParams[0].split(':')[0] : 'attr',
+	    property: matchParams.shift().replace(validLabels,'')
+	},
+	regexFlags = 'ig',
+	regex = new RegExp(matchParams.join('').replace(/^s+|s+$/g,''), regexFlags);
+    return regex.test(jQuery(elem)[attr.method](attr.property));
+}
+
 $('document').ready(function() {
     $('span.tapestry').hide();
     $('span.button > a').mouseover(function() {
@@ -9,8 +22,9 @@ $('document').ready(function() {
 });
 
 $('document').ready(function() {
-    $('figure:first').hide(0, function() {
-	var imagePath = $('figure:first').children().attr('src');
+    var bannerFigure = $('img:regex(alt, banner)').parent();
+    bannerFigure.hide(0, function() {
+	var imagePath = bannerFigure.children().attr('src');
 	$('div.content > h1').css(
 	    { 'background-image': 'url(' + imagePath +')',
 	      'background-position': '0% 0%',
