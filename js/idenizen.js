@@ -30,9 +30,12 @@ $('document').ready(function() {
 	      'background-position': '0% 0%',
 	      'background-size': 'cover',
 	      'height': '400px',
+	      'box-shadow': 'inset 0px 0px 370px #000',
 	      'background-repeat': 'no-repeat',
 	      'background-clip': 'content-box' });
 	$('div.content > h1 > span').css(
-	    { 'top': '362px' });
+	    { 'top': '362px',
+	      'background': 'none',
+	      'color': '#fff' });
     });
 });
