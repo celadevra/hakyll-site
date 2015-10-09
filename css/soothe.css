@@ -212,3 +212,14 @@ figure figcaption {
     padding-left: 10px;
     font-size: 90%;
     }
+
+pre {
+    font-size: 12pt;
+    overflow: scroll;
+    background: #fdd;
+    border-radius: 10px;
+}
+
+code {
+    font-size: 12pt;
+}
