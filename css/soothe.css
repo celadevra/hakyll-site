@@ -12,7 +12,7 @@ div.header {
 
 .info {
     float: left;
-    width: 18%;
+    width: 20%;
 }
 .info ul {
     list-style: none;
@@ -21,6 +21,8 @@ div.header {
 .info span.bullet {
     font-family: entyporegular;
     font-size: 25px;
+    color: #00ccff;
+    width: 10px;
     }
 
 .info span.item {
@@ -49,11 +51,11 @@ div.tags, div.created, div.modified, div.status, div.belief {
 a {
     color: black;
     text-decoration: none;
-    border-bottom: 1px green dotted;
+    border-bottom: 1px #ffaaaa dotted;
     }
 
 a:hover {
-    border-bottom: 1px #e26700 dashed;
+    border-bottom: 1px #00ccff dashed;
     }
 
 a:visited {
@@ -78,13 +80,13 @@ div.content {
 div.title h1 {
     width: 100%;
     text-align: center;
-    border-bottom: solid 1px;
+    border-bottom: solid #00ccff 1px;
     min-height: 48px;
     position: relative;
 }
 
 div.title h1 span {
-    background-color: #000;
+    background-color: #00ccff;
     padding: 10px 20px 10px 20px;
     color: #fff;
     position: relative;
@@ -96,7 +98,6 @@ div.title h1 span {
     position: relative;
     width: 60%;
     margin-left: 20%;
-    margin-right: 20%;
 }
 
 .footer {
@@ -109,6 +110,18 @@ div.title h1 span {
     width: 100%;
     margin: 5px 0 5px 0;
 }
+
+.footer p.large {
+    text-align: center;
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.footer p.large a {
+    color: #ffaaaa;
+    border: none;
+}
+
 .footer .links {
     float: left;
     width: 33%;
@@ -116,8 +129,14 @@ div.title h1 span {
     display: block;
 }
 
-.footer .links a {
-    display: table-row;
+.footer .links h3 {
+    color: #00ccff;
+}
+
+.footer .links a, h3 {
+    display: block;
+    text-align: center;
+    border: none;
 }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
