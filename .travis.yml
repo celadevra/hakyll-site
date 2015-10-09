@@ -15,8 +15,8 @@ cache:
     directories:
     - $HOME/.cabal
 install:
-- cabal install --avoid-reinstall pandoc
-- cabal install --avoid-reinstall hakyll
+- cabal install --avoid-reinstalls pandoc
+- cabal install --avoid-reinstalls hakyll
 script:
 - ghc --make -threaded ./site.hs
 - echo "access_key = $AWS_ACCESS_KEY_ID" >> .s3cfg
