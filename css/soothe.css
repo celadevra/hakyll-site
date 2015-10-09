@@ -65,6 +65,10 @@ a:visited {
     border-bottom: 2px green dashed;
     }
 
+p, p+p {
+    text-indent: 2em;
+}
+
 div.references p {
     text-indent: 0;
     }
@@ -230,4 +234,8 @@ code {
 blockquote {
     font-style: oblique;
     font-size: 90%;
+}
+
+blockquote p {
+    text-indent: 0;
 }
