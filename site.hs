@@ -47,7 +47,7 @@ main = hakyll $ do
             >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
             >>= relativizeUrls
             
-    match "newsletter/*" $ do
+    match "newsletters/*" $ do
         route $ setExtension ""
         compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
             >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
