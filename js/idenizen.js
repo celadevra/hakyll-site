@@ -25,7 +25,7 @@ $('document').ready(function() {
     var bannerFigure = $('img:regex(alt, banner)').parent();
     bannerFigure.hide(0, function() {
 	var imagePath = bannerFigure.children().attr('src');
-	$('div.content > h1').css(
+	$('div.title > h1').css(
 	    { 'background-image': 'url(' + imagePath +')',
 	      'background-position': '0% 0%',
 	      'background-size': 'cover',
@@ -33,7 +33,7 @@ $('document').ready(function() {
 	      'box-shadow': 'inset 0px 0px 370px #000',
 	      'background-repeat': 'no-repeat',
 	      'background-clip': 'content-box' });
-	$('div.content > h1 > span').css(
+	$('div.title > h1 > span').css(
 	    { 'top': '362px',
 	      'background': 'none',
 	      'color': '#fff' });
