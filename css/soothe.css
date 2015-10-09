@@ -3,6 +3,7 @@ body {
     font-size: 16px;
     margin: 0px auto 0px auto;
     width: 100%;
+    font-family: 'Avenir Next', 'Arial', 'PingFang SC Light', 'SimHei', sans-serif
 }
 
 div.header {
@@ -34,6 +35,7 @@ div#TOC {
     max-width:25%;
     border-left: 1px black dotted;
     margin: 0 0 3px 3px;
+    font-size: 80%;
     }
 
 .desc {
@@ -81,13 +83,13 @@ div.title h1 {
     width: 100%;
     text-align: center;
     border-bottom: solid #00ccff 1px;
-    min-height: 48px;
+    min-height: 50px;
     position: relative;
 }
 
 div.title h1 span {
     background-color: #00ccff;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 20px 8px 20px;
     color: #fff;
     position: relative;
     bottom: -10px;
@@ -222,4 +224,10 @@ pre {
 
 code {
     font-size: 12pt;
+    font-family: 'Source Code Pro', 'Consolas', monospace;
+}
+
+blockquote {
+    font-style: oblique;
+    font-size: 90%;
 }
