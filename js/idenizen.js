@@ -11,16 +11,7 @@ jQuery.expr[':'].regex = function(elem, index, match) {
     return regex.test(jQuery(elem)[attr.method](attr.property));
 }
 
-$('document').ready(function() {
-    $('span.tapestry').hide();
-    $('span.button > a').mouseover(function() {
-        $(this).parent().children('.tapestry').show().fadeIn(200);
-    });
-    $('span.button > a').mouseout(function() {
-        $('span.tapestry').hide();
-    });
-});
-
+// Process banner image
 $('document').ready(function() {
     var bannerFigure = $('img:regex(alt, banner)').parent();
     bannerFigure.hide(0, function() {
@@ -36,6 +27,31 @@ $('document').ready(function() {
 	$('div.title > h1 > span').css(
 	    { 'top': '362px',
 	      'background': 'none',
-	      'color': '#fff' });
+	      'color': '#0cf' });
+    });
+});
+
+// Display in-place notes
+$('document').ready(function() {
+    $('div.notes').append($('section.footnotes'));
+    $('section.footnotes > hr').hide();
+    $('section.footnotes > ol').css(
+	{ 'list-style': 'none' });
+    var front = $('div.article').position().top;
+    for (var i = 1; i <= $('section.footnotes > ol > li').length; i++) {
+	$('section.footnotes > ol > li[id="fn' + i + '"]').hide(0, function () {
+	    console.log(i)
+	    var top = $('div.article a[id="fnref' + i + '"]').position().top;
+	    console.log(top)
+	    $(this).css(
+		{ 'position': 'absolute',
+		  'top': top + front,
+		  'width': '15%',
+		  'word-wrap': 'break-word' });
+	});
+    };
+    $('a[id^="fnref"]').on('click', function () {
+	var i = $(this).attr("id").split("fnref")[1];
+	$('section.footnotes li[id="fn'+ i +'"]').toggle();
     });
 });
