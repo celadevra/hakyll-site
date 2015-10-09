@@ -1,3 +1,4 @@
+sudo: false
 language: haskell
 env:
   global:
@@ -6,12 +7,18 @@ env:
 branches:
   only:
     - master
+addons:	
+    apt:
+      packages:
+      - s3cmd
+cache:
+    directories:
+    - $HOME/.cabal
 install:
 - cabal install pandoc
 - cabal install hakyll
-- sudo apt-get install s3cmd
 script:
-- ghc --make ./site.hs
+- ghc --make -threaded ./site.hs
 - echo "access_key = $AWS_ACCESS_KEY_ID" >> .s3cfg
 - echo "secret_key = $AWS_SECRET_ACCESS_KEY" >> .s3cfg
 - "./retouch.sh"
