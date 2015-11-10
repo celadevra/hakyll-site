@@ -1,5 +1,7 @@
 sudo: false
 language: haskell
+ghc:
+  - 7.10
 env:
   global:
   - secure: DDLQi5WYnCAUhKQNBwq4rBnmYATP/OskewKyEwyw6DymjfBKdH+/enf8rdb8C+eSSJbsTgb3mtDYmgWK7fPTBG6rWLqKayC6CgFTrcG0tEF67KaSLpdk3dtezmlwIcR9jRrI2YqyAmMexoS4MW6zDj4Lv2wqAPGJepdTtbvAOHg=
