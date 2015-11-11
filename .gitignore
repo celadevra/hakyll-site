@@ -2,6 +2,7 @@ _site/*
 _cache/*
 _test/*
 _testcache/*
+dist/
 site
 site.hi
 site.o
