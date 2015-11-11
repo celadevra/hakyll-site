@@ -1,3 +1,19 @@
 machine:
   ghc:
-    version: 7.8.3
+    version: 7.10.1
+dependencies:
+  post:
+    - cabal install pandoc-1.15.1
+    - cabal install hakyll
+    - sudo pip install awscli
+test:
+  pre:
+    - ghc --make -threaded site.hs
+  override:
+    - ./site rebuild
+    - ./retouch.sh
+deployment:
+  aws:
+    branch: master
+      commands:
+        - ./publish.sh
