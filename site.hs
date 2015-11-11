@@ -109,9 +109,9 @@ main = hakyll $ do
     create ["blog/index.rss"] $ do
         route $ idRoute
         compile $ do
-        posts <- fmap (take 10) . createdFirst =<<
-            loadAllSnapshots "blog/*.md" "content"
-        renderRss feedConfiguration (feedContext tags) posts
+            posts <- fmap (take 10) . createdFirst =<<
+                loadAllSnapshots "blog/*.md" "content"
+            renderRss feedConfiguration (feedContext tags) posts
 
     tagsRules tags $ \tag pattern -> do
                  let title = "Tag: " ++ tag
@@ -187,8 +187,8 @@ woptions = defaultHakyllWriterOptions{ writerSectionDivs = True,
 createdFirst :: [Item String] -> Compiler [Item String]
 createdFirst items =
     let itemsWithTime = unsafeCompiler $ forM items $ \item -> do
-        utc <- getModificationTime $ toFilePath $ itemIdentifier item
-        return (utc,item);
+            utc <- getModificationTime $ toFilePath $ itemIdentifier item
+            return (utc,item)
     in liftM (\xs -> reverse . map snd $ sortBy (comparing fst) xs) itemsWithTime
 
 postList :: Tags -> Pattern -> ([Item String] -> Compiler [Item String]) -> Compiler String

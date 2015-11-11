@@ -2,17 +2,15 @@ machine:
   ghc:
     version: 7.10.1
 dependencies:
-  cache_directories:
-    - ~/.cabal
+  pre:
+    - cabal build
   post:
-    - cabal install pandoc
-    - cabal install hakyll
     - sudo pip install awscli
 test:
-  pre:
-    - ghc --make -threaded site.hs
+  cache_directory:
+    - _site
   override:
-    - ./site rebuild
+    - dist/build/expoundite/expoundite build
     - ./retouch.sh
 deployment:
   aws:
