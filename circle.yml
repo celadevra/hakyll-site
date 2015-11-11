@@ -15,5 +15,5 @@ test:
 deployment:
   aws:
     branch: master
-      commands:
-        - ./publish.sh
+    commands:
+      - ./publish.sh
