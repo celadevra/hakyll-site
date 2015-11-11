@@ -2,8 +2,9 @@ machine:
   ghc:
     version: 7.10.1
 dependencies:
+  cache_directories:
+    - ~/.cabal
   post:
-    - cabal sandbox init
     - cabal install pandoc
     - cabal install hakyll
     - sudo pip install awscli
