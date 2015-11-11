@@ -4,8 +4,10 @@ machine:
 dependencies:
   cache_directories:
     - _site
-  pre:
+  override:
     - cabal update
+    - cabal sandbox init
+    - cabal install --upgrade-dependencies --constraint="template-haskell installed" --dependencies-only --enable-tests --force-reinstall
   post:
     - cabal build
     - sudo pip install awscli
