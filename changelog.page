@@ -13,6 +13,16 @@ tags: site
 
 ![A banner image: lines of code](images/changelog.png)
 
+## 2015年11月
+[部署] 改用 Circle CI 进行自动编译和部署，并将代码打成 cabal 包。
+
+## 2015年10月
+[外观] 改用新的样式表。增加在页边显示脚注的功能。
+[部署] 恢复使用 Hakyll 作为网站引擎。继续使用 Amazon S3 作为文件存储。
+
+## 2015年9月
+[内容] 添加 [不死者与生者](/story-of-the-undead)。
+	
 ## 2015年4月
 
 [内容] 添加 [与不理想的世界和解](/make-this-not-true-translation)
