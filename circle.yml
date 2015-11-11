@@ -3,7 +3,7 @@ machine:
     version: 7.10.1
 dependencies:
   post:
-    - cabal install pandoc-1.15.0
+    - cabal install pandoc
     - cabal install hakyll
     - sudo pip install awscli
 test:
