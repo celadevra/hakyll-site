@@ -2,13 +2,13 @@ machine:
   ghc:
     version: 7.10.1
 dependencies:
+  cache_directory:
+    - _site
   pre:
     - cabal build
   post:
     - sudo pip install awscli
 test:
-  cache_directory:
-    - _site
   override:
     - dist/build/expoundite/expoundite build
     - ./retouch.sh
