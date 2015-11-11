@@ -6,7 +6,7 @@ dependencies:
     - _site
   pre:
     - cabal update
-  post:
+  override:
     - cabal build
     - sudo pip install awscli
 test:
