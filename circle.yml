@@ -2,7 +2,7 @@ machine:
   ghc:
     version: 7.10.1
 dependencies:
-  cache_directory:
+  cache_directories:
     - _site
   pre:
     - cabal build
