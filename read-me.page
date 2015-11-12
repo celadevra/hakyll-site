@@ -8,37 +8,40 @@ belief: highly likely
 tags: author
 ...
 
-说起来，知道我是谁对于大多数来访者并无太大意义。因特网的好处就在于它可以帮你了解线下生活中根本无从认识的人的想法和行为，这样一来，你也差不多可以声称自己认识这个人了，有时候这种认识甚至胜过在日常生活中知道这个人姓甚名谁的那一小部分人。至于网上自我介绍的另一常见体裁——贴标签，看似简单快捷，实际上只是给了读者一堆可以用一千种方式解释的名词，而它们的组合的诠释方式更是千差万别。除了有意隐藏自己和误导别人，我想不出这种方式有什么实际用途。
+# 利器版自我介绍
 
-所以，我将在这个页面里描述我的选择和癖好，相信这才是描述一个人的正确方式。
+## 介绍一下你自己和所做的工作
 
-# 我做什么
+我写东西，东西包括虚构和非虚构的文章，短篇和中篇小说，以及函数式和面向对象的代码。我还是3个小孩的爸爸。
 
-我以做一名[项目经理](https://zh.wikipedia.org/wiki/项目经理)为生。业余时间，我鼓捣电脑和写小说。
-
-## 我使用的硬件
+## 你都在使用哪些硬件？
 
 我主要使用一台 [MacBook Pro 13"](https://support.apple.com/kb/SP649?locale=zh_CN) (mid 2012) 完成工作。目前使用的手机是[红米 Note 4G 增强版](http://www.mi.com/note4g/)，用来发微信、打电话，以及在旅行网站上订票和支付，还有叫车。
 
-地铁是我主要的通勤手段。在地铁上用来打发（利用？）时间的是一台 [iPad Mini Retina 4G 32GB](https://support.apple.com/kb/SP693?viewlocale=zh_CN&locale=en_US)。和它交替使用的还有一台 [Kindle Paperwhite](http://www.amazon.com/dp/B00JG8GOWU/ref=sd_allcat_k_kp)，取决于我正在看的书是什么格式以及在哪个平台。
+用来阅读的是 [iPad Mini Retina 4G 32GB](https://support.apple.com/kb/SP693?viewlocale=zh_CN&locale=en_US)。和它交替使用的还有一台 [Kindle Paperwhite](http://www.amazon.com/dp/B00JG8GOWU/ref=sd_allcat_k_kp)，取决于我正在看的书是什么格式以及在哪个平台。
 
-## 软件和服务
+电视上接的是一台 [Apple TV 3代](https://support.apple.com/en-ap/HT200008#appletv-3rd)，和一个 [Chromecast 1代](https://store.google.com/product/_chromecast)，加起来能够满足大部分娱乐需求。
 
-我使用 [GNU Emacs](https://www.gnu.org/software/emacs) 写大部分东西，并使用 [spacemacs](https://github.com/syl20bnr/spacemacs) 配置，虽然它们最近不太搭调，迫使我使用 [Vim](http://vim.org/)。我用 [nvALT](http://brettterpstra.com/projects/nvalt/) 作为随手做笔记的工具，并用 [Marked 2](http://marked2app.com/) 预览。绝大多数文件同步到 [Dropbox](http://dropbox.com)，或者作为 git repo 寄存在 [GitHub](https://github.com)。
+[Xbox 360](http://www.xbox.com/en-US/xbox-360?xr=shellnav) 和 [PlayStation 3](http://www.jp.playstation.com/ps3/index.html?hfclick=HDR_ps3topp) 很久没有时间玩了，正在吃灰。
+## 软件呢？
+
+我使用 [GNU Emacs](https://www.gnu.org/software/emacs) 写大部分东西。我用 [Simplenote](http://simplenote.com/) 作为随手做笔记的工具。绝大多数文件同步到 [Dropbox](http://dropbox.com)，或者作为 git repo 寄存在 [GitHub](https://github.com)。
 
 需要写比较长篇幅的东西时，我会用 [Scrivener](http://www.literatureandlatte.com/scrivener.php)。
 
-我使用 git 和 ikiwiki 从 [MultiMarkdown](http://fletcherpenney.net/multimarkdown/) 生成网站。
+我使用 [git](http://git-scm.com/)，[hakyll](http://jaspervdj.be/hakyll/) 和 [pandoc](http://pandoc.org/) 生成网站。
 
-工作邮件放在 Google Apps 上，任务和笔记管理使用 [Evernote](http://evernote.com)。还有项目经理必须使用的 [MS Office](http://office.com)。
+工作邮件放在 Google Apps 上，任务和笔记管理使用 [Org-mode](http://orgmode.org/)。
 
-在移动端，目前对我有用的应用大概只有微信、Twitter、打车。其他的要不是预装，要不就是留在机器上备不时之需。
+## 你最理想的工作环境是什么？
 
-## 理想的配置
+恒温恒湿，有大窗子可以看山景，脚边有猫在打盹。
 
-任务的 capture 可以自动化，并且能够自动在合适的时间提醒我能够做什么。电脑再轻巧一些，以及在工作的地方有个可升降的坐站两用工作台就更好了。
+## 你平时获得工作灵感的方式有哪些？
 
-# 当前兴趣
+读书。出门走走。
+
+# 研究兴趣
 
 目前的研究兴趣包括：
 
@@ -71,9 +74,3 @@ tags: author
 统计学是研究地理学中涉及社会科学方面问题的必需工具。贝叶斯统计（理论）作为一种理性地认识现象和概率的工具更是值得熟悉和掌握。
 
 最后是各种编程语言。掌握一种语言就是多了一种方式可以 hack，多一种方式与计算机沟通，这是我的最初动机。稍微深入一点的话，各种编程语言都有不同的方式抽象运算和数据，也就是抽象这个世界和我们利用信息的方式，了解不同的编程语言就能从更多不同的角度来思考手头的问题。
-
-# 联系方式
-
-- [豆瓣](http://www.douban.com/people/celadevra/)
-- [Medium](https://medium.com/@celadevra)
-- [Twitter](https://twitter.com/celadevra)
