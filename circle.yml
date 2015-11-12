@@ -4,7 +4,7 @@ machine:
 checkout:
   post:
     - mkdir -p _site
-    - aws s3 sync s3://expoundite.net/ _site --recursive
+    - aws s3 sync s3://expoundite.net/ _site
     - ./retouch.sh
 dependencies:
   cache_directories:
