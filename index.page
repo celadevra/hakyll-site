@@ -62,6 +62,8 @@ div.article { margin-left: 20%; }
 
 [Leaflet.js][leaflet]
 
+[GnuPG 使用简介][gpg-intro]
+
 [unfinished-games]: /unfinished-games
 [logic-behind-urban-renewal]: /logic-behind-city-renewal
 [non-academia-research]: /non-academia-research
@@ -75,3 +77,4 @@ div.article { margin-left: 20%; }
 [make-this-not-true-translation]: /make-this-not-true-translation
 [story-of-the-undead]: /story-of-the-undead
 [gentrification]: /gentrification
+[gpg-intro]: /gpg-intro
