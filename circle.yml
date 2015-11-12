@@ -1,6 +1,10 @@
 machine:
   ghc:
     version: 7.10.1
+checkout:
+  post:
+    - mkdir _site
+    - aws s3 sync s3://expoundite.net _site/
 dependencies:
   cache_directories:
     - _site
