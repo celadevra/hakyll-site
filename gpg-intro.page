@@ -4,6 +4,7 @@ created: '2015-10-10'
 title: GnuPG 使用简介
 description: 简单介绍 GPG 加密原理和常用操作。
 belief: likely
+status: finished
 tags: privacy, encryption
 ...
 <!-- Status choices are: links, notes, draft, in progress, finished -->
