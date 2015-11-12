@@ -379,7 +379,13 @@ dPL/ej+R
 -----END PGP PUBLIC KEY BLOCK-----
 ~~~~
 
-一些人把上面的公钥直接贴到网站或者邮件的签名档里，这样做的一个问题是你无法确定网站或者邮件传输的途径是安全的，中间的攻击者可以把公钥修改成它自己的，从而截获加密传输的文件。比较好的办法是将公钥文本拷贝到剪贴板，然后上传到一个 key server。比较流行的 key server 是 MIT 的：<http://pgp.mit.edu>。公钥上传后，需要和 Alice <alice@example.org> 通信的人可以用这个邮件地址到任意 key server 上查询和下载这个公钥。
+一些人把上面的公钥直接贴到网站或者邮件的签名档里，这样做的一个问题是你无法确定网站或者邮件传输的途径是安全的，中间的攻击者可以把公钥修改成它自己的，从而截获加密传输的文件。比较好的办法是将公钥文本拷贝到剪贴板，然后上传到一个 key server。或者直接用
+
+~~~~ {.bash}
+$ gpg2 --keyserver pgp.mit.edu --send-keys alice@example.org
+~~~~
+
+比较流行的 key server 是 MIT 的：<http://pgp.mit.edu>。公钥上传后，需要和 Alice <alice@example.org> 通信的人可以用这个邮件地址到任意 key server 上查询和下载这个公钥。
 
 Alice 需要提供给其他人的是她的公钥的指纹。获得指纹的命令是：
 
