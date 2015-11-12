@@ -4,7 +4,7 @@ machine:
 checkout:
   post:
     - mkdir _site
-    - aws s3 sync s3://expoundite.net _site/
+    - aws s3 cp s3://expoundite.net/ _site --recursive
 dependencies:
   cache_directories:
     - _site
