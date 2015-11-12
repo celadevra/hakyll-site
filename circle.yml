@@ -4,11 +4,12 @@ machine:
 checkout:
   post:
     - mkdir -p _site
+    - mkdir -p _cache
     - aws s3 sync s3://expoundite.net/ _site
-    - ./retouch.sh
 dependencies:
   cache_directories:
     - _site
+    - _cache
   override:
     - cabal update
     - cabal sandbox init
