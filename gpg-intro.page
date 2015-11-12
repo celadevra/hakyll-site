@@ -189,7 +189,7 @@ B 的人品不错，但他从来不验证发给他的公钥！”），她可以
 
 以下操作以 GPG 2.x 版本为例。在 OS X 上，GPG 2.0 需要自己通过 brew 安装，安装完毕后可以通过 `gpg2` 命令使用。在其他平台上，可能直接用 `gpg` 就可以。确定 GPG 版本可以用 `gpg --version` 命令。
 
-### 生成自己的主密钥对
+## 生成自己的主密钥对
 
 ~~~~ {.bash}
 $ gpg2 --gen-key ↵
@@ -402,7 +402,7 @@ sub   2048g/413C65C2 2015-11-12 [expires: 2016-11-11]
 
 `Key fingerprint = `后面的一串字符就是这个公钥的指纹了。Alice 可以通过较为安全的通讯方式（比如电话或者面对面[^3]）将指纹告诉需要和她通讯的人，他们从 key server 上下载 Alice 的公钥，然后再通过 GPG 查看和验证这个公钥的指纹。如果指纹能对上，他们就能相信使用这个密钥的人就是 Alice 本人了。
 
-### 接收和认可他人的公钥
+## 接收和认可他人的公钥
 
 现在，假设 Bob 要给 Alice 发送加密信息，那么他需要首先得到 Alice 的公钥。如果 Alice 把输出的公钥保存为 `alice.pub` 并发送给 Bob，Bob 可以首先导入这枚公钥：
 
@@ -433,11 +433,11 @@ gpg> sign ↵
 
 或者，根据 GPG 的 web of trust 模型，当 Bob 已经信任的 ID 中有一定数量的已经对 Alice 表示了信任，Alice 的公钥就会自动被标记为可信。
 
-### 用密钥对加密电子邮件，及对邮件签名
+## 用密钥对加密电子邮件，及对邮件签名
 
 取决于你使用的邮件客户端，请参考 [EnigMail](https://enigmail.net/documentation/quickstart-ch3.php)，[Mutt](http://dev.mutt.org/trac/wiki/MuttGuide/UseGPG)，[mu4e](http://www.djcbsoftware.nl/code/mu/mu4e/MSGV-Crypto.html)，[GPGTools](https://gpgtools.org/)，或 [GPG4win](http://www.gpg4win.org/)。
 
-### 对文件进行数字签名
+## 对文件进行数字签名
 
 GPG 有几种进行数字签名的方式，第一种是仅对明文信息进行签名，不进行加密操作：
 
@@ -488,7 +488,7 @@ $ gpg2 --detach-sign --local-user alice@example.org example.txt
 
 这样原来的 `example.txt` 不受影响，只是多了一个 `example.txt.sig`，即为签名文件。
 
-### 验证别人的数字签名
+## 验证别人的数字签名
 
 之前 Bob 已经信任了 Alice 的公钥，那么当他收到 Alice 的签名文件，他可以使用这个公钥来验证签名的真实性：
 
@@ -512,7 +512,7 @@ gpg: Signature made Thu Nov 12 21:45:57 2015 CST using RSA key ID 89031A01
 gpg: Good signature from "Alice Somebody (alice1997) <alice@example.org>" [ultimate]
 ~~~~
 
-### 加密和解密文件
+## 加密和解密文件
 
 假设 Bob 要加密一份文件给 Alice，因为他已经有 Alice 的公钥并签名验证了，他可以输入：
 
