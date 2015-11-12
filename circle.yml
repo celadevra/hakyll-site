@@ -3,7 +3,7 @@ machine:
     version: 7.10.1
 checkout:
   post:
-    - mkdir _site
+    - mkdir -p _site
     - aws s3 sync s3://expoundite.net/ _site --recursive
     - ./retouch.sh
 dependencies:
