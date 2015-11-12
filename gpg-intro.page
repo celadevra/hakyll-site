@@ -1,0 +1,532 @@
+---
+author: Haoyang Xu
+created: '2015-10-10'
+title: GPG 加密操作指南
+description: 简单介绍 GPG 加密原理和常用操作。
+belief: likely
+tags: privacy, encryption
+...
+<!-- Status choices are: links, notes, draft, in progress, finished -->
+<!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
+
+
+# 一些概念
+
+## 对称加密
+
+所谓对称是指加密和解密过程使用的是同一套密钥，或者同一套密钥经过简
+单推算之后得到的形式。它是我们最熟悉的一种加密形式，从小朋友们玩的
+凯撒密码加密到间谍片和警匪片里常见的书本密码，再到难以破解的Enigma
+密码，都是对称加密的不同实现。
+
+对称加密的主要缺点是在通讯过程中需要保持双方的密码本始终一致，部分
+实现还容易因为规律性的报文被猜出密码。其优点是速度快。
+
+## 非对称加密
+
+非对称加密即加密和解密不需要使用同一套密钥。这样的系统中，一般有一
+枚公开的密钥（公钥），用来生成加密信息，而另一枚密钥不对外公开，称
+为私钥，用来解密。公钥的公开性质，可以避免对称加密系统的缺点，又能
+让密文的发送者方便地加密。
+
+非对称加密广泛地用于数字证书和安全通信领域。
+
+## 散列函数和散列值
+
+散列函数是指将任意数据作为输入，能够输出指定长度的数值结果的函数。
+这个结果就称为输入数据的散列值。加密学上的散列函数除了要求上述的特
+性，还要求取散列值的操作非常容易，而从散列值重构原来的数据的计算难
+度大到不实际，输入数据的改变一定会造成散列值的变化，以及不同的信息
+不会产生相同的散列值。
+
+# PGP，OpenPGP 与 GPG
+
+1991 年，美国的一名软件工程师 Phil Zimmermann [^1] 注意到电子邮件正
+在迅速地取代传统邮件成为人们的主要通讯手段，但其设计并没有考虑到保障隐
+私的需求，而当时的立法进程正在赋予政府越来越多的权力，使执法人员可以方
+便地搜集互联网和电话网络上传递的信息。Zimmermann 不是律师，没有办法直
+接对这些提案提出反对，但他[想到](http://www.philzimmermann.com/EN/essays/index.html)，当使用加密技术成为常态，反对加密技术
+的立法就没有存在的依据，正如大多数纸质邮件都装在信封里，就没有人能对你
+使用信封而不是明信片说三道四。于是他编写了一个叫做 Pretty Good Privacy
+的软件，用来加密 e-mail 信息，避免个人邮件被收发人之外的第三方查看甚至
+搜集、篡改。他把 PGP 作为免费软件放到网上传播之后，还因此受到了政府长
+达3年的刑事调查，理由是他违反了禁止出口加密技术的法律。尽管如此，PGP
+仍然成为了使用最广泛的 e-mail 加密软件。在政府撤销对他的调查之后，
+Zimmermann 于1996年成立了 PGP Inc.。这家公司在1997年被 NAI 收购后，
+Zimmermann 于2001年创建了 OpenPGP 联盟，在 NAI 的 PGP 协议的基础上提出
+了 OpenPGP 标准草案。
+
+OpenPGP 是在 PGP 基础上定义的开放标准，使得 PGP 技术可以由任何公司和个
+人实现，而不需要缴纳许可费用。[标准草案](http://www.ietf.org/rfc/rfc4880.txt)指出
+OpenPGP 提供的是数据完整性
+服务，赋予用户查看、检验、生成和写入加密信息、秘钥和签名的能力。 OpenPGP
+通过加密、数字签名、压缩和 Radix-64 转换来实现这些功能。
+
+GnuPG 是 OpenPGP 协议的一种完备的实现，除了按照 OpenPGP 协议提供数据加
+解密和签名服务之外，它还提供了完整的秘钥管理功能，并实现了协议中许多可
+选的加密或压缩算法。
+
+# OpenPGP 协议下的操作定义
+
+## 加密
+
+OpenPGP 的加密手段结合了对称式的秘钥加密和非对称的公钥加密方法。取决于
+第二步加密手段的不同，有两种加密流程。第一种加密流程结合基于秘钥的对称
+式加密， 对于每一段需要加密的信息 M，OpenPGP 使用一个随机数作为秘钥
+k~M~，加密 信息得到M'，再把这个秘钥附到 M' 的开头。即每段信息 M 变为
+k~M~ + M'。在发送前，OpenPGP 用接收方提供的公钥对秘钥 k~M~ 进行加密，
+得到最终可以发送的密文 k'~M~ + M'。第二种加密流程使用双方预先约定的密
+码对 k~M~ 进行加密，对 M 的加密方法则与第一种流程相同。
+
+接收方收到密文之后，首先使用自己的私钥或发送方通过其他途径提供的密码解
+密 k'~M~ 得到秘钥 k~M~，然后使用 k~M~ 解开 M' 得到 M。
+
+## 签名
+
+签名是为了接收方能够确认信息确实来自信息所声称的发送方，并且没有在传递
+过程中被第三方修改。在签名操作中，OpenPGP 首先对信息进行取散列值的操作，
+然后使用信息发送者的私钥加密这个散列值，获得一个数字签名，并将签名和原
+信息一同发送。接收方的 OpenPGP 软件也根据协议计算信息的散列值，并用信
+息发送者的公钥解密数字签名中的散列值信息，能解密就说明信息的发送者确实
+是预想的发送方，而两个散列值比对，就能确定信息并未被篡改。
+
+## 压缩
+
+大部分 OpenPGP 信息都是在压缩后发出的。标准建议具体的实现至少保留
+解压缩的算法。这样收到别人发来的压缩信息后至少还可以查看。
+
+## 转换为 Radix-64 编码
+
+OpenPGP 默认将加密的信息、签名和秘钥作为任意形式的8位字节流传送。
+但受到底层操作系统的限制，部分 OpenPGP 实现可能只能处理 ASCII 字符
+所表示的信息，因此需要将8位字节流转化成 ASCII 字符。这种操作称为
+Radix-64 编码或 ASCII Armor。
+
+在具体的使用中，上述的几个操作往往是组合使用的，例如被加密的信息往往也
+经过了压缩，而签名也涉及到加密。
+
+# GPG 的密钥管理操作
+
+基于公钥／私钥的非对称加密方式虽然能有效地避免对称加密方式由于密码本传
+递造成的信息泄露风险，以及作为签名验证的手段避免信息被篡改，但仍然无法
+免于中间人攻击。密钥对中的公钥包括主密钥的公共可见部分（pub），用于加
+密的次级密钥的公共可见部分（sub），以及用户的身份信息（ID）。如果用户
+单纯地公开其公钥，攻击者可以修改用户 ID，把信息转到自己的电子邮箱中，
+或者通过修改密钥（sub），来解密别人送给被攻击用户的信息。只要攻击者在
+消息发送者的机器上用自己的公钥替换消息接收者的公钥，就可以查看加密的消
+息；再用真正的消息接收者的公钥加密发给消息接收者，那么信息收发双方都会
+以为信息安全送达，而不知道通信正在被窃听。
+
+GPG 解决这个问题的核心思路是对密钥进行签名验证。[^2]回顾 OpenPGP
+的签名操 作：使用私钥对一段数据签名后，只有使用对应的公钥才能解开这段数
+据的散列值信息，这样就能确定数据来自于签名人而且没有被篡改。那么使用私
+钥对公钥进行数字签名怎么样？攻击者无论是更改 ID 还是 sub，都会导致公钥
+的散列值变化，这样得到的散列值就对不上了，于是用户就能知道公钥遭到了改
+动。这种用私钥对公钥签名的方法被称为自身签名（self-signing），通过自身签名
+与用户 ID 绑定的公钥被称为证书（certificate）。
+
+在签名验证的基础上，一组密钥可以绑定多个用户 ID 和次级密钥，只要添加 ID
+和 sub 时用户能够通过使用主密钥的私钥部分进行的验证即可。
+
+用户还可以对 ID 和密钥进行删除（delete）和撤销（revoke）操作。删除操作
+主要是针对别人提供的公钥中的次级密钥。删除自己公钥中的次级密钥和用户 ID
+也是可以办到的，但其他用户导入你的公钥时，如果之前它们已经保存过你
+的公钥，新导入的公钥会与原来的公钥合并，删除的操作也就相当于无效了。因
+此更好的办法是将其撤销。次级密钥的撤销是通过在密钥上附加一个特殊的撤销
+签名实现的，用户 ID 的撤销则是通过撤销这个 ID 的所有自身签名来实现的。
+因为撤销操作都是在密钥部件上添加签名，所以当你的公钥的持有人更新公钥时，
+就能自动收到这些部件失效的信息。
+
+## 更改密钥失效期限
+
+GnuPG 生成的 ID 和密钥默认是永不过期的，对于用作签名和验证用途的主
+密钥，这没有什么问题。但对于用来解密别人送来的密文的私钥，如果不慎
+泄漏而它又没有过期期限的话，就意味着别人可以用这把私钥查看过去和未
+来发送给你的所有密文。对于这些次级密钥，你可以将密钥更改为在几天，
+几周，几月，几年之后过期。过期后的密钥不能再用来进行签名或加密。
+
+这使得任何潜在的攻击者不能查看更新的次级密钥对应的公钥所加密的信息，
+除非他们使用同样的手段再次取得你更新的密钥。但这也意味着你需要再次
+发布自己的公钥。
+
+## 信任网络和验证其他人的公钥
+
+需要和他人进行加密通讯或验证他人的签名前，需要首先获得对方的公钥，
+这一步一般是通过电子邮件交换和从互联网上下载得到。之前已经提到，这
+个时候我们还无法确认来自电子邮件或者网页上的信息是否可靠，因此需要
+首先验证获得的公钥。基本的验证方法是通过查看对方的公钥指纹，即一串
+16进制的数字，并与公钥的持有者核对。最可靠的核对方法自然是面对面核
+对，如果你能确认信息传送渠道的可靠性，并确定渠道另一端确实是公钥的
+主人，那么通过电话或者其他信息渠道取得指纹的信息也是可以的。
+
+通过指纹确定密钥无误后，就可以用自己的私钥给这个新导入的公钥签名，
+完成验证过程。
+
+当需要批量添加许多人的公钥的时候，这种做法可能过于繁琐。GPG 使用
+一种称为 web of trust 的机制来应对这个问题。用户 A 如果信任用户 B，
+并签名验证了 B 的密钥，就可以假定用户 B 签名的用户 C 和 用户 D 的
+密钥都是可靠的，她只要用 B 的公钥检验 B 对 C 和 D 的密钥签名就可
+以了。在实际的应用中，A 也不一定要完全信任 B 对 C 和 D 的签名 （“我知道
+B 的人品不错，但他从来不验证发给他的公钥！”），她可以给 B
+的公钥赋予一个信任度等级，GPG 通过这个等级和一套信任度算法决定 A
+是否需要亲自验证 C 和 D 的密钥的真实性。在默认设置下，如果一个
+密钥有一个你完全信任的密钥的签名验证，或者被3个一般信任的密钥验证，
+并且这条信任链的长度不超过5，那么这个密钥就和你自己签名验证它一样
+视为可靠。
+
+## 发布密钥
+
+最简单的发布密钥的方法是将它附在电子邮件中，或放在个人网站上。但
+更好的办法是将它提交到专门的密钥服务器（Keyserver）。在建立信任网
+络时，密钥服务器尤其有价值，因为它避免了在用户 B 给 A 的密钥签名
+验证后，用户 A 自己更新和发布经过 B 签名的密钥的操作。
+
+几个主要的密钥服务器是相互同步的，因此只要选择一个流行的、速度快
+的密钥服务器就可以了。
+
+# Cookbook
+
+以下操作以 GPG 2.x 版本为例。在 OS X 上，GPG 2.0 需要自己通过 brew 安装，安装完毕后可以通过 `gpg2` 命令使用。在其他平台上，可能直接用 `gpg` 就可以。确定 GPG 版本可以用 `gpg --version` 命令。
+
+### 生成自己的主密钥对
+
+~~~~ {.bash}
+$ gpg2 --gen-key ↵
+gpg (GnuPG) 2.0.29; Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+  
+Please select what kind of key you want:
+   (1) RSA and RSA (default)
+   (2) DSA and Elgamal
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+Your selection? ↵
+RSA keys may be between 1024 and 4096 bits long.
+What keysize do you want? (2048) ↵
+Requested keysize is 2048 bits
+Please specify how long the key should be valid.
+         0 = key does not expire
+      <n>  = key expires in n days
+      <n>w = key expires in n weeks
+      <n>m = key expires in n months
+      <n>y = key expires in n years
+Key is valid for? (0) ↵
+Key does not expire at all
+Is this correct? (y/N) y↵
+
+GnuPG needs to construct a user ID to identify your key.
+
+Real name: Alice Somebody
+Email address: alice@example.org
+Comment: alice1997
+You selected this USER-ID:
+    "Alice Somebody (alice1997) <alice@example.org>"
+
+Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? o↵
+You need a Passphrase to protect your secret key.
+
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+gpg: key 89031A01 marked as ultimately trusted
+public and secret key created and signed.
+  
+gpg: checking the trustdb
+gpg: 3 marginal(s) needed, 1 complete(s) needed, PGP trust model
+gpg: depth: 0  valid:   2  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 2u
+pub   2048R/89031A01 2015-11-12
+      Key fingerprint = E2B3 74CA BD6E 26D3 1F42  882D B5EC C252 8903 1A01
+uid       [ultimate] Alice Somebody (alice1997) <alice@example.org>
+sub   2048R/79322E0E 2015-11-12
+~~~~
+
+这个主密钥是用来签名验证的，我们还需要生成用于加解密的次级密钥对。
+
+~~~~ {.bash}
+$ gpg2 --list-keys ↵
+/Users/alice/.gnupg/pubring.gpg
+-------------------------------
+pub   2048R/89031A01 2015-11-12
+uid       [ultimate] Alice Somebody (alice1997) <alice@example.org>
+sub   2048R/79322E0E 2015-11-12
+~~~~
+
+在这个例子中，主密钥对的指纹最后8位被用作它的唯一标识。我们也可以用 uid 来告诉 GPG，我们要在哪一个主密钥下添加次级密钥对。
+
+~~~~ {.bash}
+$ gpg2 --edit-key 89031a01 ↵
+# 或者 gpg2 --edit-key alice@example.org
+gpg (GnuPG) 2.0.29; Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+  
+Secret key is available.
+  
+pub  2048R/89031A01  created: 2015-11-12  expires: never       usage: SC
+                     trust: ultimate      validity: ultimate
+sub  2048R/79322E0E  created: 2015-11-12  expires: never       usage: E
+[ultimate] (1). Alice Somebody (alice1997) <alice@example.org>
+gpg> addkey ↵
+Key is protected.
+  
+You need a passphrase to unlock the secret key for
+user: "Alice Somebody (alice1997) <alice@example.org>"
+2048-bit RSA key, ID 89031A01, created 2015-11-12
+  
+Please select what kind of key you want:
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+   (5) Elgamal (encrypt only)
+   (6) RSA (encrypt only)
+Your selection? 5 ↵
+ELG keys may be between 1024 and 4096 bits long.
+What keysize do you want? (2048) ↵
+Requested keysize is 2048 bits
+Please specify how long the key should be valid.
+         0 = key does not expire
+      <n>  = key expires in n days
+      <n>w = key expires in n weeks
+      <n>m = key expires in n months
+      <n>y = key expires in n years
+Key is valid for? (0) 1y ↵
+Key expires at Fri Nov 11 12:17:23 2016 CST
+Is this correct? (y/N) y ↵
+Really create? (y/N) y ↵
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+
+pub  2048R/89031A01  created: 2015-11-12  expires: never       usage: SC
+                     trust: ultimate      validity: ultimate
+sub  2048R/79322E0E  created: 2015-11-12  expires: never       usage: E
+sub  2048g/413C65C2  created: 2015-11-12  expires: 2016-11-11  usage: E
+[ultimate] (1). Alice Somebody (alice1997) <alice@example.org>
+
+gpg> quit
+Save changes? (y/N) y ↵
+~~~~
+
+这样就创建了一个专门用来加密的次级密钥。
+
+在使用密钥对之前，还要对 uid 进行自签名。
+
+~~~~ {.bash}
+$ gpg2 --edit-key alice@example.org ↵
+ ...
+gpg> 1 # 选择第一个 uid
+gpg> sign
+~~~~
+
+最后，导出公钥。
+
+~~~~ {.bash}
+$ gpg2 --export --armor alice@example.org ↵
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v2
+
+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
+dPL/ej+R
+=NWLA
+-----END PGP PUBLIC KEY BLOCK-----
+~~~~
+
+一些人把上面的公钥直接贴到网站或者邮件的签名档里，这样做的一个问题是你无法确定网站或者邮件传输的途径是安全的，中间的攻击者可以把公钥修改成它自己的，从而截获加密传输的文件。比较好的办法是将公钥文本拷贝到剪贴板，然后上传到一个 key server。比较流行的 key server 是 MIT 的：<http://pgp.mit.edu>。公钥上传后，需要和 Alice <alice@example.org> 通信的人可以用这个邮件地址到任意 key server 上查询和下载这个公钥。
+
+Alice 需要提供给其他人的是她的公钥的指纹。获得指纹的命令是：
+
+~~~~ {.bash}
+$ gpg2 --fingerprint ↵
+/Users/snakehsu/.gnupg/pubring.gpg
+----------------------------------
+pub   2048R/89031A01 2015-11-12
+      Key fingerprint = E2B3 74CA BD6E 26D3 1F42  882D B5EC C252 8903 1A01
+uid       [ultimate] Alice Somebody (alice1997) <alice@example.org>
+sub   2048R/79322E0E 2015-11-12
+sub   2048g/413C65C2 2015-11-12 [expires: 2016-11-11]
+~~~~
+
+`Key fingerprint = `后面的一串字符就是这个公钥的指纹了。Alice 可以通过较为安全的通讯方式（比如电话或者面对面[^3]）将指纹告诉需要和她通讯的人，他们从 key server 上下载 Alice 的公钥，然后再通过 GPG 查看和验证这个公钥的指纹。如果指纹能对上，他们就能相信使用这个密钥的人就是 Alice 本人了。
+
+### 接收和认可他人的公钥
+
+现在，假设 Bob 要给 Alice 发送加密信息，那么他需要首先得到 Alice 的公钥。如果 Alice 把输出的公钥保存为 `alice.pub` 并发送给 Bob，Bob 可以首先导入这枚公钥：
+
+~~~~ {.bash}
+$ gpg2 --import alice.pub
+~~~~
+
+然后，他查看这个公钥的指纹：
+
+~~~~ {.bash}
+$ gpg2 --fingerprint alice@example.org ↵
+pub   2048R/89031A01 2015-11-12
+      Key fingerprint = E2B3 74CA BD6E 26D3 1F42  882D B5EC C252 8903 1A01
+uid       [ultimate] Alice Somebody (alice1997) <alice@example.org>
+sub   2048R/79322E0E 2015-11-12
+sub   2048g/413C65C2 2015-11-12 [expires: 2016-11-11]
+~~~~
+
+再和 Alice 写在小纸条上亲手交给他的指纹对照，OK。那么 Bob 在自己的电脑上输入：
+
+~~~~ {.bash}
+$ gpg2 --edit-key alice@example.org ↵
+...
+gpg> sign ↵
+~~~~
+
+这样 Bob 就用自己的私钥给 Alice 的签了名，表示 Bob 信任 Alice 的密钥。
+
+或者，根据 GPG 的 web of trust 模型，当 Bob 已经信任的 ID 中有一定数量的已经对 Alice 表示了信任，Alice 的公钥就会自动被标记为可信。
+
+### 用密钥对加密电子邮件，及对邮件签名
+
+取决于你使用的邮件客户端，请参考 [EnigMail](https://enigmail.net/documentation/quickstart-ch3.php)，[Mutt](http://dev.mutt.org/trac/wiki/MuttGuide/UseGPG)，[mu4e](http://www.djcbsoftware.nl/code/mu/mu4e/MSGV-Crypto.html)，[GPGTools](https://gpgtools.org/)，或 [GPG4win](http://www.gpg4win.org/)。
+
+### 对文件进行数字签名
+
+GPG 有几种进行数字签名的方式，第一种是仅对明文信息进行签名，不进行加密操作：
+
+~~~~ {.bash}
+gpg2 --clearsign --local-user alice@example.org example.txt ↵
+
+You need a passphrase to unlock the secret key for
+user: "Alice Somebody (alice1997) <alice@example.org>"
+2048-bit RSA key, ID 89031A01, created 2015-11-12
+~~~~
+
+得到的 `example.txt.asc` 是这样的形式：
+
+~~~~
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+(文件内容)
+(文件内容)
+(文件内容)
+...
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQEcBAEBCAAGBQJWRJXBAAoJELXswlKJAxoBADsH/2RvOGtmu+yjsc0+aDoTNRUF
+CxmiCNsOKRtrQ0O1q8kQYnJFTILwzflQ+XmMHS1S9n209d6W1LrlfABsQWMtl4BK
+ld6yPvzWYh7skXEkl1rnxHvwXoipLHG9Ag65FyJQDmOOWeP9LUI8EADWT0ymaEn3
+xRQxt7Cc8exFdh4tqNX0Yr6b3Evy2Bucke1pOlcWjiQHQEMjjvupk06OHh/kUj0O
+RWQIvJdB/wMdwgqOWe149bfsnkkyOsiqmAvDQ4FJn8f5Ew/aebEkkpyrCYki1dwU
+qor4BQc9VH6NT4UbGZkl9MZN5mL8Zjn6q4WcrxLSFe3205OwR65YjsFbUmTRO4Y=
+=Rvga
+-----END PGP SIGNATURE-----
+~~~~
+
+第二种是密文签名操作，用来生成加密和签名过的文件，一般和加密操作结合使用。如果只签名的话，命令如下：
+
+~~~~ {.bash}
+$ gpg2 --sign --local-user alice@example.org example.txt
+~~~~
+
+结果是得到一个 `example.txt.gpg`。
+
+第三种是分离文件本身和签名文件的签名方式：
+
+~~~~ {.bash}
+$ gpg2 --detach-sign --local-user alice@example.org example.txt
+~~~~
+
+这样原来的 `example.txt` 不受影响，只是多了一个 `example.txt.sig`，即为签名文件。
+
+### 验证别人的数字签名
+
+之前 Bob 已经信任了 Alice 的公钥，那么当他收到 Alice 的签名文件，他可以使用这个公钥来验证签名的真实性：
+
+~~~~ {.bash}
+$ gpg2 --decrypt example.txt.gpg ↵
+(文件内容)
+...
+gpg: Signature made Thu Nov 12 22:08:34 2015 CST using RSA key ID 89031A01
+gpg: Good signature from "Alice Somebody (alice1997) <alice@example.org>" [ultimate]
+~~~~
+
+~~~~ {.bash}
+$ gpg2 --verify example.txt.asc ↵
+gpg: Signature made Thu Nov 12 21:36:01 2015 CST using RSA key ID 89031A01
+gpg: Good signature from "Alice Somebody (alice1997) <alice@example.org>" [ultimate]
+~~~~
+
+~~~~ {.bash}
+$ gpg2 --verify example.txt.sig example.txt ↵
+gpg: Signature made Thu Nov 12 21:45:57 2015 CST using RSA key ID 89031A01
+gpg: Good signature from "Alice Somebody (alice1997) <alice@example.org>" [ultimate]
+~~~~
+
+### 加密和解密文件
+
+假设 Bob 要加密一份文件给 Alice，因为他已经有 Alice 的公钥并签名验证了，他可以输入：
+
+~~~~ {.bash}
+$ gpg2 --encrypt --recipient alice@example.org example.txt
+~~~~
+
+如果他需要签名证实文件确实是自己发出的，还可以加上 `--sign` 选项。
+
+Alice 收到文件后，可以直接解密：
+
+~~~~ {.bash}
+$ gpg2 --decrypt -o example.txt example.txt.gpg
+~~~~
+
+得到解密后的文件 example.txt。如果 Bob 签了名，并且 Alice 导入并认可了他的公钥，GPG 还会提示 Alice 文件确实是出自 Bob 之手。
+
+[^1]: 注意有两个n，写错了并让 Zimmerma**nn**
+    看到的话他可是要生气的。
+
+[^2]: 见 *The GNU Privary Handbook* 第3章 [Key
+    Management](https://gnupg.org/gph/en/manual.html#MANAGEMENT)。
+
+[^3]: 还有个比这两种方式更可靠和方便，但是好像没什么人使用的法子，就是把指纹字符串纹在自己手臂上……本人不对听从或不听从此建议的任何后果负责。
