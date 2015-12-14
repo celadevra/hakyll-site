@@ -433,6 +433,14 @@ $ gpg2 --decrypt -o example.txt example.txt.gpg
 
 得到解密后的文件 example.txt。如果 Bob 签了名，并且 Alice 导入并认可了他的公钥，GPG 还会提示 Alice 文件确实是出自 Bob 之手。
 
+还有一种常见的情景是临时性的加密信息交换。因为各种原因，Alice 不愿意接受 Bob 的公钥，那么 Bob 可以给她发送使用对称加密的信息：
+
+~~~~ {.bash}
+$ gpg2 --symmetric message.txt
+~~~~
+
+得到的 `message.txt.gpg` 可以发送给 Alice。Alice 收到以后，可以用上面同样的 `gpg2 --decrypt` 命令解密。
+
 [^1]: 注意有两个n，写错了并让 Zimmerma**nn**
     看到的话他可是要生气的。
 
