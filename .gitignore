@@ -9,3 +9,5 @@ site.o
 dev
 dev.hi
 dev.o
+.cabal-sandbox/
+cabal.sandbox.config
