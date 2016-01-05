@@ -142,7 +142,7 @@ div.title h1 span {
     color: #00ccff;
 }
 
-.footer .links a, h3 {
+.footer .links a, .links h3 {
     display: block;
     text-align: center;
     border: none;
