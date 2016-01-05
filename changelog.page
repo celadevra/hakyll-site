@@ -13,6 +13,9 @@ tags: site
 
 ![A banner image: lines of code](images/changelog.png)
 
+## 2016年1月
+[内容] 添加 [育儿史小考](/history-of-childrearing)
+
 ## 2015年11月
 [部署] 改用 Circle CI 进行自动编译和部署，并将代码打成 cabal 包。
 
