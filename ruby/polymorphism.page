@@ -1,0 +1,14 @@
+---
+title: Ruby 的多态性
+created: 2016-01-05
+author: Haoyang Xu
+description: 
+status: draft
+belief: possible
+tags: programming
+...
+
+<!-- Status choices are: links, notes, draft, in progress, finished -->
+<!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
+
+多态在 Ruby 中是指，不同的对象可以响应同样的信息（方法调用），只是这种响应的具体实现和结果都可能不同。
