@@ -1,5 +1,5 @@
 ---
-title: Newsletter Feb 2016
+title: Landscape and Languages
 created: 2016-01-07
 author: Haoyang Xu
 description: Issue 8: 
@@ -11,5 +11,12 @@ tags:
 <!-- Status choices are: links, notes, draft, in progress, finished -->
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
 
-# Landscape and Languages
+## Languages
 
+- [Hidden Complexity in Ruby Land][complexity]
+  
+  Ruby 正在变成一种更加容易写的语言，但更灵活的语句和更多的语法糖背后，复杂性被掩盖起来。Ruby 的使用者需要弄清楚这些新特性和 gems 背后暗含的假设，进行严格的代码审核，才能少出错。记得 Ruby 的设计哲学之一是避免 surprise，但是现在它们在程序中的出现似乎不可避免了。
+
+- 
+
+[complexity]: https://blog.blockscore.com/hidden-complexity-in-ruby-land/
