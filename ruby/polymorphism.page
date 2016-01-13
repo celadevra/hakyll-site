@@ -6,6 +6,8 @@ description:
 status: draft
 belief: possible
 tags: programming
+biblio: ruby.bib
+csl: harvard1.csl
 ...
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->
@@ -15,4 +17,4 @@ tags: programming
 
 Ruby 通过两种方式实现多态。其一是继承多态（Inheritance Polymorphism），这也是 Perl、Java 等语言中最常见的多态形式。当一个类继承上级类时，上级类和更上级的类的所有方法都出现在这个类中，能够供它调用，或者说这个类能够响应所有这些方法。这被称为继承链。在继承链上的每一个类，都可以修改和扩充它本身和继承来的方法，这样对属于这些类的不同对象，可以调用同样的方法，但实现和结果可能不同，这就形成了多态。
 
-一般这种多态的实现都是单一继承，继承链上没有分支。这是因为多重继承会带来很多具体实现上的问题，比如在 `Husky` 这个类既继承了 `Dog` 类又继承了 `Furry` 类，而这两个类都实现了不同的 `eat` 方法的时候，到底应该继承哪个 `eat` 呢？Ruby 的第二种实现多态的方式试图解决这个问题，就是利用 mixin 实现的多态。通过将多个类的共用方法包装成模块，并用 `include` 等方法混入多个类中，可以让调用这些方法的类和它们的子类继承对这些方法的响应，而不会产生不知道继承自哪个类的问题。Matz 将这种方法称为“共享实现的单一继承”（single inheritance with implementation sharing），认为它使我们能够享有多重继承的好处，而避免了多重继承带来的问题。
+一般这种多态的实现都是单一继承，继承链上没有分支。这是因为多重继承会带来很多具体实现上的问题，比如在 `Husky` 这个类既继承了 `Dog` 类又继承了 `Furry` 类，而这两个类都实现了不同的 `eat` 方法的时候，到底应该继承哪个 `eat` 呢？Ruby 的第二种实现多态的方式试图解决这个问题，就是利用 mixin 实现的多态。通过将多个类的共用方法包装成模块，并用 `include` 等方法混入多个类中，可以让调用这些方法的类和它们的子类继承对这些方法的响应，而不会产生不知道继承自哪个类的问题。Matz 将这种方法称为“共享实现的单一继承”（single inheritance with implementation sharing），认为它使我们能够享有多重继承的好处，而避免了多重继承带来的问题。[@_ruby_2015]
