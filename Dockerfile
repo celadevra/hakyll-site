@@ -5,5 +5,3 @@ WORKDIR /src
 ADD . /src
 RUN cabal install --only-dependencies
 RUN ghc --make ./site.hs
-RUN ./site build
-RUN ./site watch
