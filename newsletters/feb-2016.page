@@ -2,7 +2,7 @@
 title: Landscape and Languages
 created: 2016-01-07
 author: Haoyang Xu
-description: Issue 8: 
+description: Issue 8: Geography of Work
 status: links
 belief: highly likely
 tags: 
@@ -11,12 +11,28 @@ tags:
 <!-- Status choices are: links, notes, draft, in progress, finished -->
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
 
-## Languages
+# 通勤与交通
 
-- [Hidden Complexity in Ruby Land][complexity]
-  
-  Ruby 正在变成一种更加容易写的语言，但更灵活的语句和更多的语法糖背后，复杂性被掩盖起来。Ruby 的使用者需要弄清楚这些新特性和 gems 背后暗含的假设，进行严格的代码审核，才能少出错。记得 Ruby 的设计哲学之一是避免 surprise，但是现在它们在程序中的出现似乎不可避免了。
+交通是运输主体与运输工具在运输路径上产生的互动。[^fn1]这个定义让人容易忽略在交通过程中，我们是在不断地经过不同的地点，因而也可能受到这些地方的影响。比如，在乘坐公共交通系统时，线路所经过地区的环境完全可能改变我们乘坐的体验。[^fn2]
 
-- 
+交通工具的可到达性和可用性也是城市地理研究中常常遇到的问题。为了解决这些问题，人们求助于网络科学和图论，[^fn3]并利用可视化工具研究不同的交通方案给用户带来的影响。
 
-[complexity]: https://blog.blockscore.com/hidden-complexity-in-ruby-land/
+通勤这一事实本身可能就说明了我们所在的阶层。有研究者注意到，低收入人群的居住地往往远离工作所在的地点，迫使他们必须付出高昂的通勤代价。[^fn4]
+
+# 远程工作
+
+工作机会和居住位置的不平衡成了影响应聘决定的重要因素之一。[^fn5]为了吸引人才，思想比较先进的雇主会考虑提供远程工作的选项。随之而来的管理和生产力问题也让人大伤脑筋。但也有明白人说，我选择远程工作不是为了生产力，而是因为可以陪伴家人。[^fn6]远程工作也意味着高收入的人并不一定要居住在高消费的地区，这使一些公司的招聘变得容易，也会产生新的富裕地区——只要那里网速够快。[^fn7]
+
+# 交通数据库
+
+[National Transportation Atlas Databases](http://www.rita.dot.gov/bts/sites/rita.dot.gov.bts/files/publications/national_transportation_atlas_database/2015/index.html)
+
+[National Transit Database](http://www.ntdprogram.gov/ntdprogram/data.htm)
+
+[^fn1]: https://zh.wikipedia.org/wiki/%E8%BF%90%E8%BE%93
+[^fn2]: http://www.rtd-fastracks.com/media/uploads/nm/The_geography_of_Transit_Crime.pdf
+[^fn3]: https://en.wikibooks.org/wiki/Transportation_Geography_and_Network_Science/Graph_theory
+[^fn4]: http://scholarworks.umb.edu/cgi/viewcontent.cgi?article=1202&context=nejpp
+[^fn5]: http://www.eremedia.com/ere/remote-work-why-geography-is-the-1-factor-that-limits-applications/
+[^fn6]: https://m.signalvnoise.com/why-i-work-remotely-hint-it-has-nothing-to-do-with-productivity-34ace30f74fc#.7dlkjkbt8
+[^fn7]: http://www.pressherald.com/2015/04/23/geography-of-work-changing-in-maine/
