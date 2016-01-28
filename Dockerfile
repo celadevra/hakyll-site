@@ -1,5 +1,4 @@
-FROM haskell:latest
-RUN cabal update
+FROM dmp1ce/hakyll:latest
 RUN mkdir /src
 WORKDIR /src
 ADD . /src
