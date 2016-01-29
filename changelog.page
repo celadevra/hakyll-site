@@ -16,6 +16,8 @@ tags: site
 ## 2016年1月
 [内容] 添加 [育儿史小考](/history-of-childrearing)
 
+[部署] 从 S3 搬到 DigitalOcean，使用 Docker 进行自动编译和部署。
+
 ## 2015年11月
 [部署] 改用 Circle CI 进行自动编译和部署，并将代码打成 cabal 包。
 
