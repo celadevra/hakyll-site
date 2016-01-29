@@ -8,6 +8,7 @@ hakyll-site
 - Digital Ocean
 - Docker
 - jQuery
+- MathJax
 
 网站发布在 <https://expoundite.net/>
 
