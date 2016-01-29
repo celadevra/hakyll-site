@@ -52,6 +52,7 @@ $('document').ready(function() {
     };
     $('a[id^="fnref"]').on('click', function () {
 	var i = $(this).attr("id").split("fnref")[1];
+	$('section.footnotes li').hide();
 	$('section.footnotes li[id="fn'+ i +'"]').toggle();
     });
 });
