@@ -1,14 +1,12 @@
 hakyll-site
 ===========
 
-[![Circle CI](https://circleci.com/gh/celadevra/hakyll-site.svg?style=svg)](https://circleci.com/gh/celadevra/hakyll-site)
-
 我的个人网站，以论说文为主，使用 [Hakyll](http://jaspervdj.be/hakyll/) 搭建。
 
 依赖：
 
-- Amazon AWS
-- Circle CI
+- Digital Ocean
+- Docker
 - jQuery
 
 网站发布在 <https://expoundite.net/>
