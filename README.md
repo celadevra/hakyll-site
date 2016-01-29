@@ -40,7 +40,7 @@ docker run -v ~/src/hakyll-site:/src celadevra/blog '/src/site build'
 docker run -d -v ~/src/hakyll-site:/src celadevra/blog '/src/site watch' 
 ```
 
-将 [Dockerfile](https://gist.github.com/celadevra/91977fe7a31be2290e4c#file-dockerfile) 下载到 `~/src/docker-nginx/config`。
+将 [Dockerfile](https://gist.github.com/celadevra/91977fe7a31be2290e4c#file-dockerfile) 下载到 `~/src/docker-nginx/Dockerfile`。
 
 在 nginx 镜像的基础上构建一个新的 docker 镜像：
 ```
