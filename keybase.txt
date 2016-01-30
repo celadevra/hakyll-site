@@ -1,0 +1,76 @@
+==================================================================
+https://keybase.io/celadevra
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://expoundite.net
+  * I am celadevra (https://keybase.io/celadevra) on keybase.
+  * I have a public key with fingerprint 59AF 62A1 DB82 4222 6D6C  A071 022E A0C4 F99C 109A
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "010177083490ec75e45c50db5585fde4795b801ded57213499d692f01fd2bac9ba2b0a",
+            "fingerprint": "59af62a1db8242226d6ca071022ea0c4f99c109a",
+            "host": "keybase.io",
+            "key_id": "022ea0c4f99c109a",
+            "kid": "010177083490ec75e45c50db5585fde4795b801ded57213499d692f01fd2bac9ba2b0a",
+            "uid": "ff223a0078e85f92f73fc3009d7b5119",
+            "username": "celadevra"
+        },
+        "revoke": {
+            "sig_ids": [
+                "01d38676969d047613712e6289ed8293b5cf0e8ef069f75f722deb121b4242e40f"
+            ]
+        },
+        "service": {
+            "hostname": "expoundite.net",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1454113271,
+    "expire_in": 157680000,
+    "prev": "50503c2bfcd7f1c72e16dc34012a1129834c5369d757319a7a6ca652a17f8638",
+    "seqno": 19,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.49
+Comment: https://keybase.io/crypto
+
+yMJ1AnicrVJbbBVFGD4HsMUKUk0oJEoC24hCTo8zszs7O6eEB5PaYIwkJgJyyXF3
+5p/T5fTsHnb3HKylaoztQ8EYGolWiVExgQgP2kSEpJHrg42JEaTcAiTVGE1jVJRL
++kDKbMUnX52Xycz/fd///ZfT82dnmrKz8h+dntrb/H722xO3a5l1h7K3ew0vlD1G
+odcow8wF3RLipFj2pVEwEEaYMeSYFkcgGAWLCoqkR6lDlQSLceo5CEuQlBGsUVza
+nCiElSSeK7jnEg+5Rs5QflCCqBr5QaJlKXeVTVwsPYdYhBBb2sJFDCNCwEXCUpwL
+jHhK7ArjlKHNeW4MeT/Uf/pR/Mfef/H/s+/ajJxShJguQswBzddAZiphIsQl8yjG
+PAXGEAVuBTRaQLcroR65Rl/OiKAeliFtbOyXtOvYKGzS9qTp2MzmNpfIYjY2GSZg
+E4eDdAg3PSoUAgcUsrliVDFCJHiYYM/S/QILKWOL1tYp676YEU/bdC89vFwNa4H0
+E8gHkGhr1ShMQhF261hXklTjQuor6amm4O3gFe/JFD1fs4KSZtQhiv0wMApYI0Xi
+p7rYohbGJmE4l6bwIyj6KYIy20H6pHmgng4XUWQK4ikhmcKCEcC2FKaFsJ44JlwP
+RVBTV84oMzF3mauHb1MdZMqxTcdIC9sWhFqba59uSWvq3gVuUovA6Dt5fPOcTLYp
+03DfrHR/M033N/+71fPLjdPljxt6JquHt+z+cOVw7+T1occOtLz4Zu+x6mDDwPCv
+ExOv7hqrzKt1/vH93I7JncveeumdXV9NH45+QdEoDL/y5PMt8zr3nerf/9wHZ9q6
+l/916b0l1dUXO5fWkksXjjWO/D44sbvj601tfePZuX8fHanse2bNT1uPtLZUms+e
+f3zVwweOv36tvb601ZxaYL+x+rPOPYvyszc8+Mnou0Mv7Ojo76+fe3r05KnW8+OD
+8seH1tzauOHEa2eIKF1pi9f/3OVcnVr4wLmh3/Jk7fIdn9Y35sYHs2d3frFg26Pt
+3zwx1rf3hzurPh/4ctlTj0zkDx68+ezYypELucXTfw5clRW2vn3Jd3tuXD7UuIK/
+3bX2LnpKWW4=
+=pQbz
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/celadevra
+
+==================================================================
+
