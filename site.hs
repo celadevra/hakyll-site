@@ -34,6 +34,10 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
+    match "keybase.txt" $ do
+        route   idRoute
+        compile copyFileCompiler
+
     match (fromList ["docs/*.pdf", "docs/*.mobi", "docs/*.epub"]) $ do
        route    idRoute
        compile  copyFileCompiler
