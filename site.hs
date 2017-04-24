@@ -8,7 +8,7 @@ import           Control.Monad (forM, liftM)
 --import           System.Time (formatCalendarTime, toUTCTime)
 import           Data.List (sortBy)
 import           Data.Ord (comparing)
-import           Text.Pandoc (HTMLMathMethod(MathJax),
+import           Text.Pandoc (HTMLMathMethod(MathML),
                     ObfuscationMethod(ReferenceObfuscation), WriterOptions(..))
 
 --------------------------------------------------------------------------------
@@ -179,12 +179,11 @@ rssBodyField key = field key $
 
 woptions :: WriterOptions
 woptions = defaultHakyllWriterOptions{ writerSectionDivs = True,
-                                       writerStandalone = True,
                                        writerTableOfContents = True,
                                        writerColumns = 70,
-                                       writerTemplate = "<div id=\"TOC\">$toc$</div>\n$body$",
+                                       writerTemplate = Just "<div id=\"TOC\">$toc$</div>\n$body$",
                                        writerHtml5 = True,
-                                       writerHTMLMathMethod = Text.Pandoc.MathJax "",
+                                       writerHTMLMathMethod = Text.Pandoc.MathML (Just ""),
                                        writerHighlight = True,
                                        writerEmailObfuscation = ReferenceObfuscation}
 
