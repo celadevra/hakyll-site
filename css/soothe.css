@@ -2,6 +2,7 @@
 body {
     font-size: 14px;
     margin: 0px auto 0px auto;
+  line-height: 121%;
     width: 100%;
     font-family: 'Baskerville', 'Libre Baskerville', 'Source Han Serif CN', 'STSong', 'SimSun', serif;
     font-weight: 400;
@@ -229,15 +230,18 @@ figure figcaption {
     }
 
 pre {
-    font-size: 12pt;
+    font-size: 11pt;
     overflow: scroll;
-    background: #fdd;
+    background: #fdf7ee;
+    padding: 5px 5px 5px 5px;
+  border: #ffd7de 1px solid;
     border-radius: 10px;
 }
 
 code {
-    font-size: 12pt;
-    font-family: 'Source Code Pro', 'Consolas', monospace;
+    font-size: 11pt;
+  color: #333;
+    font-family: 'IosevkaCC Slab', 'Monaco', 'Consolas', monospace;
 }
 
 blockquote {
