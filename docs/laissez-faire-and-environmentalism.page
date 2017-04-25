@@ -4,7 +4,8 @@ created: 2014-03-19
 author: Haoyang Xu
 description: 环境保护不是左派的阴谋，而是自由市场下必须进行的工作。
 status: draft
-belief: possible
+type: possible
+importance: 4
 tags: environment, market, scarcity
 ...
 

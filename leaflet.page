@@ -5,6 +5,7 @@ author: Haoyang Xu
 description: 轻量化、移动平台友好的简易地图绘制工具
 status: notes
 type: rational
+importance: 4
 tags: geomatics, map, javascript
 ...
 
