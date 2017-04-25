@@ -18,6 +18,7 @@ div.header {
 }
 .info ul {
     list-style: none;
+  border-right: 1px solid #000;
 }
 
 .info span.bullet {
@@ -105,7 +106,7 @@ div.title h1 span {
     float: right;
     position: relative;
     width: 80%;
-  padding-right: 10%;
+  padding-right: 9%;
 }
 
 .footer {
