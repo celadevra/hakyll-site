@@ -2,7 +2,7 @@
 body {
     font-size: 14px;
     margin: 0px auto 0px auto;
-  line-height: 121%;
+  line-height: 125%;
     width: 100%;
     font-family: 'Baskerville', 'Libre Baskerville', 'Source Han Serif CN', 'STSong', 'SimSun', serif;
     font-weight: 400;
@@ -90,15 +90,13 @@ div.title h1 {
     clear: both;
     width: 100%;
     text-align: center;
-    border-bottom: solid #00ccff 1px;
     min-height: 50px;
     position: relative;
 }
 
 div.title h1 span {
-    background-color: #00ccff;
     padding: 10px 20px 8px 20px;
-    color: #fff;
+    color: #333;
     position: relative;
     bottom: -10px;
 }
