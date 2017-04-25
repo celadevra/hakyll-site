@@ -1,8 +1,10 @@
+machine:
+  timezone: Asia/Shanghai
 dependencies:
   pre:
-    - apt-get update && apt-get install stack
+    - sudo apt-get update && apt-get install stack
   post:
-    - apt-get update && apt-get install s3cmd
+    - sudo apt-get update && apt-get install s3cmd
   
 test:
   override:
