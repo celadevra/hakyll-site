@@ -14,7 +14,7 @@ div.header {
 
 .info {
     float: left;
-    width: 20%;
+    width: 10%;
 }
 .info ul {
     list-style: none;
@@ -105,6 +105,7 @@ div.title h1 span {
     float: right;
     position: relative;
     width: 80%;
+  padding-right: 10%;
 }
 
 .footer {
