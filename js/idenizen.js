@@ -32,6 +32,7 @@ $('document').ready(function() {
 });
 
 // Display in-place notes
+/*
 $('document').ready(function() {
     $('div.notes').append($('section.footnotes'));
     $('section.footnotes > hr').hide();
@@ -56,3 +57,4 @@ $('document').ready(function() {
 	$('section.footnotes li[id="fn'+ i +'"]').toggle();
     });
 });
+*/
