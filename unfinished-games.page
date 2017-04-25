@@ -4,7 +4,8 @@ created: 2014-02-09
 author: Haoyang Xu
 description: 不可能完成的游戏正在成为主流和新的表达方式。
 status: finished
-belief: highly likely
+type: rational
+importance: 3
 tags: game, steam, mod
 ...
 

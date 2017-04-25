@@ -4,7 +4,8 @@ created: 2013-10-08
 author: Haoyang Xu
 description: 我读《巴黎城记》。
 status: finished
-belief: likely
+type: rational
+importance: 4
 tags: city, history
 ...
 

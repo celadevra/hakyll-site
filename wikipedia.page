@@ -4,7 +4,8 @@ created: 2014-04-15
 author: Haoyang Xu
 description: 我对维基百科中文版的编辑工作
 status: in progress
-belief: log
+type: log
+importance: 3
 tags: wikipedia, knowledge
 ...
 
@@ -15,7 +16,7 @@ tags: wikipedia, knowledge
 p + p { text-indent: 0; }
 </style>
 
-目前我的主[帐号](https://zh.wikipedia.org/wiki/User:Haoyangxu)已进行了约[70次](https://tools.wmflabs.org/supercount/index.php?user=Haoyangxu&project=zh.wikipedia)编辑。加粗字体为新建页面。
+目前我的主[帐号](https://zh.wikipedia.org/wiki/User:Haoyangxu)已进行了约[130次](https://tools.wmflabs.org/supercount/index.php?user=Haoyangxu&project=zh.wikipedia)编辑。加粗字体为新建页面。
 
 # 环境保护领域
 

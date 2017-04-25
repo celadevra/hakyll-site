@@ -3,8 +3,9 @@ title: GDAL - 通用的地理数据转换工具
 created: 2015-03-27
 author: Haoyang Xu
 description: GDAL 介绍
-status: in progress
-belief: highly likely
+status: notes
+type: rational
+importance: 2
 tags: data, geomatics
 ...
 

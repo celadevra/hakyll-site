@@ -4,7 +4,8 @@ created: 2014-01-23
 author: Haoyang Xu
 description: 本网站的进化过程
 status: in progress
-belief: certain
+importance: 3
+type: rational
 tags: site
 ...
 
@@ -12,6 +13,8 @@ tags: site
 <!-- belief tags are: certain, highly likely, likely, possible, unlikely, highly unlikely, remote, impossible -->
 
 ![A banner image: lines of code](images/changelog.png)
+
+## 2017年4月
 
 ## 2016年1月
 [内容] 添加 [育儿史小考](/history-of-childrearing)

@@ -4,11 +4,11 @@ created: 2014-04-23
 author: Haoyang Xu
 description: 工作中可能用到的几种多因素决策方法：特点、假设基础和比较。
 status: in progress
-belief: highly likely
+type: rational
 tags: decision-making, optimization
+importance: 4
 biblio: mcdm.bib
 csl: harvard1.csl
-mathjax: true
 ...
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->

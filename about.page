@@ -3,9 +3,10 @@ title: 关于本网站
 created: 2014-04-30
 author: Haoyang Xu
 description: 建立这个网站的目的，使用的工具，以及将来的愿景。
-status: links
-belief: highly likely
+status: log
+type: links
 tags: site
+importance: 2
 ...
 
 <!-- Status choices are: links, notes, draft, in progress, finished -->
