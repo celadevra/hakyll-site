@@ -136,6 +136,8 @@ main = hakyllWith testConf $ do
                  let title = "Tag: " ++ tag
                  route $ setExtension "html"
                  compile $ tagPage tags title pattern
+                   >>= loadAndApplyTemplate "templates/bloglist.html" (allPostsCtx tags)
+                   >>= relativizeUrls
 --------------------------------------------------------------------------------
 postCtx :: Tags -> Context String
 postCtx tags =
