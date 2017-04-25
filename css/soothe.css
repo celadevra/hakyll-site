@@ -3,7 +3,7 @@ body {
     font-size: 12px;
     margin: 0px auto 0px auto;
     width: 100%;
-    font-family: 'Avenir Next', 'Arial', PingFang SC, 'SimHei', sans-serif;
+    font-family: 'Baskerville', 'Libre Baskerville', 'Source Han Serif CN', 'STSong', 'SimSun', serif;
     font-weight: 400;
 }
 
@@ -102,9 +102,9 @@ div.title h1 span {
 }
 
 .article {
-    float: left;
+    float: right;
     position: relative;
-    width: 60%;
+    width: 80%;
 }
 
 .footer {
