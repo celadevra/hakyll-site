@@ -85,7 +85,7 @@ main = hakyll $ do
         itemsTpl <- loadBody "templates/postitem.html"
         list <- applyTemplateList itemsTpl defaultContext sorted
         makeItem (list)
-          >>= loadAndApplyTemplate "templates/bloglist.html" (allPostsCtx tags)
+          >>= loadAndApplyTemplate "templates/archives.html" (allPostsCtx tags)
           >>= relativizeUrls
 
     -- bibliography
@@ -129,6 +129,8 @@ main = hakyll $ do
                  let title = "Tag: " ++ tag
                  route idRoute
                  compile $ tagPage tags title pattern
+                   >>= loadAndApplyTemplate "templates/bloglist.html" (allPostsCtx tags)
+                   >>= relativizeUrls
 --------------------------------------------------------------------------------
 postCtx :: Tags -> Context String
 postCtx tags =

@@ -91,7 +91,7 @@ main = hakyllWith testConf $ do
         itemsTpl <- loadBody "templates/postitem.html"
         list <- applyTemplateList itemsTpl defaultContext sorted
         makeItem (list)
-          >>= loadAndApplyTemplate "templates/bloglist.html" (allPostsCtx tags)
+          >>= loadAndApplyTemplate "templates/archives.html" (allPostsCtx tags)
           >>= relativizeUrls
 
 
