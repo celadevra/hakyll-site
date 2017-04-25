@@ -1,10 +1,12 @@
 machine:
-  timezone: Asia/Shanghai
+  timezone:
+    Asia/Shanghai
   ghc:
-    version: 8.0.2
+    version:
+      8.0.2
 
 dependencies:
-  override:
+  pre:
     - apt-get update && apt-get install stack
   post:
     - apt-get update && apt-get install s3cmd
@@ -18,7 +20,7 @@ test:
     - ./retouch.sh
 
 deployment:
-  production:
+  prod:
     branch: master
     commands:
       - aws configure set preview.cloudfront true
