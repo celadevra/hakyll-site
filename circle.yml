@@ -4,6 +4,8 @@ dependencies:
   cache_directories:
     - .cabal-sandbox
     - ~/.stack
+  override:
+    - stack setup
   post:
     - sudo apt-get update && sudo apt-get install s3cmd
   
