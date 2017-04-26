@@ -6,12 +6,11 @@ dependencies:
     - "~/.stack"
   override:
     - stack setup
+    - stack build --only-dependencies
   post:
     - sudo apt-get update && sudo apt-get install s3cmd
   
 test:
-  override:
-    - stack build
   post:
     - stack install
     - ./retouch.sh
@@ -23,5 +22,5 @@ deployment:
     commands:
       - aws configure set preview.cloudfront true
       - echo -e "[default] \naccess_key = $S3CFG_ACCESSKEY \nsecret_key = $S3CFG_SECRETKEY \n" > /home/ubuntu/.s3cfg
-      - s3cmd sync _site s3://expoundite.net/test --guess-mime-type --default-mime-type "text/html" --recursive --delete-removed --acl-public
+      - s3cmd --guess-mime-type --default-mime-type="text/html" --recursive --delete-removed --acl-public sync _site s3://expoundite.net/test 
       - aws cloudfront create-invalidation --distribution-id E2WQV7PA6MMP54 --paths "/*"
