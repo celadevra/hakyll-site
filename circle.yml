@@ -21,6 +21,6 @@ deployment:
     branch: master
     commands:
       - aws configure set preview.cloudfront true
-      - echo -e "[default]\naccess_key = $S3CFG_ACCESSKEY\nsecret_key = $S3CFG_SECRETKEY\n" > /home/ubuntu/.s3cfg
-      - s3cmd --guess-mime-type --default-mime-type="text/html" --recursive --delete-removed --acl-public sync _site/* s3://expoundite.net/
+      - echo -e "[default]\naccess_key = $S3CFG_ACCESSKEY\nsecret_key = $S3CFG_SECRETKEY\ndefault_mime_tipe = 'text/html'" > /home/ubuntu/.s3cfg
+      - s3cmd --guess-mime-type --default-mime-type --recursive --delete-removed --acl-public sync _site/* s3://expoundite.net/
       - aws cloudfront create-invalidation --distribution-id E2WQV7PA6MMP54 --paths "/*"
