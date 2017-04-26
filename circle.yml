@@ -22,5 +22,5 @@ deployment:
     branch: master
     commands:
       - aws configure set preview.cloudfront true
-      - s3cmd sync _site s3://expoundite.net/test --guess-mime-type --default-mime-type "text/html" --recursive --delete-removed --acl-public --access-key=$S3CFG_ACCESSKEY --secret-key=$S3CFG_SECRETKEY 
+      - s3cmd sync _site s3://expoundite.net/test --guess-mime-type --default-mime-type "text/html" --recursive --delete-removed --acl-public --access_key=$S3CFG_ACCESSKEY --secret_key=$S3CFG_SECRETKEY 
       - aws cloudfront create-invalidation --distribution-id E2WQV7PA6MMP54 --paths "/*"
