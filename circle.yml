@@ -3,7 +3,7 @@ machine:
 dependencies:
   cache_directories:
     - .cabal-sandbox
-    - "~/.stack"
+    - "/home/ubuntu/.stack"
   override:
     - stack setup
     - stack build --only-dependencies
@@ -11,13 +11,13 @@ dependencies:
     - sudo apt-get update && sudo apt-get install s3cmd
   
 test:
-  post:
+  override:
     - stack install
     - ./retouch.sh
     - expoundite build
 
 deployment:
-  aws:
+  prod:
     branch: master
     commands:
       - aws configure set preview.cloudfront true
