@@ -8,7 +8,7 @@ dependencies:
     - stack setup
     - stack build --only-dependencies
   post:
-    - sudo apt-get update && sudo apt-get install s3cmd
+    - sudo pip install s3cmd
   
 test:
   override:
@@ -22,5 +22,5 @@ deployment:
     commands:
       - aws configure set preview.cloudfront true
       - echo -e "[default]\naccess_key = $S3CFG_ACCESSKEY\nsecret_key = $S3CFG_SECRETKEY\ndefault_mime_type = text/html\nguess_mime_type = True" > /home/ubuntu/.s3cfg
-      - s3cmd --default-mime-type --recursive --delete-removed --acl-public sync _site/* s3://expoundite.net/
+      - s3cmd --recursive --delete-removed --acl-public sync _site/* s3://expoundite.net/
       - aws cloudfront create-invalidation --distribution-id E2WQV7PA6MMP54 --paths "/*"
