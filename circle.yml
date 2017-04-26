@@ -3,7 +3,7 @@ machine:
 dependencies:
   cache_directories:
     - .cabal-sandbox
-    - "/home/ubuntu/.stack"
+    - "~/.stack"
   override:
     - stack setup
     - stack build --only-dependencies
