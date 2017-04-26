@@ -14,8 +14,8 @@ test:
     - stack build
   post:
     - stack install
-    - expoundite build
     - ./retouch.sh
+    - expoundite build
 
 deployment:
   aws:
