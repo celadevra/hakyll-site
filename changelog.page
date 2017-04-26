@@ -15,6 +15,12 @@ tags: site
 ![A banner image: lines of code](images/changelog.png)
 
 ## 2017年4月
+[部署] 回到 Hakyll。使用 Amazon CloudFront 进行内容分发。使用 Amazon 提供的 HTTPS 证书。使用 Circle CI 编译和部署。
+
+`circle.yml` 内容见[链接](https://github.com/celadevra/hakyll-site/blob/master/circle.yml)。需要注意的几点：
+
+* 用 `pip` 安装 `s3cmd`，系统 apt 自带的版本太老，且 `--default-mime-type` 的实现有[问题](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=691547)。
+* `s3cmd` 使用时要加 `--no-mime-magic` 参数，否则它的依赖 `python-magic` 会影响对文件类型的判断，例如将 CSS 判为 `text/plain`。
 
 ## 2016年1月
 [内容] 添加 [育儿史小考](/history-of-childrearing)
