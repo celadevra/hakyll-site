@@ -67,6 +67,10 @@ div.article { margin-left: 20%; }
 
 [GnuPG 使用简介][gpg-intro]
 
+[Dotfile Management and Documentation with Org-mode][dotfile-management]
+
+[Getting started with ... Stats][getting-started-stats]
+
 ## 科幻
 [AI, VR and space exploration][ai-vr-and-space-exploration]
 
@@ -86,3 +90,5 @@ div.article { margin-left: 20%; }
 [gpg-intro]: /gpg-intro
 [history-of-childrearing]: /history-of-childrearing
 [ai-vr-and-space-exploration]: /ai-and-space-exploration
+[dotfile-management]: /dotfile-management
+[getting-started-stats]: /getting-started-with-stats
