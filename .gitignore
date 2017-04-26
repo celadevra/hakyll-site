@@ -11,3 +11,4 @@ dev.hi
 dev.o
 .cabal-sandbox/
 cabal.sandbox.config
+.stack-work/
