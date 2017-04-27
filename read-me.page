@@ -79,6 +79,6 @@ tags: author
 
 # GnuPG Pubkey Fingerprint
 
-59AF 62A1 DB82 4222 6D6C  A071 022E A0C4 F99C 109A
+FBFF 3139 AE19 B973 9DBA  D530 468B 2548 E25F 623A
 
-我的公钥可以在[这里](http://pgp.mit.edu/pks/lookup?op=vindex&search=0x022EA0C4F99C109A)查看。
+我的公钥可以在[这里](http://pgp.mit.edu/pks/lookup?op=vindex&search=0xF89DA1CA5B0AAD96)查看。
