@@ -2,7 +2,6 @@ machine:
   timezone: Asia/Shanghai
 dependencies:
   cache_directories:
-    - .cabal-sandbox
     - "~/.stack"
   override:
     - stack setup
