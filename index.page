@@ -30,31 +30,33 @@ div.article section { width: 33%; float: left; }
 > expoundite.net 邮件列表因个人原因暂停中。往期请看页面底部的链接。
 <!-- expoundite.net 现在有邮件列表了，2015年1月起每月1日发送。请到link:#newsletter[页面下方]订阅。-->
 
-## 文化和评论
+## 观察
 
 [更大，更美，未完成][unfinished-games]
-
-[城市更新背后的逻辑][logic-behind-urban-renewal]
 
 [电影化游戏][movie-games]
 
 [与不理想的世界和解][make-this-not-true-translation]
 
+[作为工作的研究和作为发现的工作][non-academia-research]
+
 [不死者与生者][story-of-the-undead]
 
-[灾难，重建和士绅化][gentrification]
+[But I didn't][but-i-didnt]
 
 [育儿史小考][history-of-childrearing]
+
+## 地理
+
+[城市更新背后的逻辑][logic-behind-urban-renewal]
+
+[灾难，重建和士绅化][gentrification]
 
 ## 维基百科
 
 [我在维基百科上的工作][wikipedia-log]
 
 ## 生活
-
-[作为工作的研究和作为发现的工作][non-academia-research]
-
-[But I didn't][but-i-didnt]
 
 [理财][money]
 
@@ -73,6 +75,7 @@ div.article section { width: 33%; float: left; }
 [Getting started with ... Stats][getting-started-stats]
 
 ## 科幻
+
 [AI, VR and space exploration][ai-vr-and-space-exploration]
 
 [unfinished-games]: /unfinished-games
