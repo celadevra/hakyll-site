@@ -23,7 +23,8 @@ div.info { display: none; }
 /* Get as many columns on the page as possible;
 this overrides the A/B-tested narrower max-width for content pages */
 p:first, p + p { text-indent: 0; }
-div.article { margin-left: 20%; }
+div.article { margin-left: 25%; }
+div.article section { width: 33%; float: left; }
 </style>
 
 > expoundite.net 邮件列表因个人原因暂停中。往期请看页面底部的链接。
