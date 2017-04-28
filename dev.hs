@@ -43,7 +43,7 @@ main = hakyllWith testConf $ do
         route   idRoute
         compile copyFileCompiler
 
-    match "docs/**" $ do
+    match (fromRegex "^docs/.*[^\\.page]$") $ do
        route    idRoute
        compile  copyFileCompiler
 
