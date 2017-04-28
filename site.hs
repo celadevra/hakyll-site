@@ -38,19 +38,13 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
-    match (fromList ["docs/*.pdf", "docs/*.mobi", "docs/*.epub"]) $ do
+    match "docs/**" $ do
        route    idRoute
        compile  copyFileCompiler
 
     -- Tags
     tags <- buildTags "**.page" (fromCapture "tags/*")
 
-    match "docs/*" $ do
-        route $ setExtension ""
-        compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
-            >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
-            >>= relativizeUrls
-            
     match "newsletters/*" $ do
         route $ setExtension ""
         compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
