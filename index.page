@@ -56,6 +56,8 @@ div.article { margin-left: 25%; padding-right: 0; }
 
 [与不理想的世界和解][make-this-not-true-translation]
 
+[生活课，也是时代的记录][how-to-live-review]
+
 ## 生活
 
 [理财][money]
@@ -98,3 +100,4 @@ div.article { margin-left: 25%; padding-right: 0; }
 [ai-vr-and-space-exploration]: /ai-and-space-exploration
 [dotfile-management]: /dotfile-management
 [getting-started-stats]: /getting-started-with-stats
+[how-to-live-review]: /how-to-live-review
