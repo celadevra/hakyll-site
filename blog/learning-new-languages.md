@@ -1,7 +1,7 @@
 ---
 title: Scott Chacon 的语言学习心得
 date: 2016-01-07
-author: Haoyang Xu
+author: 徐栖
 description: 间断式反复单词记忆，情景会话
 status: finished
 belief: likely

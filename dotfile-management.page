@@ -1,7 +1,7 @@
 ---
 title: Dotfile Management and Documentation with Org-Mode
 created: 2016-03-19
-author: Haoyang Xu
+author: 徐栖
 description: use org-mode to manage and document your rc files
 status: finished
 type: rational
@@ -70,7 +70,7 @@ Then, under each subheading, put your files in an src block, like this:
  #+BEGIN_SRC conf :tangle ~/.muttrc
  #source "/etc/Muttrc"   # Not available on OS X
  source "gpg --batch --passphrase-file ~/.sec/.passphrase --textmode -d ~/.sec/mutt.gpg |"
- set realname="Haoyang Xu"
+ set realname="徐栖"
 
  set sig_dashes
 

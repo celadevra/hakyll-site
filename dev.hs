@@ -158,9 +158,9 @@ bibtexCompiler cslFileName bibFileName = do
 
 feedConfiguration :: FeedConfiguration
 feedConfiguration = FeedConfiguration
-    { feedTitle       = "Haoyang Xu"
+    { feedTitle       = "徐栖"
     , feedDescription = "RSS feed for Haoyang's website"
-    , feedAuthorName  = "Haoyang Xu"
+    , feedAuthorName  = "徐栖"
     , feedAuthorEmail = "haoyang@expoundite.net"
     , feedRoot        = "https://expoundite.net"
     }
