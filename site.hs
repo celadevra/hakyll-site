@@ -48,6 +48,7 @@ main = hakyll $ do
     match "newsletters/*" $ do
         route $ setExtension ""
         compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
+            >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
             >>= relativizeUrls
 
@@ -110,6 +111,13 @@ main = hakyll $ do
         compile $ do
             posts <- fmap (take 10) . createdFirst =<<
                 loadAllSnapshots "*.page" "content"
+            renderRss feedConfiguration (feedContext tags) posts
+
+    create ["newsletters/rss.xml"] $ do
+        route $ idRoute
+        compile $ do
+            posts <- fmap (take 10) . createdFirst =<<
+                loadAllSnapshots "newsletters/*.page" "content"
             renderRss feedConfiguration (feedContext tags) posts
 
     create ["blog/index.rss"] $ do
