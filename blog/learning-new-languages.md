@@ -2,7 +2,7 @@
 title: Scott Chacon 的语言学习心得
 date: 2016-01-07
 author: 徐栖
-description: 间断式反复单词记忆，情景会话
+subtitle: 间断式反复单词记忆，情景会话
 status: finished
 belief: likely
 tags: language, learning

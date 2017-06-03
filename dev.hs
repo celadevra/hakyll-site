@@ -54,6 +54,7 @@ main = hakyllWith testConf $ do
         route $ setExtension "html"
         compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
             >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
+            >>= saveSnapshot "content"
             >>= relativizeUrls
             
     match "blog/*.md" $ do
@@ -118,6 +119,14 @@ main = hakyllWith testConf $ do
             posts <- fmap (take 10) . createdFirst =<<
                 loadAllSnapshots "*.page" "content"
             renderRss feedConfiguration (feedContext tags) posts
+
+    create ["newsletters/rss.xml"] $ do
+        route $ idRoute
+        compile $ do
+            posts <- fmap (take 10) . createdFirst =<<
+                loadAllSnapshots "newsletters/*.page" "content"
+            renderRss feedConfiguration (feedContext tags) posts
+
             
     create ["blog/index.rss"] $ do
         route $ idRoute

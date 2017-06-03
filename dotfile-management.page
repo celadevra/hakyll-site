@@ -2,7 +2,7 @@
 title: Dotfile Management and Documentation with Org-Mode
 created: 2016-03-19
 author: 徐栖
-description: use org-mode to manage and document your rc files
+subtitle: use org-mode to manage and document your rc files
 status: finished
 type: rational
 importance: 5

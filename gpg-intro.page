@@ -2,7 +2,7 @@
 author: 徐栖
 created: '2015-10-10'
 title: GnuPG 使用简介
-description: 简单介绍 GPG 加密原理和常用操作。
+subtitle: 简单介绍 GPG 加密原理和常用操作。
 type: rational
 status: in progress
 importance: 4
