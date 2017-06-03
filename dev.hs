@@ -53,8 +53,8 @@ main = hakyllWith testConf $ do
     match "newsletters/*" $ do
         route $ setExtension "html"
         compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
-            >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
             >>= saveSnapshot "content"
+            >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
             >>= relativizeUrls
             
     match "blog/*.md" $ do
