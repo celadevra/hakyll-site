@@ -45,7 +45,7 @@ main = hakyll $ do
     -- Tags
     tags <- buildTags "**.page" (fromCapture "tags/*")
 
-    match "newsletters/*" $ do
+    match "newsletters/*.page" $ do
         route $ setExtension ""
         compile $ pandocCompilerWith defaultHakyllReaderOptions woptions
             >>= saveSnapshot "content"
