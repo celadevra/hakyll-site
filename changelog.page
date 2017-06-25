@@ -14,6 +14,9 @@ tags: site
 
 ![A banner image: lines of code](images/changelog.png)
 
+## 2017年6月
+[内容] 添加 [卖鸡蛋仔的阿七](/qi-who-sells-eggballs)。
+
 ## 2017年4月
 [部署] 回到 Hakyll。使用 Amazon CloudFront 进行内容分发。使用 Amazon 提供的 HTTPS 证书。使用 Circle CI 编译和部署。
 
