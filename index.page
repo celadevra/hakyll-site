@@ -82,6 +82,10 @@ div.article { margin-left: 25%; padding-right: 0; }
 
 [AI, VR and space exploration][ai-vr-and-space-exploration]
 
+## 虚构
+
+[卖鸡蛋仔的阿七][qi-who-sells-eggballs]
+
 [unfinished-games]: /unfinished-games
 [logic-behind-urban-renewal]: /logic-behind-city-renewal
 [non-academia-research]: /non-academia-research
@@ -101,3 +105,4 @@ div.article { margin-left: 25%; padding-right: 0; }
 [dotfile-management]: /dotfile-management
 [getting-started-stats]: /getting-started-with-stats
 [how-to-live-review]: /how-to-live-review
+[qi-who-sells-eggballs]: /qi-who-sells-eggballs
